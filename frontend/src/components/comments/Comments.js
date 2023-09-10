@@ -19,26 +19,28 @@ const Comments = ({ postId }) => {
         return <Stack height="400px"><Loader /></Stack>
     }
 
-    if (comments.length === 0) {
-        return <CustomContainer>
-            <Typography textAlign="center">No Comments</Typography>
-        </CustomContainer>
-    }
     return (
         <>
             <Stack spacing={3} mx={2}>
                 <Divider sx={{ mb: 1 }} />
-                <Typography variant="h6">Comments</Typography>
+
+                {
+                    comments && comments.length === 0
+                        ?
+                        <Typography variant="h6">No comments</Typography>
+                        :
+                        <Typography variant="h6">Comments</Typography>
+                }
 
                 <List
                     sx={{
-                        height: "400px",
+                        height: comments.length === 0 ? "175px" : "400px",
                         overflowY: "scroll",
                         gap: 1
                     }}
                 >
                     {
-                        comments && comments.map((comment) => (
+                        comments && comments?.map((comment) => (
                             <ListItem>
                                 <EachComment postId={postId} comment={comment} key={comment?._id} />
                             </ListItem>
