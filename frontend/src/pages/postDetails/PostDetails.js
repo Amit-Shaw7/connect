@@ -10,6 +10,7 @@ import { useState } from 'react'
 import AddComment from '../../components/comments/AddComment'
 import { Divider } from '@mui/material'
 import Loader from '../../components/loader/Loader'
+import CustomCard from '../../components/customCard/CustomCard'
 
 const fetchPost = async (dispatch, postId, setPost) => {
     const post = await dispatch(fetchPostById(postId));
@@ -35,10 +36,10 @@ const PostDetails = () => {
     return (
         <CustomContainer>
             {post && <Post user={user} post={post} />}
-            <Comments postId={params.id}/>
-            <Divider sx={{ mt: 4 }} />
-            <AddComment postId={post?._id} />
-            <Divider />
+            <Comments postId={params.id} />
+            {/* <Divider sx={{ mt: 4 }} /> */}
+            {/* <AddComment postId={post?._id} /> */}
+            {/* <Divider /> */}
         </CustomContainer>
     )
 }

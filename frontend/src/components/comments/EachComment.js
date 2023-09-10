@@ -102,7 +102,7 @@ const EachComment = ({ comment }) => {
 
     return (
         <>
-            <Stack flexDirection="row" position="relative">
+            <Stack flexDirection="row" position="relative" width="100%">
                 {comment?.user === currentUser?._id && <MoreVertical onclickFn={handlePopoverOpen} />}
                 <CommentActionPopover handleOpenModal={handleOpenModal} anchorEl={anchorEl} handlePopoverClose={handlePopoverClose} open={open} id={comment._id} />
                 <ListItemAvatar>

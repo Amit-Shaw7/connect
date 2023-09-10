@@ -1,10 +1,11 @@
 import React, { useState } from "react"
-import { IconButton, Stack } from "@mui/material"
+import { Card, IconButton, Stack } from "@mui/material"
 import CustomAvatar from "../CustomAvatar"
 import CustomTextInput from "../customInput/CustomInput"
 import { Send } from "@mui/icons-material"
 import { useDispatch, useSelector } from "react-redux"
 import { addCommentFn } from "../../store/actions/CommentActions"
+import CustomCard from "../customCard/CustomCard"
 
 const AddComment = ({ postId }) => {
     const { user } = useSelector(state => state.user);
@@ -25,11 +26,20 @@ const AddComment = ({ postId }) => {
         setPostText("");
     }
     return (
-        <Stack
-            flexDirection="row"
-            alignItems="center"
-            gap={2}
-            my={1}
+        <Card
+            variant="elevation"
+            sx={{
+                display: "flex",
+                backgroundColor: "white",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 2,
+                position: "static",
+                bottom: 0,
+                width: "100%",
+                p:1,
+                boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+            }}
         >
             <CustomAvatar height="35px" width="35px" user={user} />
 
@@ -42,7 +52,7 @@ const AddComment = ({ postId }) => {
             <IconButton onClick={handleAddComment}>
                 <Send />
             </IconButton>
-        </Stack>
+        </Card>
     )
 }
 
