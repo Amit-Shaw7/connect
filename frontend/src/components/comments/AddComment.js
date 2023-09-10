@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { IconButton, Stack } from '@mui/material'
-import CustomAvatar from '../CustomAvatar'
-import CustomTextInput from '../customInput/CustomInput'
-import { Send } from '@mui/icons-material'
-import { useDispatch, useSelector } from 'react-redux'
-import { addCommentFn } from '../../store/actions/CommentActions'
+import React, { useState } from "react"
+import { IconButton, Stack } from "@mui/material"
+import CustomAvatar from "../CustomAvatar"
+import CustomTextInput from "../customInput/CustomInput"
+import { Send } from "@mui/icons-material"
+import { useDispatch, useSelector } from "react-redux"
+import { addCommentFn } from "../../store/actions/CommentActions"
 
 const AddComment = ({ postId }) => {
     const { user } = useSelector(state => state.user);
@@ -22,6 +22,7 @@ const AddComment = ({ postId }) => {
             text: postText
         }
         dispatch(addCommentFn(data, postId));
+        setPostText("");
     }
     return (
         <Stack

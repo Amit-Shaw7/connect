@@ -2,19 +2,19 @@ import { toast } from "react-hot-toast";
 import instance from "../../utils/axiosInstance";
 import { delay } from "../../utils/delay";
 
-export const addPostFn = (data) => async (dispatch) => {
-    dispatch({ type: "ADD_POST_REQUEST" });
+export const addPostFn = (data , dataToShow) => async (dispatch) => {
     const url = "/post";
     let response = {};
-   
+    dispatch({ type: "ADD_POST_SUCCESS", payload: dataToShow });
+
     try {
         response = await instance.post(url, data);
     } catch (error) {
-        dispatch({ type: "ADD_POST_FAILURE" });
         toast.error(error.response.data.msg);
+        window.location.reload();
     } finally {
         if (response?.status === 200) {
-            dispatch({ type: "ADD_POST_SUCCESS", payload: response.data?.post });
+            toast.success("Post Added Successfully");
         }
     }
 };
@@ -37,15 +37,15 @@ export const fetchMyPostsFn = (type) => async (dispatch) => {
 }
 
 export const getPostsForFeedFn = (type) => async (dispatch) => {
-    dispatch({ type: "START_LOADER" });
+    // dispatch({ type: "START_LOADER" });
     const url = `post/feed?query=${type.toLowerCase()}`;
     let response = {};
    
     try {
         response = await instance.get(url);
     } catch (error) {
-        dispatch({ type: "STOP_LOADER" });
-        toast.error(error.response.data.msg);
+        // dispatch({ type: "STOP_LOADER" });
+        toast.error(error?.response?.data?.msg);
     } finally {
         if (response?.status === 200) {
             dispatch({ type: "GET_ALL_POST_SUCCESS", payload: response.data?.posts });

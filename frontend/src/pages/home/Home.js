@@ -8,9 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPostsForFeedFn } from "../../store/actions/PostActions";
 import Loader from "../../components/loader/Loader";
 import { Stack } from "@mui/material";
-import useResponsive from "../../hooks/usResponsive";
-import SimpleBottomNavigation from "../../components/BottomNavigation/BottomNavigation";
 
+const getPostsForFeed = (dispatch , sortBy) => dispatch(getPostsForFeedFn(sortBy));
 
 const Home = () => {
   const { loading } = useSelector(state => state.post);
@@ -26,8 +25,8 @@ const Home = () => {
   }
 
   useEffect(() => {
-    dispatch(getPostsForFeedFn(sortBy));
-  }, [dispatch, sortBy]);
+    getPostsForFeed(dispatch , sortBy);
+  }, [sortBy , dispatch]);
 
   if (loading) {
     return <Loader />;

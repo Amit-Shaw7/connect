@@ -7,14 +7,11 @@ import CommentOutlined from "@mui/icons-material/CommentOutlined";
 import Comment from "@mui/icons-material/Comment";
 import BookmarkBorder from "@mui/icons-material/BookmarkBorder";
 import Bookmark from "@mui/icons-material/Bookmark";
-import IconButton from "@mui/material/IconButton";
-import ListItemText from "@mui/material/ListItemText";
 import Stack from "@mui/material/Stack";
 import { likePostFn, savePostFn } from "../../store/actions/PostActions";
 import { toast } from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Typography } from "@mui/material";
-import { Send, SendOutlined } from "@mui/icons-material";
 
 const PostActions = ({ user, post }) => {
     const { likes, savedBy, _id, comments } = post;
@@ -55,7 +52,7 @@ const PostActions = ({ user, post }) => {
     }
 
     const copyLinkToClipboard = async () => {
-        await navigator.clipboard.writeText(window.location.href + "post/" + post?._id);
+        await navigator.clipboard.writeText(window.location.origin + "/post/" + _id);
         toast.success("Link Copied");
     }
 
@@ -73,9 +70,9 @@ const PostActions = ({ user, post }) => {
                     alignItems="center"
                 >
                     {postLiked ?
-                        <Favorite sx={{cursor: "pointer"}} onClick={unlikePost} fontSize="small" color="error" />
+                        <Favorite sx={{ cursor: "pointer" }} onClick={unlikePost} fontSize="small" color="error" />
                         :
-                        <FavoriteBorder sx={{cursor: "pointer"}} onClick={likePost} fontSize="small" color="error" />
+                        <FavoriteBorder sx={{ cursor: "pointer" }} onClick={likePost} fontSize="small" color="error" />
                     }
                     <Typography ml={0.3}>{likesCount}</Typography>
                 </Stack>
@@ -85,24 +82,24 @@ const PostActions = ({ user, post }) => {
                     alignItems="center"
                 >
                     {/* <Link to={`/post/${_id}`}> */}
-                        {comments?.includes(user?._id) ?
-                            <Comment sx={{cursor: "pointer"}} onClick={goToPostDetailsPage} fontSize="small" color="primary" />
-                            :
-                            <CommentOutlined sx={{cursor: "pointer"}} onClick={goToPostDetailsPage} fontSize="small" color="primary" />
-                        }
+                    {comments?.includes(user?._id) ?
+                        <Comment sx={{ cursor: "pointer" }} onClick={goToPostDetailsPage} fontSize="small" color="primary" />
+                        :
+                        <CommentOutlined sx={{ cursor: "pointer" }} onClick={goToPostDetailsPage} fontSize="small" color="primary" />
+                    }
                     {/* </Link> */}
                     <Typography ml={0.3}>{comments?.length}</Typography>
                 </Stack>
 
-                <Share sx={{cursor: "pointer"}} onClick={copyLinkToClipboard} fontSize="small" color="primary" />
+                <Share sx={{ cursor: "pointer" }} onClick={copyLinkToClipboard} fontSize="small" color="primary" />
             </Stack>
             {postSaved ?
-                <Bookmark sx={{cursor: "pointer"}} onClick={savePost} fontSize="small" color="primary" />
+                <Bookmark sx={{ cursor: "pointer" }} onClick={savePost} fontSize="small" color="primary" />
                 :
-                <BookmarkBorder sx={{cursor: "pointer"}} onClick={savePost} fontSize="small" color="primary" />
+                <BookmarkBorder sx={{ cursor: "pointer" }} onClick={savePost} fontSize="small" color="primary" />
             }
         </Stack>
     )
 }
 
-export default PostActions
+export default PostActions;

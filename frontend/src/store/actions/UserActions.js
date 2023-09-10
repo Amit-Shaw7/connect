@@ -81,10 +81,10 @@ export const fetchSuggestedUsersFn = () => async (dispatch) => {
     try {
         response = await instance.get(url);
     } catch (error) {
-        toast.error(error.response.data.msg);
+        toast.error(error?.response?.data?.msg);
     } finally {
         if (response?.status === 200) {
-            return response.data?.users;
+            return response?.data?.users;
         }
     }
 };

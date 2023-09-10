@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import AppBar from "@mui/material/AppBar";
-import ArrowLeftOutlined from "@mui/icons-material/ArrowLeftOutlined";
 import Menu from "@mui/icons-material/Menu";
 import useResponsive from "../../hooks/usResponsive";
 import Logo from "../../components/logo/Logo";
@@ -14,7 +12,7 @@ import UserMenu from "./UserMenu";
 import { useSelector } from "react-redux";
 import Search from "../../components/search";
 import SearchIcon from "@mui/icons-material/Search";
-import UserListMenu from "./UserListMenu";
+// import UserListMenu from "./UserListMenu";
 import { useNavigate } from "react-router-dom";
 import DrawerNavigation from "../navigation/DrawerNavigation";
 
@@ -42,7 +40,7 @@ const Header = ({ openDrawer , toggleDrawer, handleDrawerOpen, handleOpenSearch 
 
     return (
         <Stack sx={{ position: "relative" }}>
-            <AppBar sx={{ height: "max-content", px: 1 }} color='inherit' component="nav">
+            <AppBar sx={{ height: "max-content", px: 1 }} color="inherit" component="nav">
                 <Toolbar sx={{ boxShadow: "none", justifyContent: "space-between" }}>
                     <Stack flexDirection="row" alignItems="center">
                         {!isDesktop && <IconButton
@@ -74,7 +72,7 @@ const Header = ({ openDrawer , toggleDrawer, handleDrawerOpen, handleOpenSearch 
                                     <Search setUsers={setUsers} />
                                     :
                                     <IconButton onClick={goTooSearchPage} size="medium">
-                                        <SearchIcon color='primary' />
+                                        <SearchIcon color="primary" />
                                     </IconButton>
                             }
                         </Box>
@@ -99,7 +97,7 @@ const Header = ({ openDrawer , toggleDrawer, handleDrawerOpen, handleOpenSearch 
                             </Avatar>
                         </IconButton>
 
-                        <UserMenu handleCloseUserMenu={handleCloseUserMenu} openMenu={openMenu} />
+                        <UserMenu user={user} handleCloseUserMenu={handleCloseUserMenu} openMenu={openMenu} />
                     </Stack>
                 </Toolbar>
             </AppBar>

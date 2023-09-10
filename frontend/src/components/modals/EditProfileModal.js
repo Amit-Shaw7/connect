@@ -5,7 +5,6 @@ import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import { style } from "./modalStyle";
 import CrossButton from "./CrossButton";
-import { UploadAvatar, UploadCover } from "../upload";
 import Loader from "../loader/Loader";
 import UpdateProfileForm from "./UpdateProfileForm";
 
@@ -17,7 +16,6 @@ const EditProfileModal = ({ user, open, handleClose }) => {
         <Modal
             open={open}
             onClose={handleClose}
-
         >
             {
                 loading
@@ -27,7 +25,7 @@ const EditProfileModal = ({ user, open, handleClose }) => {
                     <Box sx={style}>
                         <CrossButton handleClose={handleClose} />
 
-                        <Typography sx={{ mb: "20px" }} variant='h5'>Edit Profile</Typography>
+                        <Typography sx={{ mb: "5px" }} variant='h5'>Edit Profile</Typography>
                         <UpdateProfileForm loading={loading} user={user}/>
                     </Box>
             }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Card from "@mui/material/Card";
 import IconButton from "@mui/material/IconButton";
@@ -11,11 +11,28 @@ import { addPostFn } from "../../../store/actions/PostActions";
 import Loader from "../../../components/loader/Loader";
 import CustomAvatar from "../../../components/CustomAvatar";
 import { TextField } from "@mui/material";
-import { UploadOutlined } from "@mui/icons-material";
 import UploadinModal from "../../../components/modals/UploadingModal";
 import { uploadImage } from "../../../store/actions/UserActions";
 import { Image } from "../../../components/image";
+import EmojiPopover from "./EmojiPopover";
+import axios from "axios";
 
+
+const fetchEmojis = async (setEmojis, setLoading) => {
+    // setLoading(true);
+    let response = {};
+    const url = `https://emoji-api.com/emojis?access_key=${process.env.REACT_APP_EMOJI_API_KEY}`;
+    try {
+        response = await axios.get(url);
+    } catch (error) {
+        console.log(error);
+    } finally {
+        if (response.status === 200) {
+            setEmojis(response?.data);
+        }
+    }
+    // setLoading(false);
+}
 const AddPost = ({ user }) => {
     const dispatch = useDispatch();
 
@@ -24,11 +41,24 @@ const AddPost = ({ user }) => {
     const [postText, setPostText] = useState("");
     const [postMedia, setPostMedia] = useState();
     const [postMediaUrl, setPostMediaUrl] = useState();
+    const [emojis, setEmojis] = useState([]);
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleOpenEmoji = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleCloseEmoji = () => {
+        setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl);
 
     const handlePostText = (e) => {
         setPostText(e.target.value);
     }
-    const handlePostMedia = async(e) => {
+    const handlePostMedia = async (e) => {
         setUpLoading(true);
         setPostMedia(URL.createObjectURL(e.target.files[0]));
         const uploaded = await dispatch(uploadImage(e.target.files[0]));
@@ -36,7 +66,7 @@ const AddPost = ({ user }) => {
         setPostMediaUrl(uploaded?.secure_url);
         setUpLoading(false);
     }
-    const handleCloseModal= (e) => {
+    const handleCloseModal = (e) => {
         setUpLoading(e.target.files[0]);
     }
 
@@ -46,16 +76,25 @@ const AddPost = ({ user }) => {
             media: postMediaUrl,
             postText,
         }
-        dispatch(addPostFn(data));
+        const dataToShow = {
+            media: postMediaUrl,
+            postText,
+            user
+        }
+        dispatch(addPostFn(data , dataToShow));
     }
+
+    useEffect(() => {
+        fetchEmojis(setEmojis, setLoading)
+    }, []);
 
     return (
         <Card
-            variant='outlined'
+            variant="outlined"
             sx={{
                 p: 2,
                 position: "relative",
-                minHeight: {md:"180px" , sm:"120px"},
+                minHeight: { md: "180px", sm: "120px" },
                 boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
                 display: "flex",
                 justifyContent: "space-between",
@@ -86,7 +125,7 @@ const AddPost = ({ user }) => {
                         </Stack>
                     </Stack>
 
-                    {postMedia && <Image height="150px"  width="150px" fit="contain" src={postMedia}/>}
+                    {postMedia && <Image height="150px" width="150px" fit="contain" src={postMedia} />}
 
                     <Stack
                         flexDirection="row"
@@ -97,21 +136,22 @@ const AddPost = ({ user }) => {
                             flexDirection="row"
                             alignItems="center"
                         >
-                            <IconButton sx={{ display:"flex" , alignItem:'center' , justifyContent:"center"}}>
+                            <IconButton sx={{ display: "flex", alignItem: "center", justifyContent: "center" }}>
                                 <label htmlFor="upload-post">
-                                    <CollectionsOutlined color='primary' />
+                                    <CollectionsOutlined color="primary" />
                                 </label>
                             </IconButton>
                             <TextField id="upload-post" name="upload-post-field" onChange={handlePostMedia} type="file" sx={{ display: "none" }} />
-                            <IconButton>
-                                <SentimentSatisfiedAlt color='primary' />
+                            <IconButton onClick={handleOpenEmoji}>
+                                <SentimentSatisfiedAlt color="primary" />
                             </IconButton>
+                            <EmojiPopover setEmojis={setEmojis} emojis={emojis} posText={postText} setPostText={setPostText} anchorEl={anchorEl} open={open} handleClose={handleCloseEmoji}/>
                         </Stack>
 
                         <CustomButton text="Post" onClickFn={handleAddPost} />
                     </Stack>
                 </>}
-                <UploadinModal open={uploading}  handleClose={handleCloseModal}/>
+            <UploadinModal open={uploading} handleClose={handleCloseModal} />
         </Card>
     )
 }

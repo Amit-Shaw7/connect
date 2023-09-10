@@ -1,13 +1,12 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import { logoutFn } from "../../store/actions/AuthActions";
 
-const UserMenu = ({ openMenu, handleCloseUserMenu }) => {
-    const { userId } = useSelector(state => state.auth);
+const UserMenu = ({ user , openMenu, handleCloseUserMenu }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -17,9 +16,11 @@ const UserMenu = ({ openMenu, handleCloseUserMenu }) => {
     }
     const goToDashboard = () => {
         navigate("/dashboard");
+        handleCloseUserMenu();
     }
     const goToProfile = () => {
-        navigate(`/user/${userId}`);
+        navigate(`/user/${user?._id}`);
+        handleCloseUserMenu();
     }
 
     return (
@@ -30,13 +31,13 @@ const UserMenu = ({ openMenu, handleCloseUserMenu }) => {
             id="menu-appbar"
             anchorEl={openMenu}
             anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
             }}
             keepMounted
             transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
             }}
             open={Boolean(openMenu)}
             onClose={handleCloseUserMenu}
@@ -44,9 +45,9 @@ const UserMenu = ({ openMenu, handleCloseUserMenu }) => {
             <MenuItem onClick={goToProfile}>
                 <Typography textAlign="center">Profile</Typography>
             </MenuItem>
-            <MenuItem onClick={goToDashboard}>
+           {user?.role === "admin" && <MenuItem onClick={goToDashboard}>
                 <Typography textAlign="center">Dashboard</Typography>
-            </MenuItem>
+            </MenuItem>}
             <MenuItem onClick={handleLogout}>
                 <Typography textAlign="center">Logout</Typography>
             </MenuItem>

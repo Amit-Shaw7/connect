@@ -16,7 +16,7 @@ const PostReducer = createReducer(initialState, {
     },
     ADD_POST_SUCCESS: (state, action) => {
         state.loading = false;
-        state.posts = [...state.posts, action.payload];
+        state.posts = [action.payload , ...state.posts];
     },
     ADD_POST_FAILURE: (state, action) => {
         state.loading = false;
