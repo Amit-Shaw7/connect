@@ -13,7 +13,7 @@ const UpdatePostForm = ({ handleClose, handlePostText, post }) => {
 
 
     const defaultValues = {
-        text: post.postText,
+        postText: post.postText,
     };
 
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -54,6 +54,7 @@ const UpdatePostForm = ({ handleClose, handlePostText, post }) => {
                     type='submit'
                     variant='contained'
                     size='large'
+                    disabled={loading}
                 >
                     {loading ? <CircularProgress color="inherit" size="26px" /> : "Submit"}
                 </Button>
