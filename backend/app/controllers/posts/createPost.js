@@ -14,7 +14,7 @@ const createPost = asyncError(async (req, res, next) => {
 
     return res.status(200).json({
         msg: "POST_CREATED_SUCCESFULLY",
-        post : post.populate("user")
+        post : post
     })
 })
 export default createPost;
