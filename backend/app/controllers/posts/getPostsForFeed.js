@@ -13,7 +13,7 @@ const getPostsForFeed = asyncError(async (req, res, next) => {
     user.followings.push(user._id);
 
     if (query === "trending") {
-        posts = await Post.find({ user: { $in: user.followings } }).sort({ likes: 1 }).populate("user");
+        posts = await Post.find({ user: { $in: user.followings } }).sort({ likes: -1 }).populate("user");
     } else if (query === "oldest") {
         posts = await Post.find({ user: { $in: user.followings } }).sort({ createdAt: 1 }).populate("user");
     } else if (query === "latest") {
