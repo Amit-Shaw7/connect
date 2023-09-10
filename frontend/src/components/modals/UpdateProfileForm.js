@@ -85,8 +85,8 @@ const LoginForm = () => {
                     <Avatar
                         src={profilePic ? profilePic : user?.avatar}
                         sx={{
-                            height: "80%",
-                            width: "80%",
+                            height: "150px",
+                            width: "150px",
                             objectFit: "contain"
                         }}
                     />
