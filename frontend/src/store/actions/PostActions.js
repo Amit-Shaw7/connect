@@ -2,7 +2,7 @@ import { toast } from "react-hot-toast";
 import instance from "../../utils/axiosInstance";
 import { delay } from "../../utils/delay";
 
-export const addPostFn = (data , dataToShow) => async (dispatch) => {
+export const addPostFn = (data, dataToShow) => async (dispatch) => {
     const url = "/post";
     let response = {};
     dispatch({ type: "ADD_POST_SUCCESS", payload: dataToShow });
@@ -23,7 +23,7 @@ export const fetchMyPostsFn = (type) => async (dispatch) => {
     dispatch({ type: "GET_MY_POST_REQUEST" });
     const url = `post/myposts?query=${type.toLowerCase()}`;
     let response = {};
-   
+
     try {
         response = await instance.get(url);
     } catch (error) {
@@ -40,7 +40,7 @@ export const getPostsForFeedFn = (type) => async (dispatch) => {
     // dispatch({ type: "START_LOADER" });
     const url = `post/feed?query=${type.toLowerCase()}`;
     let response = {};
-   
+
     try {
         response = await instance.get(url);
     } catch (error) {
@@ -58,7 +58,7 @@ export const getPostsForExplorefn = (type) => async (dispatch) => {
     dispatch({ type: "START_LOADER" });
     const url = `post/explore?query=${type.toLowerCase()}`;
     let response = {};
-   
+
     try {
         response = await instance.get(url);
     } catch (error) {
@@ -77,7 +77,7 @@ export const getSavedPostsFn = (type) => async (dispatch) => {
     dispatch({ type: "START_LOADER" });
     const url = "post/savedposts";
     let response = {};
-   
+
     try {
         response = await instance.get(url);
     } catch (error) {
@@ -93,7 +93,7 @@ export const getLikedPostsFn = (type) => async (dispatch) => {
     dispatch({ type: "START_LOADER" });
     const url = "post/likedposts";
     let response = {};
-   
+
     try {
         response = await instance.get(url);
     } catch (error) {
@@ -139,7 +139,7 @@ export const savePostFn = (postId) => async (dispatch) => {
 export const getUserPostsFn = (userId) => async (dispatch) => {
     const url = `post/all/${userId}`;
     let response = {};
-   
+
     try {
         response = await instance.get(url);
     } catch (error) {
@@ -181,17 +181,13 @@ export const updatePostFn = (postId, data, setErrorMsg) => async (dispatch) => {
 }
 
 export const deletePostFn = (postId, setErrorMsg) => async (dispatch) => {
+    dispatch({ type: "DELETE_POST_SUCCESS", payload: postId });
     const url = `/post/${postId}`;
-    let response = {};
     await delay();
     try {
-        response = await instance.delete(url);
+        await instance.delete(url);
     } catch (error) {
         setErrorMsg(error.response.data.msg);
-    } finally {
-        if (response?.status === 200) {
-            dispatch({ type: "DELETE_POST_SUCCESS", payload: postId });
-            toast.success("Post Deleted Sucessfully");
-        }
+        window.location.reload();
     }
 }
