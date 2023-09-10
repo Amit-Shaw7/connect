@@ -61,16 +61,13 @@ export const dislikeCommentFn = (commentId, userId) => async (dispatch) => {
     }
 }
 export const deleteCommentFn = (commentId) => async (dispatch) => {
+    dispatch({type : "DELETE_COMMENT_SUCCESS" , payload : commentId});
     const url = `/comment/delete/${commentId}`;
-    let response = {};
     try {
-        response = await instance.delete(url);
+        await instance.delete(url);
     } catch (error) {
         toast.error(error.response.data.msg);
-    } finally {
-        if (response?.status === 200) {
-            dispatch({type : "DELETE_COMMENT_SUCCESS" , payload : commentId});
-        }
+        window.location.reload();
     }
 }
 export const editCommentFn = (commentId , data , setErrorMsg) => async (dispatch) => {
