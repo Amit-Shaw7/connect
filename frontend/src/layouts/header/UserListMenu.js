@@ -6,23 +6,33 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import UserList from "../mainLayout/UserList";
 import { Box, Card, Popover, Stack } from "@mui/material";
-const UserListMenu = ({ users , openSearch , handleCloseSearch}) => {
+const UserListMenu = ({ users, openSearchMenu, handleCloseSearch }) => {
+    const open = Boolean(openSearchMenu);
     return (
-        <Menu
-            sx={{
-                height: "max-content",
-                width: "400px",
-                top: "60px",
-                right: "20px",
-                position: "absolute",
-                zIndex: 5,
-                py:2
+        <Popover
+            anchorEl={openSearchMenu}
+            anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
             }}
-            open={openSearch}
+        
+            transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+            }}
+            open={open}
             onClose={handleCloseSearch}
         >
-            <UserList type="User" users={users} />
-        </Menu>)
+            {
+                users?.length === 0
+                    ?
+                    <Typography>No Users</Typography>
+                    :
+                    <UserList type="User" users={users} />
+            }
+
+        </Popover>
+    )
 }
 
 export default UserListMenu

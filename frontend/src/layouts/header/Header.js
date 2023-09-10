@@ -15,8 +15,9 @@ import SearchIcon from "@mui/icons-material/Search";
 // import UserListMenu from "./UserListMenu";
 import { useNavigate } from "react-router-dom";
 import DrawerNavigation from "../navigation/DrawerNavigation";
+import UserListMenu from "./UserListMenu";
 
-const Header = ({ openDrawer , toggleDrawer, handleDrawerOpen, handleOpenSearch }) => {
+const Header = ({ openDrawer, toggleDrawer, handleDrawerOpen, handleOpenSearch }) => {
     const { user } = useSelector(state => state.user);
 
     const isDesktop = useResponsive("up", "md");
@@ -24,13 +25,19 @@ const Header = ({ openDrawer , toggleDrawer, handleDrawerOpen, handleOpenSearch 
 
     const [openMenu, setAnchorElUser] = useState(null);
     const [users, setUsers] = useState([]);
-    const [openSearch, setOpenSearch] = useState(users?.length > 0);
+    const [openSearchMenu, setOpenSearchMenu] = useState(false);
 
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+    };
+    const handleOpenSearchMenu = (event) => {
+        setOpenSearchMenu(event.currentTarget);
+    };
+    const handleCloseSearchMenu = () => {
+        setOpenSearchMenu(null);
     };
 
     const goTooSearchPage = () => {
@@ -63,13 +70,14 @@ const Header = ({ openDrawer , toggleDrawer, handleDrawerOpen, handleOpenSearch 
                             aria-label="search users list"
                             aria-controls=""
                             aria-haspopup="true"
-                            onClick={handleOpenSearch}
                         >
 
                             {
                                 isDesktop
                                     ?
-                                    <Search setUsers={setUsers} />
+                                    <Box onClick={handleOpenSearchMenu}>
+                                        <Search setUsers={setUsers} />
+                                    </Box>
                                     :
                                     <IconButton onClick={goTooSearchPage} size="medium">
                                         <SearchIcon color="primary" />
@@ -98,10 +106,11 @@ const Header = ({ openDrawer , toggleDrawer, handleDrawerOpen, handleOpenSearch 
                         </IconButton>
 
                         <UserMenu user={user} handleCloseUserMenu={handleCloseUserMenu} openMenu={openMenu} />
+                        <UserListMenu users={users} openSearchMenu={openSearchMenu} handleCloseSearch={handleCloseSearchMenu}/>
                     </Stack>
                 </Toolbar>
             </AppBar>
-            <DrawerNavigation open={openDrawer} toggleDrawer={toggleDrawer}/>
+            <DrawerNavigation open={openDrawer} toggleDrawer={toggleDrawer} />
         </Stack>
     )
 }
