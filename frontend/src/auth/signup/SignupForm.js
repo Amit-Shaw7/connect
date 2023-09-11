@@ -175,6 +175,7 @@ const SignupForm = () => {
                     type="submit"
                     variant="contained"
                     size="large"
+                    diasbled={loading}
                 >
                     {loading ? <CircularProgress /> : "Submit"}
                 </Button>

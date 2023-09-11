@@ -109,6 +109,7 @@ const LoginForm = () => {
                     type='submit'
                     variant='contained'
                     size='large'
+                    disabled={loading}
                 >
                     {loading ? <CircularProgress color="inherit" size="26px" /> : "Submit"}
                 </Button>

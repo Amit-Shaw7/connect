@@ -63,7 +63,7 @@ export const getPostsForExplorefn = (type) => async (dispatch) => {
         response = await instance.get(url);
     } catch (error) {
         dispatch({ type: "STOP_LOADER" });
-        toast.error(error.response.data.msg);
+        toast.error(error?.response?.data?.msg);
     } finally {
         if (response?.status === 200) {
             dispatch({ type: "STOP_LOADER" });

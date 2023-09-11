@@ -10,34 +10,24 @@ import useResponsive from "../../hooks/usResponsive";
 import Logo from "../../components/logo/Logo";
 import UserMenu from "./UserMenu";
 import { useSelector } from "react-redux";
-import Search from "../../components/search";
 import SearchIcon from "@mui/icons-material/Search";
-// import UserListMenu from "./UserListMenu";
 import { useNavigate } from "react-router-dom";
 import DrawerNavigation from "../navigation/DrawerNavigation";
-import UserListMenu from "./UserListMenu";
+import SearchUserMenu from "../../components/Autocomplete";
 
-const Header = ({ openDrawer, toggleDrawer, handleDrawerOpen, handleOpenSearch }) => {
+const Header = ({ openDrawer, toggleDrawer }) => {
     const { user } = useSelector(state => state.user);
 
     const isDesktop = useResponsive("up", "md");
     const navigate = useNavigate();
 
     const [openMenu, setAnchorElUser] = useState(null);
-    const [users, setUsers] = useState([]);
-    const [openSearchMenu, setOpenSearchMenu] = useState(false);
 
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
-    };
-    const handleOpenSearchMenu = (event) => {
-        setOpenSearchMenu(event.currentTarget);
-    };
-    const handleCloseSearchMenu = () => {
-        setOpenSearchMenu(null);
     };
 
     const goTooSearchPage = () => {
@@ -75,8 +65,8 @@ const Header = ({ openDrawer, toggleDrawer, handleDrawerOpen, handleOpenSearch }
                             {
                                 isDesktop
                                     ?
-                                    <Box onClick={handleOpenSearchMenu}>
-                                        <Search setUsers={setUsers} />
+                                    <Box>
+                                        <SearchUserMenu />
                                     </Box>
                                     :
                                     <IconButton onClick={goTooSearchPage} size="medium">
@@ -106,7 +96,7 @@ const Header = ({ openDrawer, toggleDrawer, handleDrawerOpen, handleOpenSearch }
                         </IconButton>
 
                         <UserMenu user={user} handleCloseUserMenu={handleCloseUserMenu} openMenu={openMenu} />
-                        <UserListMenu users={users} openSearchMenu={openSearchMenu} handleCloseSearch={handleCloseSearchMenu}/>
+                        {/* <UserListMenu users={users} openSearchMenu={openSearchMenu} handleCloseSearch={handleCloseSearchMenu} /> */}
                     </Stack>
                 </Toolbar>
             </AppBar>
