@@ -16,6 +16,7 @@ import { error404 } from './app/middleware/error/error404.js';
 import UserRouter from './app/routes/user.js';
 import PostRouter from './app/routes/post.js';
 import CommentRouter from './app/routes/comment.js';
+import StoryRouter from './app/routes/stories.js';
 
 
 const app = express();
@@ -34,6 +35,7 @@ app.use('/api/auth', AuthRouter);
 app.use('/api/user', UserRouter);
 app.use('/api/post', PostRouter);
 app.use('/api/comment', CommentRouter);
+app.use('/api/story', StoryRouter);
 
 
 /*
