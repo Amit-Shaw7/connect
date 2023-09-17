@@ -63,11 +63,14 @@ export default function SearchUserMenu() {
             )}
             renderInput={(params) => (
                 <TextField
+                    sx={{
+                        borderRadius:"5px"
+                    }}
                     value={query}
                     onChange={handleQuery}
                     size='small'
                     {...params}
-                    placeholder="Choose a country"
+                    placeholder="Search user"
                     inputProps={{
                         ...params.inputProps,
                         endadornment: (
