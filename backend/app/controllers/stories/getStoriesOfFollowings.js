@@ -7,7 +7,6 @@ import ErrorHandler from "../../utils/errors/errorHandler.js";
 
 const getStoriesOfFollowings = asyncError(async (req, res, next) => {
     const user = req.user;
-    // Retrieve stories from users you follow
     const stories = await Story.find({ user: { $in: user.followings } });
 
     if (!stories) {

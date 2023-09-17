@@ -3,6 +3,7 @@ import AuthReducer from './reducers/AuthReducer';
 import UserReducer from './reducers/UserReducer';
 import PostReducer from './reducers/PostReducer';
 import CommentReducer from './reducers/CommentReducer';
+import StoryReducer from './reducers/StoryReducer';
 
 
 const Store = configureStore({
@@ -11,6 +12,7 @@ const Store = configureStore({
         user: UserReducer,
         post: PostReducer,
         comment: CommentReducer,
+        story: StoryReducer,
     },
 });
 

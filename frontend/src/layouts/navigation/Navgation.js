@@ -13,8 +13,8 @@ const Navigation = () => {
   return (
     <Stack
       sx={{
-        width: "100%",
-        height: "90vh",
+        width: {xs:"0px" , sm: "0px", md: "25%" },
+        height: "100%",
         overflowY: "scroll"
       }}>
       <List
@@ -22,7 +22,7 @@ const Navigation = () => {
           display: "flex",
           flexDirection: "column",
           gap: "10px",
-          px:1
+          px: 1
         }}
       >
         {

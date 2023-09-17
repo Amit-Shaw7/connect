@@ -1,6 +1,6 @@
 import { toast } from "react-hot-toast";
 import instance from "../../utils/axiosInstance";
-import { delay } from "../../utils/delay";
+// import { delay } from "../../utils/delay";
 
 
 export const loadUserFn = (userId, navigate) => async (dispatch) => {
@@ -25,7 +25,6 @@ export const editProfileFn = (data, setErrorMsg, navigate) => async (dispatch) =
     dispatch({ type: "EDIT_PROFILE_REQUEST" });
     const url = "/user/profile";
     let response = {};
-    await delay();
     try {
         response = await instance.patch(url, data);
     } catch (error) {
@@ -157,6 +156,7 @@ export const unfollowUserFn = (id) => async (dispatch) => {
 }
 
 export const uploadImage = (image) => async (dispatch) => {
+    console.log(image);
     try {
         if (!image) {
             return true;

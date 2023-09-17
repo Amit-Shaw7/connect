@@ -1,16 +1,18 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
-const Image = ({ src, height, width, fit , maxHeight}) => {
+const Image = ({ sx ,src, height, width, fit, maxHeight }) => {
     return (
-        <Box component="img"
+        <Box
+            component="img"
             loading='lazy'
             src={src}
             height={height}
             width={width}
             maxHeight={maxHeight ? maxHeight : "100%"}
             sx={{
-                objectFit: `${fit || "contain"}`,
+                objectFit: `${fit || ""}`,
+                ...sx
             }}
         />
     )

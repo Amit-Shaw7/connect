@@ -4,7 +4,7 @@ import Stack from "@mui/material/Stack";
 import Search from "../../components/search";
 import { fetchSuggestedUsersFn } from "../../store/actions/UserActions";
 import UserList from "./UserList";
-import { Container, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 
 const fetchSuggestedUser = async (dispatch, setUsers) => {
     const users = await dispatch(fetchSuggestedUsersFn());
@@ -23,17 +23,10 @@ const Suggestions = () => {
     }, [dispatch]);
 
     return (
-        <Container
-            sx={{
-                height: "90vh",
-                width: "100%",
-                p: 2
-                // overflowY: "scroll",
-            }}
-        >
+        <Stack sx={{ width: { xs: "0px", sm: "0px", md: "25%" } , p:2 }}>
             <Typography mb={1} variant="h6">Suggested users</Typography>
             <UserList loading={loading} users={users} type="suggestions" />
-        </Container>
+        </Stack>
     )
 }
 

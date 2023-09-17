@@ -6,33 +6,28 @@ import Navigation from "../navigation";
 import Content from "./Content";
 import Suggestions from "./Suggestions";
 import { useState } from "react";
+import Stories from "../../components/story/Stories";
+import useResponsive from "../../hooks/usResponsive";
 
 export default function MainLayout() {
     const [openDrawer, setOpenDrawer] = useState(false);
+    const isDesktop = useResponsive("up", "md");
 
     const toggleDrawer = (val) => {
         setOpenDrawer(val)
     }
     return (
-        <Box sx={{ display: 'flex', height: "100vh" }}>
+        <Stack width='100%'>
             <Header openDrawer={openDrawer} toggleDrawer={toggleDrawer} />
-            <Box sx={{ flexGrow: 1, mt: 9 }}>
-                <Stack flexDirection="row" justifyContent="space-between">
-                    <Stack sx={{ flex: { xs: 0, sm: 0, md: 2.5, lg: 2.5 } }}>
-                        <Navigation />
-                    </Stack>
+            <Stack sx={{width:"100%", height: "90vh", mt: "70px",  flexDirection: "row" }}>
+                <Navigation />
 
-                    <Stack sx={{ flex: { xs: 12, sm: 12, md: 5, lg: 6.5 } }}>
-                        <Content>
-                            <Outlet />
-                        </Content>
-                    </Stack>
+                <Content>
+                    <Outlet />
+                </Content>
 
-                    <Stack sx={{ flex: { xs: 0, sm: 0, md: 3.5, lg: 3 } }}>
-                        <Suggestions />
-                    </Stack>
-                </Stack>
-            </Box>
-        </Box>
+               { isDesktop && <Suggestions />}
+            </Stack>
+        </Stack>
     );
 }

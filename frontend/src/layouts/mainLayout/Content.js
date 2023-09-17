@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { loadUserFn } from "../../store/actions/UserActions";
 import Loader from "../../components/loader/Loader";
 import { Box } from "@mui/material";
+import Stories from "../../components/story/Stories";
+import { fetchMyStory, fetchStoriesFn } from "../../store/actions/StoryAction";
 
 const Content = ({ children }) => {
   const { loading } = useSelector(state => state.user);
@@ -18,6 +20,8 @@ const Content = ({ children }) => {
 
   useEffect(() => {
     dispatch(loadUserFn(userId, navigate));
+    dispatch(fetchStoriesFn());
+    dispatch(fetchMyStory())
   }, [dispatch, navigate, userId]);
 
   if (loading) {
@@ -27,12 +31,11 @@ const Content = ({ children }) => {
   return (
     <Box
       sx={{
+        width: { xs:"100vw" , sm: "100%", md: "50%" },
         height: "90vh",
-        width: "100%",
         overflowY: "scroll",
-        px: { lg: 12, md: 0, sm: 15, xs: 0 }
+        px: { sm: 12, md: 0 },
       }}>
-
       {children}
     </Box>
   )

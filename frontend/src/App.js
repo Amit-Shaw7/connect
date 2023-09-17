@@ -15,6 +15,7 @@ import Signup from './auth/signup/Signup';
 import PostDetails from './pages/postDetails/PostDetails';
 import MyPosts from './pages/myPosts/MyPosts';
 import SearchPage from './pages/SearchPage';
+import DemoPage from './pages/DemoPage';
 
 const App = () => {
   const { savedPosts } = useSelector(state => state.post);
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/demo" element={<DemoPage />} />
 
         <Route path="/" element={<MainLayout />}>
           <Route path="" element={<Home />} />

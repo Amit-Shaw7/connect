@@ -25,7 +25,6 @@ const UserList = ({ loading, users, type }) => {
                     ))
                 }
             </Stack>
-
         </CustomCard>
     )
 }

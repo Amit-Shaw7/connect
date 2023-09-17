@@ -10,6 +10,7 @@ import createStory from '../controllers/stories/createStory.js';
 import validateCreateStory from '../controllers/stories/validators/validateCreateStory.js';
 import validateGetDeleteViewStoies from '../controllers/stories/validators/validateGetDeleteViewStoies.js';
 import getStoryById from '../controllers/stories/getStoryById.js';
+import getMyStory from '../controllers/stories/getMyStory.js';
 
 const StoryRouter = express.Router();
 
@@ -19,16 +20,22 @@ StoryRouter.post("/",
     createStory,
 );
 
-StoryRouter.get("/each/:id",
-    validateGetDeleteViewStoies,
+StoryRouter.get("/",
     isLoggedIn,
-    getStoryById
+    getMyStory,
 );
 
 StoryRouter.get("/all",
     isLoggedIn,
     getStoriesOfFollowings
 );
+
+StoryRouter.get("/each/:id",
+    validateGetDeleteViewStoies,
+    isLoggedIn,
+    getStoryById
+);
+
 
 StoryRouter.patch("/update/:id",
     validateUpdateStory,

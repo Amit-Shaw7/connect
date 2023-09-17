@@ -8,13 +8,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPostsForFeedFn } from "../../store/actions/PostActions";
 import Loader from "../../components/loader/Loader";
 import { Stack } from "@mui/material";
+import Stories from "../../components/story/Stories";
 
-const getPostsForFeed = (dispatch , sortBy) => dispatch(getPostsForFeedFn(sortBy));
+const getPostsForFeed = (dispatch, sortBy) => dispatch(getPostsForFeedFn(sortBy));
 
 const Home = () => {
   const { loading } = useSelector(state => state.post);
   const { user } = useSelector(state => state.user);
   const { posts } = useSelector(state => state.post);
+  const { stories, myStory } = useSelector(state => state.story);
+
 
   // const [posts, setPosts] = useState([]);
 
@@ -25,23 +28,26 @@ const Home = () => {
   }
 
   useEffect(() => {
-    getPostsForFeed(dispatch , sortBy);
-  }, [sortBy , dispatch]);
+    getPostsForFeed(dispatch, sortBy);
+  }, [sortBy, dispatch]);
 
   if (loading) {
     return <Loader />;
   }
 
   return (
-    <CustomContainer>
-      <AddPost user={user} loading={loading} />
-      <Stack sx={{ mx: { md: 3, sm: 0 } }}>
+    <>
+      <CustomContainer>
+        <Stories myStory={myStory} user={user} stories={stories} />
+        <AddPost user={user} loading={loading} />
+        <Stack sx={{ mx: { md: 3, sm: 0 } }}>
 
-        <PostSort sortBy={sortBy} handleChange={handleChange} heading="Trending" />
+          <PostSort sortBy={sortBy} handleChange={handleChange} heading="Trending" />
 
-        <Feed user={user} posts={posts} />
-      </Stack>
-    </CustomContainer>
+          <Feed user={user} posts={posts} />
+        </Stack>
+      </CustomContainer>
+    </>
   )
 }
 

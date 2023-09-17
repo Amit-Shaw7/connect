@@ -36,7 +36,7 @@ const Header = ({ openDrawer, toggleDrawer }) => {
 
 
     return (
-        <Stack sx={{ position: "relative" }}>
+        <Stack>
             <AppBar sx={{ height: "max-content", px: 1 }} color="inherit" component="nav">
                 <Toolbar sx={{ boxShadow: "none", justifyContent: "space-between" }}>
                     <Stack flexDirection="row" alignItems="center">

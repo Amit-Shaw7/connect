@@ -6,7 +6,7 @@ export const style = {
     border: "none",
     outline: "none",
     borderRadius: "5px",
-    minWidth: 350,
+    minWidth: 320,
     bgcolor: "white",
     boxShadow: 24,
     px: 4,
