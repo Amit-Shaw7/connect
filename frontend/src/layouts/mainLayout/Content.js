@@ -21,7 +21,7 @@ const Content = ({ children }) => {
   useEffect(() => {
     dispatch(loadUserFn(userId, navigate));
     dispatch(fetchStoriesFn());
-    dispatch(fetchMyStory())
+    dispatch(fetchMyStory());
   }, [dispatch, navigate, userId]);
 
   if (loading) {

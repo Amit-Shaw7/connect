@@ -38,9 +38,9 @@ const Home = () => {
   return (
     <>
       <CustomContainer>
-        <Stories myStory={myStory} user={user} stories={stories} />
-        <AddPost user={user} loading={loading} />
-        <Stack sx={{ mx: { md: 3, sm: 0 } }}>
+        <Stack p={1}>
+          <Stories myStory={myStory} user={user} stories={stories} />
+          <AddPost user={user} loading={loading} />
 
           <PostSort sortBy={sortBy} handleChange={handleChange} heading="Trending" />
 

@@ -23,9 +23,24 @@ const Suggestions = () => {
     }, [dispatch]);
 
     return (
-        <Stack sx={{ width: { xs: "0px", sm: "0px", md: "25%" } , p:2 }}>
-            <Typography mb={1} variant="h6">Suggested users</Typography>
-            <UserList loading={loading} users={users} type="suggestions" />
+        <Stack
+            sx={{
+                width: { xs: "0px", sm: "0px", md: "30%" , lg:"30%"},
+                p: 2,
+                borderRight:"0.5px solid #f5f5f5",
+            }}
+        >
+            <Typography
+                mb={1}
+                variant="h6"
+            >
+                Suggested users
+            </Typography>
+            <UserList
+                loading={loading}
+                users={users}
+                type="suggestions"
+            />
         </Stack>
     )
 }

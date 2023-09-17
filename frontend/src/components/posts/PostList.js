@@ -5,7 +5,7 @@ import Post from "./Post";
 import CustomContainer from "../customContainer/CustomContainer";
 
 
-const PostList = ({ editable , user, posts }) => {
+const PostList = ({ editable, user, posts }) => {
 
     if (posts?.length <= 0) {
         return <CustomContainer>
@@ -14,7 +14,7 @@ const PostList = ({ editable , user, posts }) => {
     }
 
     return (
-        <Stack spacing={3} p={1}>
+        <Stack spacing={3}>
             {
                 posts?.map((post) => (
                     <Post editable={editable} user={user} key={post?._id} post={post} />

@@ -16,7 +16,7 @@ const Stories = ({ user, stories, myStory }) => {
       flexDirection="row"
       sx={{
         overflowX: "scroll",
-        p: 2,
+        py: 2,
       }}
     >
       <Box display="flex" gap={2}>
