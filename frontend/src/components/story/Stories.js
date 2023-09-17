@@ -23,11 +23,11 @@ const Stories = ({ user, stories, myStory }) => {
         {
           myStory
             ?
-            <Story story={myStory} />
+            <Story user={user} story={myStory} />
             :
             <AddStory user={user} />
         }
-        {/* <AddStory user={user} story={stories[0]} key={stories[0]?._id} /> */}
+
         {
           stories?.map((story, index) => (
             <Story key={index} story={story} />

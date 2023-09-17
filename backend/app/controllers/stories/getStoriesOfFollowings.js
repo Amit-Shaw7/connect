@@ -7,7 +7,7 @@ import ErrorHandler from "../../utils/errors/errorHandler.js";
 
 const getStoriesOfFollowings = asyncError(async (req, res, next) => {
     const user = req.user;
-    const stories = await Story.find({ user: { $in: user.followings } });
+    const stories = await Story.find({ user: { $in: user.followings } }).populate("user");
 
     if (!stories) {
         return res.status(200).json({
