@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowBackIos, ArrowForwardIos, ArrowLeft, ArrowRight } from '@mui/icons-material';
+import { ArrowBackIos, ArrowForwardIos, ArrowLeft, ArrowRight, Settings } from '@mui/icons-material';
 import { Box, Fab, IconButton, Typography } from '@mui/material';
 import { Image } from './image';
 import Morevertical from './morevertical';
@@ -59,7 +59,7 @@ const Carousel = ({ stories, idx }) => {
             alignItems="center"
             justifyContent="space-around"
             sx={{
-                width: { lg: "350px", md: "350px", sm: "350px", xs: "300px" },
+                width: { lg: "400px", md: "350px", sm: "350px", xs: "300px" },
                 height: { md: "700px", sm: "600px", xs: "500px" },
                 position: "relative",
                 overflow: "hidden"
@@ -100,7 +100,9 @@ const Carousel = ({ stories, idx }) => {
                 exit="exit"
             />
             {/* </AnimatePresence> */}
-            <Morevertical  variant="light"/>
+
+            {/* <Morevertical  variant="light"/> */}
+
             <Box
                 height="100%"
                 display="flex"
@@ -130,12 +132,26 @@ const Carousel = ({ stories, idx }) => {
                     wordWrap: "break-word",
                     width: "100%",
                     position: "absolute",
-                    bottom: "10px",
+                    bottom: "50px",
                     fontSize: "1.3rem"
                 }}
             >
                 {stories[currentIndex]?.text}
             </Typography>
+
+            <Box
+                sx={{
+                    position: "absolute",
+                    bottom: "10px",
+                    right:"10px",
+                    backgroundColor:"lightgrey",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}
+            >
+                <Settings htmlColor='white' fontSize="medium" />
+            </Box>
         </Box>
     )
 }
