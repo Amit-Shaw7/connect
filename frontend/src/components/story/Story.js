@@ -15,7 +15,6 @@ const Story = ({ openStoryModal, idx, story, user }) => {
             sx={{
                 borderRadius: "10px",
                 cursor: "pointer",
-                backgroundColor:"red",
             }}
         >
             <Image
