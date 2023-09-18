@@ -42,7 +42,6 @@ const colors = [
 
 const ColorPallete = ({ setColor }) => {
   const handleChangeColor = (color) => {
-    console.log(color);
     setColor(color);
   }
   return (
