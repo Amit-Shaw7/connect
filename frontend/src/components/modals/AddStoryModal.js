@@ -5,7 +5,7 @@ import CrossButton from './CrossButton';
 import { style } from './modalStyle';
 import AddStoryForm from './AddStoryForm';
 
-const AddStoryModal = ({  open, handleClose }) => {
+const AddStoryModal = ({  open, handleClose , type , story }) => {
     const [loading, setLoading] = useState(false);
     return (
         <Modal
@@ -22,7 +22,7 @@ const AddStoryModal = ({  open, handleClose }) => {
 
                         <Typography sx={{ mb: "20px" }} variant='h6'>Add Your Story</Typography>
 
-                        <AddStoryForm handleClose={handleClose} />
+                        <AddStoryForm type={type} story={story} handleClose={handleClose} />
                     </Box>
             }
         </Modal>

@@ -5,7 +5,7 @@ import { storyModalStyle } from './modalStyle'
 import CrossButton from './CrossButton'
 import Carousel from '../Carousel'
 
-const DispalyStoriesModal = ({ idxOfClickedStory , stories, open, handleClose }) => {
+const DispalyStoriesModal = ({user, idxOfClickedStory , stories, open, handleClose }) => {
     return (
         <Modal
             open={open}
@@ -14,7 +14,7 @@ const DispalyStoriesModal = ({ idxOfClickedStory , stories, open, handleClose })
             <Box sx={storyModalStyle}>
                 <CrossButton size="large" handleClose={handleClose} />
                 <Stack height="100%" alignItems="center" justifyContent="center">
-                    <Carousel idx={idxOfClickedStory} stories={stories} />
+                    <Carousel user={user} idx={idxOfClickedStory} stories={stories} />
                 </Stack>
             </Box>
         </Modal>

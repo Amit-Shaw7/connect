@@ -11,16 +11,16 @@ import { Camera } from "@mui/icons-material";
 import { Image } from "../image";
 import UploadingModal from "./UploadingModal";
 import ColorPallete from "../ColorPallete";
-import { addStory } from "../../store/actions/StoryAction";
+import { addStory, editStory } from "../../store/actions/StoryAction";
 
-const AddStoryForm = ({handleClose}) => {
+const AddStoryForm = ({ handleClose, type, story }) => {
     const dispatch = useDispatch();
 
     const [loading, setLoading] = useState(false);
-    const [media, setMedia] = useState("");
-    const [mediaUrl, setMediaUrl] = useState("");
-    const [color, setColor] = useState("");
-    const [text, seTtext] = useState("");
+    const [media, setMedia] = useState(type === "edit" ? story?.media : "");
+    const [mediaUrl, setMediaUrl] = useState(type === "edit" ? story?.media : "");
+    const [color, setColor] = useState(type === "edit" ? story?.color : "");
+    const [text, seTtext] = useState(type === "edit" ? story?.text : "");
 
     const [errorMsg, setErrorMsg] = useState("");
     const [uploading, setUploading] = useState(false);
@@ -32,7 +32,12 @@ const AddStoryForm = ({handleClose}) => {
             text,
             color
         }
-        dispatch(addStory(data, setErrorMsg, setLoading));
+        if(type === "edit"){
+            dispatch(editStory(data , story?._id, setErrorMsg , setLoading));
+            handleClose();
+        }else{
+            dispatch(addStory(data, setErrorMsg, setLoading));
+        }
         handleClose();
     };
 
@@ -67,8 +72,8 @@ const AddStoryForm = ({handleClose}) => {
                                         width="200px"
                                         fit="cover"
                                     />
-                                    <Box width="100%" sx={{backgroundColor:"red"}}>
-                                        <Typography variant="caption" sx={{wordWrap:"break-word" , width:"100%" , position: "absolute", bottom: "40px", color: { color } }} textAlign="center">{text}</Typography>
+                                    <Box width="100%" sx={{ backgroundColor: "red" }}>
+                                        <Typography variant="caption" sx={{ wordWrap: "break-word", width: "100%", position: "absolute", bottom: "40px", color: { color } }} textAlign="center">{text}</Typography>
                                     </Box>
                                 </Stack>
                                 :

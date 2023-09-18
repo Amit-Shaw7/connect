@@ -21,6 +21,17 @@ const StoryReducer = createReducer(initialState, {
         state.stories = [];
     },
 
+    EDIT_STORY_SUCCESS: (state, action) => {
+        state.loading = false;
+        state.myStory.media = action.payload.media;
+        state.myStory.text = action.payload.text;
+        state.myStory.color = action.payload.color;
+    },
+
+    DELETE_STORY_SUCCESS: (state , action) => {
+        state.myStory = null;
+    },
+
     FETCH_MY_STORY: (state , action) => {
         state.myStory = action.payload;
     },

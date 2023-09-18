@@ -19,7 +19,7 @@ const Home = () => {
   const { stories, myStory } = useSelector(state => state.story);
   const [idxOfClickedStory, setIdxOfClickedStory] = useState(0);
 
-  const allStories = [myStory , ...stories];
+  const allStories = [myStory, ...stories];
 
   const dispatch = useDispatch();
 
@@ -74,8 +74,9 @@ const Home = () => {
         </Stack>
       </CustomContainer>
       <DispalyStoriesModal
+        user={user}
         idxOfClickedStory={idxOfClickedStory}
-        stories={allStories}
+        stories={myStory ? allStories : stories}
         open={open}
         handleClose={handleCloseStoriesModal}
       />

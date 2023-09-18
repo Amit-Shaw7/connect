@@ -36,7 +36,7 @@ const Stories = ({ openStoryModal, user, stories, myStory }) => {
           stories?.map((story, index) => (
             <Story
               openStoryModal={openStoryModal}
-              idx={index + 1}
+              idx={myStory ? index + 1 : index}
               key={index}
               story={story}
             />

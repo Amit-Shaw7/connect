@@ -50,3 +50,34 @@ export const addStory = (data, setErrorMsg, setLoading) => async (dispatch) => {
         }
     }
 }
+export const editStory = (data, id, setErrorMsg, setLoading) => async (dispatch) => {
+    setLoading(true);
+    const url = `/story/update/${id}`;
+    let response = {};
+    try {
+        response = await instance.patch(url, data);
+    } catch (error) {
+        setLoading(false);
+        setErrorMsg(error?.response?.data?.msg);
+        toast.error(error?.response?.data?.msg);
+    } finally {
+        if (response?.status === 200) {
+            dispatch({ type: "EDIT_STORY_SUCCESS", payload: response.data?.story });
+            setLoading(false);
+        }
+    }
+}
+
+export const deleteStoryFn = (id) => async (dispatch) => {
+    const url = `/story/delete/${id}`;
+    let response = {};
+    try {
+        response = await instance.delete(url);
+    } catch (error) {
+        toast.error(error?.response?.data?.msg);
+    } finally {
+        if (response?.status === 200) {
+            dispatch({ type: "DELETE_STORY_SUCCESS", payload: response.data?.story });
+        }
+    }
+}
