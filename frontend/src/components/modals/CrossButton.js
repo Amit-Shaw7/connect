@@ -3,14 +3,14 @@ import { Box, IconButton } from '@mui/material'
 import React from 'react'
 import { crossButtonStyle } from './modalStyle'
 
-const CrossButton = ({ handleClose }) => {
+const CrossButton = ({ size , handleClose }) => {
     return (
         <Box
             onClick={handleClose}
             sx={crossButtonStyle}
         >
             <IconButton>
-                <Close fontSize='small' />
+                <Close fontSize={size || 'small'} />
             </IconButton>
         </Box>
     )

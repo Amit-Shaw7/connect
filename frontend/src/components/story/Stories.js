@@ -1,10 +1,9 @@
 import React from 'react';
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import Story from './Story';
-import Image from '../image/Image';
 import AddStory from './AddStory';
 
-const Stories = ({ user, stories, myStory }) => {
+const Stories = ({ openStoryModal, user, stories, myStory }) => {
   return (
     <Stack
       className='hide-scrollbar'
@@ -23,14 +22,24 @@ const Stories = ({ user, stories, myStory }) => {
         {
           myStory
             ?
-            <Story user={user} story={myStory} />
+            <Story
+              openStoryModal={openStoryModal}
+              user={user}
+              story={myStory}
+              idx={0}
+            />
             :
             <AddStory user={user} />
         }
 
         {
           stories?.map((story, index) => (
-            <Story key={index} story={story} />
+            <Story
+              openStoryModal={openStoryModal}
+              idx={index + 1}
+              key={index}
+              story={story}
+            />
           ))
         }
       </Box>

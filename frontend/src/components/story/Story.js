@@ -3,15 +3,20 @@ import React from 'react'
 import Image from '../image/Image'
 import CustomAvatar from '../CustomAvatar'
 
-const Story = ({ story , user}) => {
+const Story = ({ openStoryModal, idx, story, user }) => {
     return (
         <Stack
+            onClick={() => openStoryModal(idx)}
             position="relative"
             alignItems="center"
             justifyContent="center"
             height="180px"
             width="120px"
-            sx={{ borderRadius: "10px" }}
+            sx={{
+                borderRadius: "10px",
+                cursor: "pointer",
+                backgroundColor:"red",
+            }}
         >
             <Image
                 sx={{ borderRadius: "10px" }}
@@ -42,7 +47,7 @@ const Story = ({ story , user}) => {
                 <CustomAvatar
                     height="30px"
                     width="30px"
-                    user={user ? user :story?.user}
+                    user={user ? user : story?.user}
                 />
             </Box>
         </Stack>
