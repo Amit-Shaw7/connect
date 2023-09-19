@@ -15,7 +15,7 @@ import Typography from "@mui/material/Typography";
 import { getUserProfileFn } from "../../store/actions/UserActions";
 import MoreVertical from "../MoreVertical";
 import { dislikeCommentFn, likeCommentFn } from "../../store/actions/CommentActions";
-import EditCommentModal from "../modals/EditCommentModal";
+// import EditCommentModal from "../modals/EditCommentModal";
 import CommentActionPopover from "../popovers/CommentPopover";
 
 const style = {
@@ -205,12 +205,12 @@ const EachComment = ({ comment }) => {
                     </Stack>
                 </Stack>
             </Stack>
-            <EditCommentModal
+            {/* <EditCommentModal
                 open={openModal}
                 handleClose={handleCloseModal}
                 handleCommentText={handleCommentText}
                 comment={comment}
-            />
+            /> */}
         </>
     )
 }
