@@ -1,11 +1,11 @@
-import React from 'react';
-import { Box } from '@mui/material';
+import Box from "@mui/material/Box";
+import React from "react";
 
-const Image = ({ sx ,src, height, width, fit, maxHeight }) => {
+const Image = ({ sx, src, height, width, fit, maxHeight }) => {
     return (
         <Box
             component="img"
-            loading='lazy'
+            loading="lazy"
             src={src}
             height={height}
             width={width}

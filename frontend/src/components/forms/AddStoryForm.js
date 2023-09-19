@@ -8,8 +8,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { uploadImage } from "../../store/actions/UserActions";
 import { Box } from "@mui/material";
 import { Camera } from "@mui/icons-material";
-import { Image } from "../image";
-import UploadingModal from "./UploadingModal";
+import Image from "../image/Image";
+import UploadingModal from "../modals/UploadingModal";
 import ColorPallete from "../ColorPallete";
 import { addStory, editStory } from "../../store/actions/StoryAction";
 
@@ -32,10 +32,10 @@ const AddStoryForm = ({ handleClose, type, story }) => {
             text,
             color
         }
-        if(type === "edit"){
-            dispatch(editStory(data , story?._id, setErrorMsg , setLoading));
+        if (type === "edit") {
+            dispatch(editStory(data, story?._id, setErrorMsg, setLoading));
             handleClose();
-        }else{
+        } else {
             dispatch(addStory(data, setErrorMsg, setLoading));
         }
         handleClose();

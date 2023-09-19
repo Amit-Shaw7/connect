@@ -15,7 +15,7 @@ const Stories = ({ openStoryModal, user, stories, myStory }) => {
       flexDirection="row"
       sx={{
         overflowX: "scroll",
-        py: 2,
+        pb:2
       }}
     >
       <Box display="flex" gap={2}>

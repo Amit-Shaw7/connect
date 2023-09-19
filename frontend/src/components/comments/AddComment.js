@@ -1,11 +1,11 @@
-import React, { useState } from "react"
-import { Card, IconButton, Stack } from "@mui/material"
-import CustomAvatar from "../CustomAvatar"
-import CustomTextInput from "../customInput/CustomInput"
-import { Send } from "@mui/icons-material"
-import { useDispatch, useSelector } from "react-redux"
-import { addCommentFn } from "../../store/actions/CommentActions"
-import CustomCard from "../customCard/CustomCard"
+import React, { useState } from "react";
+import Card from "@mui/material/Card";
+import IconButton from "@mui/material/IconButton";
+import CustomAvatar from "../CustomAvatar";
+import CustomTextInput from "../customInput/CustomInput";
+import Send from "@mui/icons-material/Send";
+import { useDispatch, useSelector } from "react-redux";
+import { addCommentFn } from "../../store/actions/CommentActions";
 
 const AddComment = ({ postId }) => {
     const { user } = useSelector(state => state.user);
@@ -37,7 +37,7 @@ const AddComment = ({ postId }) => {
                 position: "static",
                 bottom: 0,
                 width: "100%",
-                p:1,
+                p: 1,
                 boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
             }}
         >

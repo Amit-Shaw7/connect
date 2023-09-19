@@ -2,7 +2,7 @@ import React from "react";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Post from "./Post";
-import CustomContainer from "../customContainer/CustomContainer";
+import CustomContainer from "../CustomContainer";
 
 
 const PostList = ({ editable, user, posts }) => {

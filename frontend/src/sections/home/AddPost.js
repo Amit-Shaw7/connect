@@ -3,17 +3,17 @@ import { useDispatch } from "react-redux";
 import Card from "@mui/material/Card";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
-import CustomTextArea from "../../../components/customInput/CustomTextArea";
-import CustomButton from "../../../components/customButton/CustomButton";
+import CustomTextArea from "../../components/customInput/CustomTextArea";
+import CustomButton from "../../components/CustomButton";
 import CollectionsOutlined from "@mui/icons-material/CollectionsOutlined";
 import SentimentSatisfiedAlt from "@mui/icons-material/SentimentSatisfiedAlt";
-import { addPostFn } from "../../../store/actions/PostActions";
-import Loader from "../../../components/loader/Loader";
-import CustomAvatar from "../../../components/CustomAvatar";
+import { addPostFn } from "../../store/actions/PostActions";
+import Loader from "../../components/Loader";
+import CustomAvatar from "../../components/CustomAvatar";
 import { TextField } from "@mui/material";
-import UploadinModal from "../../../components/modals/UploadingModal";
-import { uploadImage } from "../../../store/actions/UserActions";
-import { Image } from "../../../components/image";
+import UploadinModal from "../../components/modals/UploadingModal";
+import { uploadImage } from "../../store/actions/UserActions";
+import Image from "../../components/image/Image";
 import EmojiPopover from "./EmojiPopover";
 import axios from "axios";
 
@@ -81,7 +81,7 @@ const AddPost = ({ user }) => {
             postText,
             user
         }
-        dispatch(addPostFn(data , dataToShow));
+        dispatch(addPostFn(data, dataToShow));
     }
 
     useEffect(() => {
@@ -145,7 +145,7 @@ const AddPost = ({ user }) => {
                             <IconButton onClick={handleOpenEmoji}>
                                 <SentimentSatisfiedAlt color="primary" />
                             </IconButton>
-                            <EmojiPopover setEmojis={setEmojis} emojis={emojis} posText={postText} setPostText={setPostText} anchorEl={anchorEl} open={open} handleClose={handleCloseEmoji}/>
+                            <EmojiPopover setEmojis={setEmojis} emojis={emojis} posText={postText} setPostText={setPostText} anchorEl={anchorEl} open={open} handleClose={handleCloseEmoji} />
                         </Stack>
 
                         <CustomButton text="Post" onClickFn={handleAddPost} />

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import Stack from "@mui/material/Stack";
 import IconButton from "@mui/material/IconButton";
@@ -13,7 +13,6 @@ import TextField from "@mui/material/TextField";
 import CircularProgress from "@mui/material/CircularProgress";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { removeLinkStyle } from "../../utils/removeLinkStyle";
 import loginSchema from "../../schema/LoginSchema";
 import { loginFn } from "../../store/actions/AuthActions";
 
@@ -23,14 +22,14 @@ const LoginForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [errorMsg, setErrorMsg] = useState("");
-    const [showPassword, setShowPassword] = useState(false)
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
     const defaultValues = {
         email: "",
         password: ""
-    }
+    };
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(loginSchema),
@@ -39,7 +38,7 @@ const LoginForm = () => {
 
     const onSubmit = (data) => {
         dispatch(loginFn(data, setErrorMsg, navigate));
-    }
+    };
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <Stack
@@ -48,10 +47,10 @@ const LoginForm = () => {
                 m="auto"
             >
                 <Box>
-                    <Typography variant='subtitle1'>
+                    <Typography variant="subtitle1">
                         Are you a new user ?
                         <Link
-                            sx={removeLinkStyle}
+                            className="remove-link-style"
                             component={RouterLink}
                             to="/signup"
                         >
@@ -106,9 +105,9 @@ const LoginForm = () => {
                 </Typography>
 
                 <Button
-                    type='submit'
-                    variant='contained'
-                    size='large'
+                    type="submit"
+                    variant="contained"
+                    size="large"
                     disabled={loading}
                 >
                     {loading ? <CircularProgress color="inherit" size="26px" /> : "Submit"}
@@ -118,4 +117,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm
+export default LoginForm;

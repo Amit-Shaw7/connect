@@ -3,10 +3,10 @@ import { useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-import { style } from "./modalStyle";
-import CrossButton from "./CrossButton";
-import Loader from "../loader/Loader";
-import UpdatePostForm from "./UpdatePostForm";
+import { style } from "../../utils/styles";
+import CrossButton from "../CrossButton";
+import Loader from "../Loader";
+import UpdatePostForm from "../forms/UpdatePostForm";
 
 const UpdatePostModal = ({ handlePostText , post , open, handleClose }) => {
     const { loading } = useSelector(state => state.user);

@@ -2,9 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loadUserFn } from "../../store/actions/UserActions";
-import Loader from "../../components/loader/Loader";
+import Loader from "../../components/Loader";
 import { Box } from "@mui/material";
-import Stories from "../../components/story/Stories";
 import { fetchMyStory, fetchStoriesFn } from "../../store/actions/StoryAction";
 
 const Content = ({ children }) => {
@@ -14,14 +13,9 @@ const Content = ({ children }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // const getUser = (dispatch, navigate, userId) => {
-  //   dispatch(loadUserFn(userId, navigate));
-  // };
-
   useEffect(() => {
-    dispatch(loadUserFn(userId, navigate));
-    dispatch(fetchStoriesFn());
-    dispatch(fetchMyStory());
+    userId && dispatch(fetchStoriesFn());
+    userId && dispatch(fetchMyStory());
   }, [dispatch, navigate, userId]);
 
   if (loading) {

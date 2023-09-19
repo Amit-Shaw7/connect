@@ -1,17 +1,7 @@
-import { Box } from '@mui/material';
-import React from 'react';
-import useResponsive from '../../hooks/usResponsive';
-const style = {
-    padding: "5px 5px",
-    border: "none",
-    outline: "none",
-    backgroundColor: "transparent",
-    // backgroundColor: "red",
-    fontSize: "1.1rem",
-    width: "95%",
-    borderRadius: "5px",
-    resize: "none"
-}
+import React from "react";
+import Box from "@mui/material/Box";
+import useResponsive from "../../hooks/usResponsive";
+import {inputStyle} from "../../utils/styles";
 
 const CustomTextArea = ({ type, fullWidth, query, handleQuery }) => {
     const isDesktop = useResponsive("up" , "md");
@@ -29,7 +19,7 @@ const CustomTextArea = ({ type, fullWidth, query, handleQuery }) => {
                 cols="50"
                 value={query}
                 onChange={handleQuery}
-                style={style}
+                style={inputStyle}
             />
         </Box>
     )

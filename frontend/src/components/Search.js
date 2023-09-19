@@ -2,8 +2,8 @@ import { Box, IconButton, InputBase, Stack } from "@mui/material";
 import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { useDispatch } from "react-redux";
-import { fetchSearchedUsersFn } from "../../store/actions/UserActions";
-import Loader from "../loader/Loader";
+import { fetchSearchedUsersFn } from "../store/actions/UserActions";
+import Loader from "./Loader";
 
 
 const Search = ({ setUsers }) => {

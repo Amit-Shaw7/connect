@@ -2,7 +2,6 @@ import { toast } from "react-hot-toast";
 import instance from "../../utils/axiosInstance";
 
 export const addCommentFn = (data , postId) => async (dispatch) => {
-    dispatch({ type: "ADD_COMMENT_REQUEST" });
     const url = `/comment/add/${postId}`;
     let response = {};
     try {
@@ -17,7 +16,6 @@ export const addCommentFn = (data , postId) => async (dispatch) => {
     }
 };
 export const fetchCommentsOfPostFn = (postId) => async (dispatch) => {
-    dispatch({ type: "FETCH_COMMENT_REQUEST" });
     const url = `/comment/all/${postId}`;
     let response = {};
     try {
@@ -80,7 +78,6 @@ export const editCommentFn = (commentId , data , setErrorMsg) => async (dispatch
     } finally {
         if (response?.status === 200) {
             toast.success("Comment updated");
-            // dispatch({type : "DELETE_COMMENT_SUCCESS" , payload : commentId});
         }
     }
 }

@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
+import Avatar from "@mui/material/Avatar";
+import Camera from "@mui/icons-material/Camera";
+
 import EditProfileSchema from "../../schema/EditProfileSchema";
 import { editProfileFn, uploadImage } from "../../store/actions/UserActions";
-import { useNavigate } from "react-router-dom";
-import { Avatar, Box } from "@mui/material";
-import { Camera } from "@mui/icons-material";
-import { Image } from "../image";
-import UploadingModal from "./UploadingModal";
+import Image from "../image/Image";
+import UploadingModal from "../modals/UploadingModal";
 
 const LoginForm = () => {
     const { loading } = useSelector(state => state.auth);
@@ -70,7 +73,7 @@ const LoginForm = () => {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <Stack>
-                <Box sx={{ position: "relative", height:"150px" , width: { xs: "90vw", sm: "100%", md:"500px" } }}>
+                <Box sx={{ position: "relative", height: "150px", width: { xs: "90vw", sm: "100%", md: "500px" } }}>
                     <Image
                         src={coverPic ? coverPic : user?.cover}
                         height="100%"
@@ -81,7 +84,7 @@ const LoginForm = () => {
                     <TextField  {...register("coverPic")} sx={{ display: "none" }} id="upload-cover" name="upload-avatar-btn" type="file" onChange={handleChangeCoverPic} />
                 </Box>
 
-                <Box sx={{ width: "200px", marginTop: "55px", mx: "20px", p: 1, position: "absolute", zIndex: 5}}>
+                <Box sx={{ width: "200px", marginTop: "55px", mx: "20px", p: 1, position: "absolute", zIndex: 5 }}>
                     <Avatar
                         src={profilePic ? profilePic : user?.avatar}
                         sx={{

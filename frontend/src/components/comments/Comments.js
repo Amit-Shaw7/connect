@@ -1,11 +1,14 @@
-import { Divider, List, ListItem, Stack, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
-import EachComment from './EachComment';
-import Loader from '../loader/Loader';
-import CustomContainer from '../customContainer/CustomContainer';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchCommentsOfPostFn } from '../../store/actions/CommentActions';
-import AddComment from './AddComment';
+import Divider from "@mui/material/Divider";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import React, { useEffect } from "react";
+import EachComment from "./EachComment";
+import Loader from "../Loader";
+import AddComment from "./AddComment";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCommentsOfPostFn } from "../../store/actions/CommentActions";
 
 const Comments = ({ postId }) => {
     const { comments, loading } = useSelector(state => state.comment);

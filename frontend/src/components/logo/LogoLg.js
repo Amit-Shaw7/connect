@@ -1,12 +1,12 @@
-import React from 'react';
-import { Box } from '@mui/material'
-import { Link } from 'react-router-dom';
+import React from "react";
+import Box  from "@mui/material/Box";
+import { Link } from "react-router-dom";
 
 const LogoLg = () => {
     return (
         <Link to="/">
             <Box component="img"
-                src='/assets/logo/LogoLg.png'
+                src="/assets/logo/LogoLg.png"
                 width="150px"
                 sx={{ objectFit: "contain"}}
             />
@@ -14,4 +14,4 @@ const LogoLg = () => {
     )
 }
 
-export default LogoLg
+export default LogoLg;

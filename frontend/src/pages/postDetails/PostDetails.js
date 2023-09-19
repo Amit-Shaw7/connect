@@ -1,16 +1,12 @@
-import React, { useEffect } from 'react'
-import Post from '../../components/posts/Post'
-import CustomContainer from '../../components/customContainer'
-import Comments from '../../components/comments/Comments'
-import { useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchCommentsOfPostFn } from '../../store/actions/CommentActions'
-import { fetchPostById } from '../../store/actions/PostActions'
-import { useState } from 'react'
-import AddComment from '../../components/comments/AddComment'
-import { Divider } from '@mui/material'
-import Loader from '../../components/loader/Loader'
-import CustomCard from '../../components/customCard/CustomCard'
+import React, { useEffect } from "react";
+import Post from "../../components/posts/Post";
+import CustomContainer from "../../components/CustomContainer";
+import Comments from "../../components/comments/Comments";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPostById } from "../../store/actions/PostActions";
+import { useState } from "react";
+import Loader from "../../components/Loader";
 
 const fetchPost = async (dispatch, postId, setPost) => {
     const post = await dispatch(fetchPostById(postId));
@@ -37,9 +33,6 @@ const PostDetails = () => {
         <CustomContainer>
             {post && <Post user={user} post={post} />}
             <Comments postId={params.id} />
-            {/* <Divider sx={{ mt: 4 }} /> */}
-            {/* <AddComment postId={post?._id} /> */}
-            {/* <Divider /> */}
         </CustomContainer>
     )
 }

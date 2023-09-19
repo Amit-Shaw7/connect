@@ -1,7 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 const initialState = {
-    loading: false,
     followers: [],
     followings: [],
     user: null,
@@ -11,39 +10,28 @@ const initialState = {
 
 const UserReducer = createReducer(initialState, {
     // Load user
-
-    LOAD_USER_REQUEST: (state) => {
-        state.loading = true;
-    },
     LOAD_USER_SUCCESS: (state, action) => {
-        state.loading = false;
         state.user = action.payload;
     },
     LOAD_USER_FAILURE: (state, action) => {
-        state.loading = false;
         state.user = {};
     },
-    // Load user
 
-    EDIT_PROFILE_REQUEST: (state) => {
-        state.loading = true;
-    },
+    // Edit profile
     EDIT_PROFILE_SUCCESS: (state, action) => {
-        state.loading = false;
         state.user = action.payload;
     },
-    EDIT_PROFILE_FAILURE: (state, action) => {
-        state.loading = false;
-    },
 
-    // FETCH_FOLLOWERS
+
+    // Fetch followers
     FETCH_FOLLOWERS_SUCCESS: (state, action) => {
         state.followers = action.payload;
     },
     FETCH_FOLLOWERS_FAILURE: (state, action) => {
         state.followers = [];
     },
-    // FETCH_FOLLOWings
+
+    // fetch followings
     FETCH_FOLLOWINGS_SUCCESS: (state, action) => {
         state.followings = action.payload;
     },
@@ -52,16 +40,11 @@ const UserReducer = createReducer(initialState, {
     },
 
     // FETCH_SUGGESTED_USERS
-    FETCH_SUGGESTED_USERS_REQUEST: (state, payload) => {
-        state.loading = true;
-    },
     FETCH_SUGGESTED_USERS_SUCCESS: (state, action) => {
         state.suggestedUsers = action.payload;
-        state.loading = false;
     },
     FETCH_SUGGESTED_USERS_FAILURE: (state, action) => {
-        state.suggestedUsers = {};
-        state.loading = false;
+        state.suggestedUsers = [];
     },
 
     FOLLOW_USER_SUCCESS: (state, action) => {
@@ -80,13 +63,14 @@ const UserReducer = createReducer(initialState, {
         }
     },
 
-
-
-
-
-
-    // Get selected user
-
+    // Logout
+    RESET_USER_STATE : (state) => {
+        state.followers = [];
+        state.followings = [];
+        state.selectedUser = {};
+        state.suggestedUsers = [];
+        state.user = null;
+    }
 });
 
 export default UserReducer;

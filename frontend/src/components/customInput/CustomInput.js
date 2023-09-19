@@ -1,17 +1,7 @@
-import { Box } from '@mui/material';
-import React from 'react';
-const style = {
-    padding: "5px 5px",
-    border: "none",
-    outline: "none",
-    backgroundColor: "transparent",
-    // backgroundColor: "red",
-    fontSize: "1.1rem",
-    width: "95%",
-    borderRadius: "5px",
-    resize: "none"
-}
-
+import React from "react";
+import Box from "@mui/material/Box";
+import {inputStyle} from "../../utils/styles";
+ 
 const CustomTextInput = ({ fullWidth, query, handleQuery }) => {
 
     return (
@@ -22,7 +12,7 @@ const CustomTextInput = ({ fullWidth, query, handleQuery }) => {
                 placeholder="What's on your mind"
                 name="what's in your mind"
                 type="text"
-                style={style}
+                style={inputStyle}
                 value={query}
                 onChange={handleQuery}
             />

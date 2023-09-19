@@ -1,14 +1,22 @@
-import { Delete, Edit, ThumbDown, ThumbDownOutlined, ThumbUp, ThumbUpOutlined } from '@mui/icons-material';
-import { Avatar, ListItemAvatar, ListItemIcon, MenuItem, Popover, Stack, Typography } from '@mui/material';
-import moment from 'moment';
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { getUserProfileFn } from '../../store/actions/UserActions';
-import { useDispatch, useSelector } from 'react-redux';
-import MoreVertical from '../morevertical/MoreVertical';
-import { likePostFn } from '../../store/actions/PostActions';
-import { deleteCommentFn, dislikeCommentFn, likeCommentFn } from '../../store/actions/CommentActions';
-import UpdateCommentModal from '../modals/EditCommentMOdal';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import moment from "moment";
+import { useDispatch, useSelector } from "react-redux";
+
+import ThumbDown from "@mui/icons-material/ThumbDown";
+import ThumbDownOutlined from "@mui/icons-material/ThumbDownOutlined";
+import ThumbUp from "@mui/icons-material/ThumbUp";
+import ThumbUpOutlined from "@mui/icons-material/ThumbUpOutlined";
+import Avatar from "@mui/material/Avatar";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+
+import { getUserProfileFn } from "../../store/actions/UserActions";
+import MoreVertical from "../MoreVertical";
+import { dislikeCommentFn, likeCommentFn } from "../../store/actions/CommentActions";
+import UpdateCommentModal from "../modals/EditCommentModal";
+import CommentActionPopover from "../popovers/CommentPopover";
 
 const style = {
     cursor: "pointer"
@@ -29,7 +37,7 @@ const EachComment = ({ comment }) => {
     const [likesCount, setLikesCount] = useState(likes?.length || 0);
     const [dislikesCount, setDislikesCount] = useState(dislikes?.length || 0);
     const [disliked, setDisliked] = useState(dislikes.includes(currentUser._id));
-    const [commentText, setCommentText] = useState(comment.text);
+    const [commentText, setCommentText] = useState(text);
     const [openModal, setOpenModal] = useState(false);
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -139,18 +147,18 @@ const EachComment = ({ comment }) => {
                     <Stack flexDirection="row" gap={2} mt={1}>
                         <Stack flexDirection="row" alignItems="center" gap={1}>
                             {
-                                liked ? <ThumbUp sx={style} onClick={(e) => handleLikeUnlikeComment(false)} color='primary' fontSize='10px' />
-                                    : <ThumbUpOutlined sx={style} onClick={(e) => handleLikeUnlikeComment(true)} color='primary' fontSize='10px' />
+                                liked ? <ThumbUp sx={style} onClick={(e) => handleLikeUnlikeComment(false)} color="primary" fontSize="10px" />
+                                    : <ThumbUpOutlined sx={style} onClick={(e) => handleLikeUnlikeComment(true)} color="primary" fontSize="10px" />
                             }
-                            <Typography variant='caption'>{likesCount}</Typography>
+                            <Typography variant="caption">{likesCount}</Typography>
                         </Stack>
 
                         <Stack flexDirection="row" alignItems="center" gap={1}>
                             {
-                                disliked ? <ThumbDown onClick={() => handleDisikeUndislikeComment(false)} sx={style} color='primary' fontSize='10px' />
-                                    : <ThumbDownOutlined onClick={() => handleDisikeUndislikeComment(true)} sx={style} color='primary' fontSize='10px' />
+                                disliked ? <ThumbDown onClick={() => handleDisikeUndislikeComment(false)} sx={style} color="primary" fontSize="10px" />
+                                    : <ThumbDownOutlined onClick={() => handleDisikeUndislikeComment(true)} sx={style} color="primary" fontSize="10px" />
                             }
-                            <Typography variant='caption'>{dislikesCount}</Typography>
+                            <Typography variant="caption">{dislikesCount}</Typography>
                         </Stack>
                     </Stack>
                 </Stack>
@@ -161,41 +169,3 @@ const EachComment = ({ comment }) => {
 }
 
 export default EachComment;
-
-const CommentActionPopover = ({ anchorEl, open, handlePopoverClose, id, handleOpenModal }) => {
-    const dispatch = useDispatch();
-    const handleDeleteComment = () => {
-        dispatch(deleteCommentFn(id));
-    }
-    return (
-        <Popover
-            open={open}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-            }}
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            anchorEl={anchorEl}
-            onClose={handlePopoverClose}
-            closeAfterTransition
-        >
-
-
-            <MenuItem onClick={handleOpenModal}>
-                <ListItemIcon>
-                    <Edit />
-                </ListItemIcon>
-                Edit
-            </MenuItem>
-            <MenuItem onClick={handleDeleteComment} sx={{ color: "red" }}>
-                <ListItemIcon>
-                    <Delete color="error" />
-                </ListItemIcon>
-                Delete
-            </MenuItem>
-        </Popover>
-    )
-}

@@ -1,32 +1,26 @@
-import { Box, Modal, Typography } from '@mui/material';
-import React, { useState } from 'react';
-import Loader from '../loader/Loader';
-import CrossButton from './CrossButton';
-import { style } from './modalStyle';
-import AddStoryForm from './AddStoryForm';
+import React from "react";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Typography from "@mui/material/Typography";
+import CrossButton from "../CrossButton";
+import { style } from "../../utils/styles";
+import AddStoryForm from "../forms/AddStoryForm";
 
-const AddStoryModal = ({  open, handleClose , type , story }) => {
-    const [loading, setLoading] = useState(false);
+const AddStoryModal = ({ open, handleClose, type, story }) => {
     return (
         <Modal
             open={open}
             onClose={handleClose}
         >
-            {
-                loading
-                    ?
-                    <Loader />
-                    :
-                    <Box sx={style}>
-                        <CrossButton handleClose={handleClose} />
+            <Box sx={style}>
+                <CrossButton handleClose={handleClose} />
 
-                        <Typography sx={{ mb: "20px" }} variant='h6'>Add Your Story</Typography>
+                <Typography sx={{ mb: "20px" }} variant="h6">Add Your Story</Typography>
 
-                        <AddStoryForm type={type} story={story} handleClose={handleClose} />
-                    </Box>
-            }
+                <AddStoryForm type={type} story={story} handleClose={handleClose} />
+            </Box>
         </Modal>
     )
 }
 
-export default AddStoryModal
+export default AddStoryModal;

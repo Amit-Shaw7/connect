@@ -2,15 +2,12 @@ import React, { useState } from "react";
 import moment from "moment/moment";
 import Avatar from "@mui/material/Avatar";
 import ListItem from "@mui/material/ListItem";
-import Stack from "@mui/material/Stack";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
-import Typography from "@mui/material/Typography";
-import CustomButton from "../../components/customButton/CustomButton";
+import CustomButton from "../../components/CustomButton";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { followUserFn, unfollowUserFn } from "../../store/actions/UserActions";
-import { ListItemButton } from "@mui/material";
 
 
 const User = ({ user, createdAt, type }) => {

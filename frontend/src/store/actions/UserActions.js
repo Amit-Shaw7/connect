@@ -3,8 +3,7 @@ import instance from "../../utils/axiosInstance";
 // import { delay } from "../../utils/delay";
 
 
-export const loadUserFn = (userId, navigate) => async (dispatch) => {
-    dispatch({ type: "LOAD_USER_REQUEST" });
+export const loadUserFn = (navigate) => async (dispatch) => {
     const url = `/user/profile`;
     let response = {};
     try {
@@ -21,14 +20,11 @@ export const loadUserFn = (userId, navigate) => async (dispatch) => {
 }
 
 export const editProfileFn = (data, setErrorMsg, navigate) => async (dispatch) => {
-    console.log("Clicked");
-    dispatch({ type: "EDIT_PROFILE_REQUEST" });
     const url = "/user/profile";
     let response = {};
     try {
         response = await instance.patch(url, data);
     } catch (error) {
-        dispatch({ type: "EDIT_PROFILE_FAILURE" });
         setErrorMsg(error?.response?.data?.msg);
         navigate("/")
     } finally {
@@ -38,37 +34,31 @@ export const editProfileFn = (data, setErrorMsg, navigate) => async (dispatch) =
     }
 }
 
-export const fetchFollowingsFn = (id) => async (dispatch) => {
-    dispatch({ type: "START_LOADER" });
-    const url = `user/followings/${id}`;
-    let response = {};
-   
-    try {
-        response = await instance.get(url);
-    } catch (error) {
-        dispatch({ type: "STOP_LOADER" });
-        toast.error(error.message || "Cannot fetch followings")
-    } finally {
-        if (response?.status === 200) {
-            dispatch({ type: "STOP_LOADER" });
-            return response.data?.followings;
-        }
-    }
-}
 export const fetchFollowersFn = (id) => async (dispatch) => {
-    dispatch({ type: "START_LOADER" });
     const url = `user/followers/${id}`;
     let response = {};
    
     try {
         response = await instance.get(url);
     } catch (error) {
-        dispatch({ type: "STOP_LOADER" });
         toast.error(error.message || "Cannot fetch followings")
     } finally {
         if (response?.status === 200) {
-            dispatch({ type: "STOP_LOADER" });
             return response.data?.followers;
+        }
+    }
+}
+
+export const fetchFollowingsFn = (id) => async (dispatch) => {
+    const url = `user/followings/${id}`;
+    let response = {};
+    try {
+        response = await instance.get(url);
+    } catch (error) {
+        toast.error(error.message || "Cannot fetch followings")
+    } finally {
+        if (response?.status === 200) {
+            return response.data?.followings;
         }
     }
 }
@@ -164,9 +154,6 @@ export const uploadImage = (image) => async (dispatch) => {
             toast.error("Image size must be less than 1 mb");
             return;
         }
-
-        dispatch({ type: "UPLOAD_PHOTO_REQUEST" });
-
         const data = new FormData();
         data.append("file", image);
         data.append("upload_preset", "pijjaApp");
@@ -179,14 +166,12 @@ export const uploadImage = (image) => async (dispatch) => {
         });
         const json = await res.json();
         if (res.status === 200) {
-            dispatch({ type: "UPLOAD_PHOTO_SUCCESS" });
             return json;
         } else {
             toast.error("Can't upload image please try again later");
         }
         // console.log(json);
     } catch (error) {
-        dispatch({ type: "UPLOAD_PHOTO_FAILURE" });
         toast.error("Can't upload image please try again later")
     }
 }

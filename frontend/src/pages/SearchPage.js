@@ -1,18 +1,13 @@
-import React, { useState } from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import Logo from '../components/logo/Logo';
-import Search from '../components/search/Search';
-import { Stack } from '@mui/material';
-import UserList from '../layouts/mainLayout/UserList';
-import DrawerNavigation from '../layouts/navigation/DrawerNavigation';
+import React, { useState } from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import Search from "../components/Search";
+import { Stack } from "@mui/material";
+import UserList from "../layouts/mainLayout/UserList";
+import DrawerNavigation from "../layouts/navigation/DrawerNavigation";
 
 
 
@@ -25,7 +20,7 @@ export default function SearchPage() {
     return (
         <>
             <Box sx={{ flexGrow: 1, width: "100vw" }}>
-                <AppBar sx={{ height: "max-content", px: 1 }} color='inherit' component="nav">
+                <AppBar sx={{ height: "max-content", px: 1 }} color="inherit" component="nav">
                     <Toolbar sx={{ width: "100%" }}>
                         <IconButton
                             size="large"

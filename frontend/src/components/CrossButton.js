@@ -1,7 +1,7 @@
 import { Close } from '@mui/icons-material'
 import { Box, IconButton } from '@mui/material'
 import React from 'react'
-import { crossButtonStyle } from './modalStyle'
+import { crossButtonStyle } from '../utils/styles'
 
 const CrossButton = ({ size , handleClose }) => {
     return (

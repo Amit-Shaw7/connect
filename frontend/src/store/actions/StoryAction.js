@@ -4,7 +4,6 @@ import { delay } from "../../utils/delay";
 
 
 export const fetchStoriesFn = () => async (dispatch) => {
-    dispatch({ type: "FETCH_STORIES_REQUEST" });
     const url = `/story/all`;
     let response = {};
     try {
@@ -33,7 +32,6 @@ export const fetchMyStory = () => async (dispatch) => {
 }
 export const addStory = (data, setErrorMsg, setLoading) => async (dispatch) => {
     setLoading(true);
-    dispatch({ type: "ADD_STORY_REQUEST" });
     const url = `/story`;
     let response = {};
     try {

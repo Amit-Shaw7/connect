@@ -1,11 +1,9 @@
 import React from "react";
-import Card from "@mui/material/Card";
-import List from "@mui/material/List";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import Loader from "../../components/loader/Loader";
+import Loader from "../../components/Loader";
 import User from "./User";
-import CustomCard from "../../components/customCard/CustomCard";
+import CustomCard from "../../components/CustomCard";
 const UserList = ({ loading, users, type }) => {
     if (loading) {
         return <Loader />

@@ -9,14 +9,12 @@ import Menu from "@mui/icons-material/Menu";
 import useResponsive from "../../hooks/usResponsive";
 import Logo from "../../components/logo/Logo";
 import UserMenu from "./UserMenu";
-import { useSelector } from "react-redux";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 import DrawerNavigation from "../navigation/DrawerNavigation";
 import SearchUserMenu from "../../components/Autocomplete";
 
-const Header = ({ openDrawer, toggleDrawer }) => {
-    const { user } = useSelector(state => state.user);
+const Header = ({ openDrawer, toggleDrawer , user}) => {
 
     const isDesktop = useResponsive("up", "md");
     const navigate = useNavigate();

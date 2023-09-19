@@ -4,7 +4,7 @@ import PostOwner from './PostOwner';
 import PostTitle from './PostTitle';
 import PostMedia from './PostMedia';
 import PostActions from './PostActions';
-import CustomCard from '../customCard/CustomCard';
+import CustomCard from '../CustomCard';
 
 
 const Post = ({ editable, user, post }) => {

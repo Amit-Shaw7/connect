@@ -12,7 +12,7 @@ const CustomCard = ({ children, p}) => {
                 boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
                 display: "flex",
                 justifyContent: "space-between",
-                gap: "30px",
+                gap: "20px",
                 flexDirection: "column",
                 height: "max-content"
             }}

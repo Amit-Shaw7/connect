@@ -1,7 +1,9 @@
-import { Box, Fab, InputLabel, Stack, TextField } from '@mui/material';
-import React, { useState } from 'react';
-import { Camera, CameraAlt, } from '@mui/icons-material';
-import { Image } from '../image';
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
+import React, { useState } from "react";
+import Camera from "@mui/icons-material/Camera";
+import Image from "../image/Image";
 
 const UploadCover = ({ user, sx }) => {
     const [file, setFile] = useState();
@@ -21,7 +23,7 @@ const UploadCover = ({ user, sx }) => {
                 />
 
                 <label htmlFor="upload-cover"><Camera /></label>
-                <TextField sx={{ display: "none" }} id="upload-cover" name="upload-cover-btn" type='file' onChange={handleChange} />
+                <TextField sx={{ display: "none" }} id="upload-cover" name="upload-cover-btn" type="file" onChange={handleChange} />
             </Box>
 
         </Stack>

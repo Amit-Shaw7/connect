@@ -1,8 +1,8 @@
 import { Popover, Stack, Typography } from "@mui/material"
 import axios from "axios"
 import React, {  useState } from "react"
-import CustomTextInput from "../../../components/customInput/CustomInput";
-import Loader from "../../../components/loader/Loader";
+import CustomTextInput from "../../components/customInput/CustomInput";
+import Loader from "../../components/Loader";
 
 
 const searchEmoji = async (query, setEmojis) => {

@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowBackIos, ArrowForwardIos, ArrowLeft, ArrowRight, Delete, Edit, MoreVert, Settings } from '@mui/icons-material';
-import { Box, Fab, IconButton, ListItemIcon, MenuItem, Popover, Typography } from '@mui/material';
-import { Image } from './image';
-import Morevertical from './morevertical';
-import AddStoryModal from './modals/AddStoryModal';
-import { useDispatch } from 'react-redux';
-import { deleteStoryFn } from '../store/actions/StoryAction';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowBackIos, ArrowForwardIos,  Delete, Edit, MoreVert } from "@mui/icons-material";
+import { Box, Fab, ListItemIcon, MenuItem, Popover, Typography } from "@mui/material";
+import AddStoryModal from "./modals/AddStoryModal";
+import { useDispatch } from "react-redux";
+import { deleteStoryFn } from "../store/actions/StoryAction";
 
 const slideVariants = {
     hiddenRight: {
@@ -37,7 +35,7 @@ const slideVariants = {
 const Carousel = ({ user , stories, idx }) => {
     const dispatch = useDispatch();
     const [currentIndex, setCurrentIndex] = useState(idx);
-    const [direction, setDirection] = useState('left');
+    const [direction, setDirection] = useState("left");
     const [anchorEl, setAnchorEl] = useState(null);
     const [openEditStory, setOpenEditStory] = useState(false);
     const open = Boolean(anchorEl);
@@ -106,7 +104,7 @@ const Carousel = ({ user , stories, idx }) => {
                     }}
                 >
                     <Fab
-                        size='small'
+                        size="small"
                         onClick={handlePrevious}
                         sx={{
                             backgroundColor: "#f5f5f5",
@@ -144,9 +142,9 @@ const Carousel = ({ user , stories, idx }) => {
                     }}
                 >
                     <Fab
-                        size='small'
+                        size="small"
                         onClick={handleNext}
-                        // color='secondary'
+                        // color="secondary"
                         sx={{
                             backgroundColor: "#f5f5f5",
                         }}
@@ -184,7 +182,7 @@ const Carousel = ({ user , stories, idx }) => {
                         zIndex: 5
                     }}
                 >
-                    {stories[currentIndex]?.user === user._id && <MoreVert onClick={handlePopoverOpen} htmlColor='white' fontSize="medium" />}
+                    {stories[currentIndex]?.user === user._id && <MoreVert onClick={handlePopoverOpen} htmlColor="white" fontSize="medium" />}
                     <StoryActionPopover open={open} anchorEl={anchorEl} handleOpenEditStory={handleOpenEditStory} handlePopoverClose={handlePopoverClose} handleDeleteStory={handleDeleteStory} />
                 </Box>
             </Box>
@@ -200,12 +198,12 @@ const StoryActionPopover = ({ open, anchorEl, handlePopoverClose, handleOpenEdit
         <Popover
             open={open}
             anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
+                vertical: "top",
+                horizontal: "left",
             }}
             transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
             }}
             anchorEl={anchorEl}
             onClose={handlePopoverClose}

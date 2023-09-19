@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
-import UserInfo from "./UserInfo";
-import UserImages from "./UserImages";
-import CustomContainer from "../../components/customContainer";
+import CustomContainer from "../../components/CustomContainer";
 import { getUserProfileFn } from "../../store/actions/UserActions";
-import CustomCard from "../../components/customCard/CustomCard";
-import CustomButton from "../../components/customButton/CustomButton";
+import CustomCard from "../../components/CustomCard";
+import CustomButton from "../../components/CustomButton";
 import EditProfileModal from "../../components/modals/EditProfileModal";
-import Loader from "../../components/loader/Loader";
-import MoreInfo from "./MoreInfo";
+import Loader from "../../components/Loader";
+import UserInfo from "../../sections/profile/UserInfo";
+import UserImages from "../../sections/profile/UserImages";
+import MoreInfo from "../../sections/profile/MoreInfo";
 
 const fetchSavedPosts = async (setLoading, dispatch, paramId, setUser) => {
   setLoading(true);

@@ -12,10 +12,9 @@ import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/Visibility';
-import { removeLinkStyle } from "../../utils/removeLinkStyle";
-import signupSchema from '../../schema/SignupSchema';
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/Visibility";
+import signupSchema from "../../schema/SignupSchema";
 import { signupFn } from "../../store/actions/AuthActions";
 
 const SignupForm = () => {
@@ -45,7 +44,6 @@ const SignupForm = () => {
     });
 
     const onSubmit = (data) => {
-        console.log("Clicked");
         dispatch(signupFn(data, setErrorMsg, navigate));
     }
 
@@ -54,11 +52,11 @@ const SignupForm = () => {
             <Stack spacing={2} width="70%" m="auto">
                 <Box>
                     <Typography
-                        variant='subtitle1'
+                        variant="subtitle1"
                     >
                         Already a user ?
                         <Link
-                            sx={removeLinkStyle}
+                            className="remove-link-style"
                             component={RouterLink}
                             to="/login">
                             Login

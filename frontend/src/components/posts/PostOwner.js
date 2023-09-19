@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import Stack from "@mui/material/Stack";
-import MoreVertical from "../morevertical";
+import MoreVertical from "../MoreVertical";
 import User from "../../layouts/mainLayout/User";
 import { ListItemIcon, MenuItem, Popover } from "@mui/material";
-import { Comment, Delete, Edit, Share, VisibilityOutlined } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { Delete, Edit, } from "@mui/icons-material";
 import UpdatePostModal from "../modals/UpdatePostModal";
 import { useDispatch } from "react-redux";
 import { deletePostFn } from "../../store/actions/PostActions";
@@ -12,7 +11,6 @@ import { deletePostFn } from "../../store/actions/PostActions";
 const PostOwner = ({ editable, post, handlePostText }) => {
   const { _id, user, createdAt } = post;
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [openModal, setOpenModal] = useState(false);
@@ -27,7 +25,7 @@ const PostOwner = ({ editable, post, handlePostText }) => {
   };
 
   const handleDeletePost = () => {
-    dispatch(deletePostFn(post._id));
+    dispatch(deletePostFn(_id));
   };
 
   const handleOpenModal = () => {
@@ -46,7 +44,7 @@ const PostOwner = ({ editable, post, handlePostText }) => {
         gap="10px"
         alignItems="center"
         sx={{
-          mx:{xs:1}
+          mx: { xs: 1 }
         }}
       >
         {editable && <MoreVertical onclickFn={handlePopoverOpen} />}

@@ -35,3 +35,14 @@ export const storyModalStyle = {
     boxShadow: 24,
     p:2
 };
+
+export const inputStyle = {
+    padding: "5px 5px",
+    border: "none",
+    outline: "none",
+    backgroundColor: "transparent",
+    fontSize: "1.1rem",
+    width: "95%",
+    borderRadius: "5px",
+    resize: "none"
+}

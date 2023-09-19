@@ -1,18 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-import { style } from "./modalStyle";
-import CrossButton from "./CrossButton";
-import { UploadAvatar, UploadCover } from "../upload";
-import Loader from "../loader/Loader";
-import UpdateProfileForm from "./UpdateProfileForm";
-import { TextField } from "@mui/material";
-import UpdatePostForm from "./UpdatePostForm";
-import UpdateCommentForm from "./UpdateCommentForm";
+import { style } from "../../utils/styles";
+import CrossButton from "../CrossButton";
+import Loader from "../Loader";
+import UpdateCommentForm from "../forms/UpdateCommentForm";
 
-const UpdateCommentModal = ({ handleCommentText , comment , open, handleClose }) => {
+const UpdateCommentModal = ({ handleCommentText, comment, open, handleClose }) => {
     const { loading } = useSelector(state => state.user);
 
     return (
@@ -31,7 +27,7 @@ const UpdateCommentModal = ({ handleCommentText , comment , open, handleClose })
 
                         <Typography sx={{ mb: "20px" }} variant='h5'>Update Text</Typography>
 
-                        <UpdateCommentForm handleClose={handleClose} comment={comment} handleCommentText={handleCommentText}/>
+                        <UpdateCommentForm handleClose={handleClose} comment={comment} handleCommentText={handleCommentText} />
                     </Box>
             }
         </Modal>

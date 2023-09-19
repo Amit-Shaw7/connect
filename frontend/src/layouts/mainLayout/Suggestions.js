@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Stack from "@mui/material/Stack";
-import Search from "../../components/search";
 import { fetchSuggestedUsersFn } from "../../store/actions/UserActions";
 import UserList from "./UserList";
-import { Box, Container, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 const fetchSuggestedUser = async (dispatch, setUsers) => {
     const users = await dispatch(fetchSuggestedUsersFn());

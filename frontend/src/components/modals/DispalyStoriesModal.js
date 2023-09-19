@@ -1,11 +1,12 @@
-import { Box, Modal, Stack, Typography } from '@mui/material'
-import React from 'react'
-import Loader from '../loader/Loader'
-import { storyModalStyle } from './modalStyle'
-import CrossButton from './CrossButton'
-import Carousel from '../Carousel'
+import React from "react";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Stack from "@mui/material/Stack";
+import CrossButton from "../CrossButton";
+import Carousel from "../Carousel";
+import { storyModalStyle } from "../../utils/styles";
 
-const DispalyStoriesModal = ({user, idxOfClickedStory , stories, open, handleClose }) => {
+const DispalyStoriesModal = ({ user, idxOfClickedStory, stories, open, handleClose }) => {
     return (
         <Modal
             open={open}

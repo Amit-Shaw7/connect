@@ -1,7 +1,6 @@
-import React from 'react';
-import useResponsive from '../../hooks/usResponsive';
-import LogoLg from './LogoLg';
-import LogoSm from './LogoSm';
+import React from "react";
+import useResponsive from "../../hooks/usResponsive";
+import LogoLg from "./LogoLg";
 
 const Logo = ({visible}) => {
     const isMobile = useResponsive("up", "sm");
@@ -12,4 +11,4 @@ const Logo = ({visible}) => {
     )
 }
 
-export default Logo
+export default Logo;

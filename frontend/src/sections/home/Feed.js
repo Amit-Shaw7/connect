@@ -1,6 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import PostList from "../../../components/posts/PostList";
+import PostList from "../../components/posts/PostList";
 
 
 const Feed = ({user ,  posts }) => {
