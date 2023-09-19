@@ -7,16 +7,16 @@ import { getUserPostsFn } from "../../store/actions/PostActions";
 import { fetchFollowersFn, fetchFollowingsFn } from "../../store/actions/UserActions";
 import UserList from "../../layouts/mainLayout/UserList";
 
-const fetchUserPosts = async (dispatch, id, setPosts) => {
-    const posts = await dispatch(getUserPostsFn(id));
+const fetchUserPosts = async (dispatch, id, setPosts , setLoading) => {
+    const posts = await dispatch(getUserPostsFn(id , setLoading));
     setPosts(posts);
 }
-const fetchFollowers = async (dispatch, id, setPosts) => {
-    const posts = await dispatch(fetchFollowersFn(id));
+const fetchFollowers = async (dispatch, id, setPosts , setLoading) => {
+    const posts = await dispatch(fetchFollowersFn(id , setLoading));
     setPosts(posts);
 }
-const fetchFollowings = async (dispatch, id, setPosts) => {
-    const posts = await dispatch(fetchFollowingsFn(id));
+const fetchFollowings = async (dispatch, id, setPosts , setLoading) => {
+    const posts = await dispatch(fetchFollowingsFn(id , setLoading));
     setPosts(posts);
 }
 
@@ -30,11 +30,9 @@ const MoreInfo = ({ currentTab }) => {
     const [followings, setFollowings] = useState([]);
 
     useEffect(() => {
-        setLoading(true);
-        currentTab === "posts" && fetchUserPosts(dispatch, params.id, setPosts);
-        currentTab === "followers" && fetchFollowers(dispatch, params.id, setFollowers);
-        currentTab === "followings" && fetchFollowings(dispatch, params.id, setFollowings);
-        setLoading(false);
+        currentTab === "posts" && fetchUserPosts(dispatch, params.id, setPosts , setLoading);
+        currentTab === "followers" && fetchFollowers(dispatch, params.id, setFollowers , setLoading);
+        currentTab === "followings" && fetchFollowings(dispatch, params.id, setFollowings , setLoading);
     }, [currentTab, dispatch, params.id]);
     return (
         <Stack>

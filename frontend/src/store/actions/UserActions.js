@@ -34,30 +34,35 @@ export const editProfileFn = (data, setErrorMsg, navigate) => async (dispatch) =
     }
 }
 
-export const fetchFollowersFn = (id) => async (dispatch) => {
+export const fetchFollowersFn = (id, setLoading) => async (dispatch) => {
     const url = `user/followers/${id}`;
     let response = {};
-   
+    setLoading(true);
     try {
         response = await instance.get(url);
     } catch (error) {
-        toast.error(error.message || "Cannot fetch followings")
+        toast.error(error.message || "Cannot fetch followings");
+        setLoading(false);
     } finally {
         if (response?.status === 200) {
+            setLoading(false);
             return response.data?.followers;
         }
     }
 }
 
-export const fetchFollowingsFn = (id) => async (dispatch) => {
+export const fetchFollowingsFn = (id , setLoading) => async (dispatch) => {
     const url = `user/followings/${id}`;
     let response = {};
+    setLoading(true);
     try {
         response = await instance.get(url);
     } catch (error) {
-        toast.error(error.message || "Cannot fetch followings")
+        toast.error(error.message || "Cannot fetch followings");
+        setLoading(false);
     } finally {
         if (response?.status === 200) {
+            setLoading(false);
             return response.data?.followings;
         }
     }
@@ -66,7 +71,7 @@ export const fetchFollowingsFn = (id) => async (dispatch) => {
 export const fetchSuggestedUsersFn = () => async (dispatch) => {
     const url = "/user/suggesteduser";
     let response = {};
-   
+
     try {
         response = await instance.get(url);
     } catch (error) {
@@ -82,7 +87,7 @@ export const fetchSearchedUsersFn = (query, setUsers) => async (dispatch) => {
     dispatch({ type: "FETCH_SEARCHED_USERS_REQUEST" });
     const url = `/user/search?query=${query}`;
     let response = {};
-   
+
     try {
         response = await instance.get(url);
     } catch (error) {
@@ -97,10 +102,9 @@ export const fetchSearchedUsersFn = (query, setUsers) => async (dispatch) => {
 }
 
 export const getUserProfileFn = (id) => async (dispatch) => {
-    dispatch({ type: "FETCH_USER_REQUEST" });
     const url = `user/${id}`;
     let response = {};
-   
+
     try {
         response = await instance.get(url);
     } catch (error) {
@@ -115,7 +119,7 @@ export const getUserProfileFn = (id) => async (dispatch) => {
 export const followUserFn = (id) => async (dispatch) => {
     const url = `/user/follow/${id}`;
     let response = {};
-   
+
     try {
         response = await instance.patch(url);
     } catch (error) {
@@ -131,7 +135,7 @@ export const followUserFn = (id) => async (dispatch) => {
 export const unfollowUserFn = (id) => async (dispatch) => {
     const url = `/user/unfollow/${id}`;
     let response = {};
-   
+
     try {
         response = await instance.patch(url);
     } catch (error) {
