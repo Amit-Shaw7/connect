@@ -18,7 +18,7 @@ import { editProfileFn, uploadImage } from "../../store/actions/UserActions";
 import Image from "../image/Image";
 import UploadingModal from "../modals/UploadingModal";
 
-const LoginForm = () => {
+const UpdateProfileForm = () => {
     const { loading } = useSelector(state => state.auth);
     const { user } = useSelector(state => state.user);
 
@@ -94,7 +94,14 @@ const LoginForm = () => {
                         }}
                     />
                     <label style={{ position: "relative", bottom: "50px", left: "120px" }} htmlFor="upload-avatar"><Camera fontSize="large" color="primary" /></label>
-                    <TextField  {...register("profilePic")} sx={{ display: "none" }} id="upload-avatar" name="upload-avatar-btn" type="file" onChange={handleChangeProfilePic} />
+                    <TextField
+                        {...register("profilePic")}
+                        sx={{ display: "none" }}
+                        id="upload-avatar"
+                        name="upload-avatar-btn"
+                        type="file"
+                        onChange={handleChangeProfilePic}
+                    />
                 </Box>
 
                 <Stack spacing={1} mt={10}>
@@ -167,4 +174,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm;
+export default UpdateProfileForm;
