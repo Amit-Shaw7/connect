@@ -8,7 +8,7 @@ import CrossButton from "../CrossButton";
 import Loader from "../Loader";
 import UpdateCommentForm from "../forms/UpdateCommentForm";
 
-const UpdateCommentModal = ({ handleCommentText, comment, open, handleClose }) => {
+const EditCommentModal = ({ handleCommentText, comment, open, handleClose }) => {
     const { loading } = useSelector(state => state.user);
 
     return (
@@ -34,4 +34,4 @@ const UpdateCommentModal = ({ handleCommentText, comment, open, handleClose }) =
     )
 }
 
-export default UpdateCommentModal;
+export default EditCommentModal;

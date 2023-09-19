@@ -15,7 +15,7 @@ import Typography from "@mui/material/Typography";
 import { getUserProfileFn } from "../../store/actions/UserActions";
 import MoreVertical from "../MoreVertical";
 import { dislikeCommentFn, likeCommentFn } from "../../store/actions/CommentActions";
-import UpdateCommentModal from "../modals/EditCommentModal";
+import EditCommentModal from "../modals/EditCommentModal";
 import CommentActionPopover from "../popovers/CommentPopover";
 
 const style = {
@@ -112,7 +112,13 @@ const EachComment = ({ comment }) => {
         <>
             <Stack flexDirection="row" position="relative" width="100%">
                 {comment?.user === currentUser?._id && <MoreVertical onclickFn={handlePopoverOpen} />}
-                <CommentActionPopover handleOpenModal={handleOpenModal} anchorEl={anchorEl} handlePopoverClose={handlePopoverClose} open={open} id={comment._id} />
+                <CommentActionPopover
+                    handleOpenModal={handleOpenModal}
+                    anchorEl={anchorEl}
+                    handlePopoverClose={handlePopoverClose}
+                    open={open}
+                    id={comment._id}
+                />
                 <ListItemAvatar>
                     <Avatar
                         sx={{
@@ -144,26 +150,67 @@ const EachComment = ({ comment }) => {
                         </Stack>
                     </Stack>
 
-                    <Stack flexDirection="row" gap={2} mt={1}>
-                        <Stack flexDirection="row" alignItems="center" gap={1}>
+                    <Stack
+                        flexDirection="row"
+                        gap={2}
+                        mt={1}
+                    >
+                        <Stack
+                            flexDirection="row"
+                            alignItems="center"
+                            gap={1}
+                        >
                             {
-                                liked ? <ThumbUp sx={style} onClick={(e) => handleLikeUnlikeComment(false)} color="primary" fontSize="10px" />
-                                    : <ThumbUpOutlined sx={style} onClick={(e) => handleLikeUnlikeComment(true)} color="primary" fontSize="10px" />
+                                liked
+                                    ? <ThumbUp
+                                        sx={style}
+                                        onClick={(e) => handleLikeUnlikeComment(false)}
+                                        color="primary"
+                                        fontSize="10px"
+                                    />
+                                    : <ThumbUpOutlined
+                                        sx={style}
+                                        onClick={(e) => handleLikeUnlikeComment(true)}
+                                        color="primary"
+                                        fontSize="10px"
+                                    />
                             }
                             <Typography variant="caption">{likesCount}</Typography>
                         </Stack>
 
-                        <Stack flexDirection="row" alignItems="center" gap={1}>
+                        <Stack
+                            flexDirection="row"
+                            alignItems="center"
+                            gap={1}
+                        >
                             {
-                                disliked ? <ThumbDown onClick={() => handleDisikeUndislikeComment(false)} sx={style} color="primary" fontSize="10px" />
-                                    : <ThumbDownOutlined onClick={() => handleDisikeUndislikeComment(true)} sx={style} color="primary" fontSize="10px" />
+                                disliked
+                                    ?
+                                    <ThumbDown
+                                        onClick={() => handleDisikeUndislikeComment(false)}
+                                        sx={style}
+                                        color="primary"
+                                        fontSize="10px"
+                                    />
+                                    :
+                                    <ThumbDownOutlined
+                                        onClick={() => handleDisikeUndislikeComment(true)}
+                                        sx={style}
+                                        color="primary"
+                                        fontSize="10px"
+                                    />
                             }
                             <Typography variant="caption">{dislikesCount}</Typography>
                         </Stack>
                     </Stack>
                 </Stack>
             </Stack>
-            <UpdateCommentModal open={openModal} handleClose={handleCloseModal} handleCommentText={handleCommentText} comment={comment} />
+            <EditCommentModal
+                open={openModal}
+                handleClose={handleCloseModal}
+                handleCommentText={handleCommentText}
+                comment={comment}
+            />
         </>
     )
 }
