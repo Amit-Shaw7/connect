@@ -38,7 +38,7 @@ const Header = ({ openDrawer, toggleDrawer, user }) => {
     }
 
     const handleMode = () => {
-        dispatch(toggleMode(mode));
+        dispatch(toggleMode());
     }
 
 
@@ -81,7 +81,7 @@ const Header = ({ openDrawer, toggleDrawer, user }) => {
                                     </IconButton>
                             }
                         </Box>
-                        <IconButton onClick={handleMode}>
+                        <IconButton sx={{mx:1}} onClick={handleMode}>
                             {mode === "light" ? <DarkMode /> : <LightMode />}
                         </IconButton>
                         <IconButton

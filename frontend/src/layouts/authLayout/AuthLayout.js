@@ -15,7 +15,7 @@ const LoginLayout = ({ children }) => {
         >
             {isScreenBig && <Box sx={{ mx: 4}}>
                 <Image
-                    src="/assets/auth/login-display.jpg"
+                    src="/assets/auth/login-display.png"
                     height="max-content"
                     width="700px"
                 />

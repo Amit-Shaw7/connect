@@ -9,8 +9,10 @@ const AppReducer = createReducer(initialState, {
     TOGGLE_MODE: (state, action) => {
         if (state.mode === "light") {
             state.mode = "dark";
+            localStorage.setItem("mode", "dark");
         } else {
             state.mode = "light";
+            localStorage.setItem("mode", "light");
         }
     },
 });

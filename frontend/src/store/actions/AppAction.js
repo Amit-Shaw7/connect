@@ -1,4 +1,3 @@
-export const toggleMode = (mode) => async (dispatch) => {
-    localStorage.setItem("mode", mode);
+export const toggleMode = () => async (dispatch) => {
     dispatch({ type: "TOGGLE_MODE" });
 }
