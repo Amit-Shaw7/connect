@@ -26,7 +26,6 @@ const Suggestions = () => {
             sx={{
                 width: { xs: "0px", sm: "0px", md: "30%" , lg:"30%"},
                 p: 2,
-                borderRight:"0.5px solid #f5f5f5",
             }}
         >
             <Typography

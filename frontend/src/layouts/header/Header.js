@@ -13,11 +13,16 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 import DrawerNavigation from "../navigation/DrawerNavigation";
 import SearchUserMenu from "../../components/Autocomplete";
+import { DarkMode, LightMode } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleMode } from "../../store/actions/AppAction";
 
-const Header = ({ openDrawer, toggleDrawer , user}) => {
+const Header = ({ openDrawer, toggleDrawer, user }) => {
 
+    const { mode } = useSelector(state => state.app);
     const isDesktop = useResponsive("up", "md");
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [openMenu, setAnchorElUser] = useState(null);
 
@@ -32,11 +37,15 @@ const Header = ({ openDrawer, toggleDrawer , user}) => {
         navigate("/search");
     }
 
+    const handleMode = () => {
+        dispatch(toggleMode(mode));
+    }
+
 
     return (
-        <Stack>
-            <AppBar sx={{ height: "max-content", px: 1 }} color="inherit" component="nav">
-                <Toolbar sx={{ boxShadow: "none", justifyContent: "space-between" }}>
+        <Stack bgcolor="background.default">
+            <AppBar enableColorOnDark={true} variant="elevation" sx={{ height: "max-content", px: 1 }} color="inherit" component="nav">
+                <Toolbar variant="dense" sx={{ justifyContent: "space-between" }}>
                     <Stack flexDirection="row" alignItems="center">
                         {!isDesktop && <IconButton
                             onClick={() => toggleDrawer(true)}
@@ -72,6 +81,9 @@ const Header = ({ openDrawer, toggleDrawer , user}) => {
                                     </IconButton>
                             }
                         </Box>
+                        <IconButton onClick={handleMode}>
+                            {mode === "light" ? <DarkMode /> : <LightMode />}
+                        </IconButton>
                         <IconButton
                             size="large"
                             edge="end"

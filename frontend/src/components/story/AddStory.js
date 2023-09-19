@@ -7,9 +7,6 @@ import AddStoryModal from '../modals/AddStoryModal'
 
 const AddStory = ({ user }) => {
     const [openStoryModal, setOpenStoryModal] = useState(false);
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    }
 
     const openAddStoryModal = () => {
         setOpenStoryModal(true);
@@ -20,10 +17,23 @@ const AddStory = ({ user }) => {
 
     return (
         <>
-            <Stack position="relative" alignItems="center" justifyContent="center" height="180px" width="120px" sx={{
-                borderRadius: "10px", backgroundColor: "lightgray"
-            }}>
-                <CustomAvatar height="100px" width="100px" user={user} />
+            <Stack
+                position="relative"
+                bgcolor="background.default"
+                alignItems="center"
+                justifyContent="center"
+                height="180px"
+                width="120px"
+                border="1px solid lightgrey"
+                sx={{
+                    borderRadius: "10px",
+                    // border:"1px solid pallete.divider"
+                }}>
+                <CustomAvatar
+                    height="100px"
+                    width="100px"
+                    user={user}
+                />
 
                 <Fab
                     size="small"
@@ -41,7 +51,10 @@ const AddStory = ({ user }) => {
                     <Add />
                 </Fab>
             </Stack>
-            <AddStoryModal open={openStoryModal} handleClose={closeAddStoryModal} />
+            <AddStoryModal
+                open={openStoryModal}
+                handleClose={closeAddStoryModal}
+            />
         </>
     )
 }

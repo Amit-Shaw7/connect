@@ -15,30 +15,38 @@ import Signup from './auth/signup/Signup';
 import PostDetails from './pages/postDetails/PostDetails';
 import MyPosts from './pages/myPosts/MyPosts';
 import SearchPage from './pages/SearchPage';
+import { Box, ThemeProvider } from '@mui/material';
+import lightTheme from './themes/lightTheme';
+import darkTheme from './themes/darkTheme';
 
 const App = () => {
-  const { savedPosts } = useSelector(state => state.post);
+  // const { savedPosts } = useSelector(state => state.post);
+  const { mode } = useSelector(state => state.app);
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/search" element={<SearchPage />} />
+    <ThemeProvider theme={mode === "light" ? lightTheme : darkTheme}>
+      <Box bgcolor={"background.default"} color="text.primary" sx={{ minHeight: "100vh" }}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/search" element={<SearchPage />} />
 
-        <Route path="/" element={<MainLayout />}>
-          <Route path="" element={<Home />} />
-          <Route path="explore" element={<Explore />} />
-          <Route path="saved-posts" element={<SavedPosts />} />
-          <Route path="liked-posts" element={<LikedPosts />} />
-          <Route path="myposts" element={<MyPosts />} />
-          <Route path="user/:id" element={<Profile />} />
-          <Route path="post/:id" element={<PostDetails posts={savedPosts} />} />
-        </Route>
+            <Route path="/" element={<MainLayout />}>
+              <Route path="" element={<Home />} />
+              <Route path="explore" element={<Explore />} />
+              <Route path="saved-posts" element={<SavedPosts />} />
+              <Route path="liked-posts" element={<LikedPosts />} />
+              <Route path="myposts" element={<MyPosts />} />
+              <Route path="user/:id" element={<Profile />} />
+              <Route path="post/:id" element={<PostDetails />} />
+            </Route>
 
-        <Route path="*" element={<Page404 />} />
-      </Routes>
-      <Toaster position="top-center" />
-    </BrowserRouter>
+            <Route path="*" element={<Page404 />} />
+          </Routes>
+          <Toaster position="top-center" />
+        </BrowserRouter>
+      </Box>
+    </ThemeProvider>
   )
 }
 

@@ -16,7 +16,6 @@ const Navigation = () => {
         width: {xs:"0px" , sm: "0px", md: "20%" , lg:"20%"},
         height: "100%",
         overflowY: "scroll",
-        borderLeft:"0.5px solid #f5f5f5",
       }}>
       <List
         sx={{

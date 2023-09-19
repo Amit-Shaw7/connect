@@ -4,6 +4,7 @@ import UserReducer from './reducers/UserReducer';
 import PostReducer from './reducers/PostReducer';
 import CommentReducer from './reducers/CommentReducer';
 import StoryReducer from './reducers/StoryReducer';
+import AppReducer from './reducers/AppReducer';
 
 
 const Store = configureStore({
@@ -13,6 +14,7 @@ const Store = configureStore({
         post: PostReducer,
         comment: CommentReducer,
         story: StoryReducer,
+        app: AppReducer,
     },
 });
 
