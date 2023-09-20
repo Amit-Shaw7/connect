@@ -32,8 +32,6 @@ export const storyModalStyle = {
     borderRadius: "5px",
     width: "100%",
     height: "100%",
-    backgroundColor: "white",
-    bgcolor: 'background.paper',
     boxShadow: 24,
     p: 2
 };
