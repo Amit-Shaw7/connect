@@ -30,7 +30,6 @@ const AddComment = ({ postId }) => {
             variant="elevation"
             sx={{
                 display: "flex",
-                backgroundColor: "white",
                 flexDirection: "row",
                 alignItems: "center",
                 gap: 2,
@@ -50,7 +49,7 @@ const AddComment = ({ postId }) => {
             />
 
             <IconButton onClick={handleAddComment}>
-                <Send />
+                <Send color="primary"/>
             </IconButton>
         </Card>
     )
