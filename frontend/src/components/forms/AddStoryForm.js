@@ -72,8 +72,8 @@ const AddStoryForm = ({ handleClose, type, story }) => {
                                         width="200px"
                                         fit="cover"
                                     />
-                                    <Box width="100%" sx={{ backgroundColor: "red" }}>
-                                        <Typography variant="caption" sx={{ wordWrap: "break-word", width: "100%", position: "absolute", bottom: "40px", color: { color } }} textAlign="center">{text}</Typography>
+                                    <Box width="100%">
+                                        <Typography fontWeight="bold" fontSize="1rem" sx={{ wordWrap: "break-word", width: "100%", position: "absolute", bottom: "20px", color: { color } }} textAlign="center">{text}</Typography>
                                     </Box>
                                 </Stack>
                                 :

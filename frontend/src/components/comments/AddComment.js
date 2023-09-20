@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import IconButton from "@mui/material/IconButton";
 import CustomAvatar from "../CustomAvatar";
-import CustomTextInput from "../customInput/CustomInput";
 import Send from "@mui/icons-material/Send";
 import { useDispatch, useSelector } from "react-redux";
 import { addCommentFn } from "../../store/actions/CommentActions";
+import { TextField } from "@mui/material";
 
 const AddComment = ({ postId }) => {
     const { user } = useSelector(state => state.user);
@@ -42,14 +42,18 @@ const AddComment = ({ postId }) => {
         >
             <CustomAvatar height="35px" width="35px" user={user} />
 
-            <CustomTextInput
-                fullWidth={true}
-                query={postText}
-                handleQuery={handlePostText}
+            <TextField
+                fullWidth
+                variant="standard"
+                placeholder="What's on your mind"
+                name="what's in your mind"
+                type="text"
+                value={postText}
+                onChange={handlePostText}
             />
 
             <IconButton onClick={handleAddComment}>
-                <Send color="primary"/>
+                <Send color="primary" />
             </IconButton>
         </Card>
     )

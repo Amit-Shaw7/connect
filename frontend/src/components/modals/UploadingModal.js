@@ -11,8 +11,8 @@ const UploadinModal = ({  open, handleClose }) => {
             open={open}
             onClose={handleClose}
         >
-            <Box sx={style}>
-                <Typography textAlign="center" >Uploading</Typography>
+            <Box bgcolor="background.default" sx={style}>
+                <Typography color="text.primary" textAlign="center" >Uploading</Typography>
             </Box>
         </Modal>
     )

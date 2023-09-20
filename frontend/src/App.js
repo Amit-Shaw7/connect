@@ -15,7 +15,7 @@ import Signup from './auth/signup/Signup';
 import PostDetails from './pages/postDetails/PostDetails';
 import MyPosts from './pages/myPosts/MyPosts';
 import SearchPage from './pages/SearchPage';
-import { Box, ThemeProvider } from '@mui/material';
+import { Box, CssBaseline, ThemeProvider } from '@mui/material';
 import lightTheme from './themes/lightTheme';
 import darkTheme from './themes/darkTheme';
 
@@ -24,6 +24,7 @@ const App = () => {
   const { mode } = useSelector(state => state.app);
   return (
     <ThemeProvider theme={mode === "light" ? lightTheme : darkTheme}>
+      <CssBaseline />
       <Box bgcolor={"background.default"} color="text.primary" sx={{ minHeight: "100vh" }}>
         <BrowserRouter>
           <Routes>

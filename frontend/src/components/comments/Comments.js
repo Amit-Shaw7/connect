@@ -24,7 +24,7 @@ const Comments = ({ postId }) => {
 
     return (
         <>
-            <Stack spacing={3} mx={2}>
+            <Stack spacing={3} mx={2} >
                 <Divider sx={{ mb: 1 }} />
 
                 {
@@ -37,7 +37,7 @@ const Comments = ({ postId }) => {
 
                 <List
                     sx={{
-                        height: comments.length === 0 ? "175px" : "400px",
+                        height: comments.length === 0 ? "270px" : "400px",
                         overflowY: "scroll",
                         gap: 1
                     }}

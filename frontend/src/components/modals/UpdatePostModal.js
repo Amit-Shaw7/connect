@@ -22,10 +22,10 @@ const UpdatePostModal = ({ handlePostText , post , open, handleClose }) => {
                     ?
                     <Loader />
                     :
-                    <Box sx={style}>
+                    <Box bgcolor="background.default" sx={style}>
                         <CrossButton handleClose={handleClose} />
 
-                        <Typography sx={{ mb: "20px" }} variant='h6'>Update Title</Typography>
+                        <Typography color="text.primary" sx={{ mb: "20px" }} variant='h6'>Update Title</Typography>
 
                         <UpdatePostForm handleClose={handleClose} post={post} handlePostText={handlePostText}/>
                     </Box>

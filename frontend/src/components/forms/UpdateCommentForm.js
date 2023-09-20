@@ -29,38 +29,39 @@ const UpdateCommentForm = ({ handleClose, handleCommentText, comment }) => {
         dispatch(editCommentFn(comment._id, data, setErrorMsg));
     };
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <Stack
-                spacing={2}
+        <Stack
+            spacing={2}
+            bgcolor="background.primary"
+            component="form"
+            onSubmit={handleSubmit(onSubmit)}
+        >
+            <TextField
+                variant="filled"
+                size="small"
+                type="text"
+                name="text"
+                label="Text"
+                {...register("text")}
+                error={errors.text && true}
+                helperText={errors.text?.message}
+            />
+
+            <Typography
+                variant="caption"
+                textAlign="center"
+                color="red"
             >
-                <TextField
-                    variant="filled"
-                    size="small"
-                    type="text"
-                    name="text"
-                    label="Text"
-                    {...register("text")}
-                    error={errors.text && true}
-                    helperText={errors.text?.message}
-                />
+                {errorMsg && errorMsg}
+            </Typography>
 
-                <Typography
-                    variant="caption"
-                    textAlign="center"
-                    color="red"
-                >
-                    {errorMsg && errorMsg}
-                </Typography>
-
-                <Button
-                    type='submit'
-                    variant='contained'
-                    size='large'
-                >
-                    {loading ? <CircularProgress color="inherit" size="26px" /> : "Submit"}
-                </Button>
-            </Stack>
-        </form>
+            <Button
+                type='submit'
+                variant='contained'
+                size='large'
+            >
+                {loading ? <CircularProgress color="inherit" size="26px" /> : "Submit"}
+            </Button>
+        </Stack>
     )
 }
 

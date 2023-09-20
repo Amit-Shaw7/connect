@@ -68,7 +68,6 @@ const UserInfo = ({ user, setCurrentTab }) => {
                     {user?.followings?.length} Following
                 </Button>
             </Stack>
-            {/* <UserListModal loading={loading} sx={{ width: "400px" }} users={users} open={open} handleClose={handleClose} /> */}
         </Stack>
     )
 }

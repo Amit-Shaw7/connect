@@ -76,3 +76,7 @@
 .active {
   background-color: #fa2020;
 }
+
+.MuiOutlinedInput-notchedOutline {
+  border: none !important;
+}

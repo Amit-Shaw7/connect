@@ -12,10 +12,10 @@ const AddStoryModal = ({ open, handleClose, type, story }) => {
             open={open}
             onClose={handleClose}
         >
-            <Box sx={style}>
+            <Box bgcolor="background.default" sx={style}>
                 <CrossButton handleClose={handleClose} />
 
-                <Typography sx={{ mb: "20px" }} variant="h6">Add Your Story</Typography>
+                <Typography color="text.primary" sx={{ mb: "20px" }} variant="h6">Add Your Story</Typography>
 
                 <AddStoryForm type={type} story={story} handleClose={handleClose} />
             </Box>

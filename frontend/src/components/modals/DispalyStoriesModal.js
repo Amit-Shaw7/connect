@@ -12,7 +12,7 @@ const DispalyStoriesModal = ({ user, idxOfClickedStory, stories, open, handleClo
             open={open}
             onClose={handleClose}
         >
-            <Box sx={storyModalStyle}>
+            <Box bgcolor="background.default" sx={storyModalStyle}>
                 <CrossButton size="large" handleClose={handleClose} />
                 <Stack height="100%" alignItems="center" justifyContent="center">
                     <Carousel user={user} idx={idxOfClickedStory} stories={stories} />

@@ -110,19 +110,26 @@ const AddPost = ({ user }) => {
                         flexDirection="row"
                         alignItems="flex-start"
                         gap={2}
+                        width="100%"
                     >
                         <CustomAvatar user={user} />
 
-                        <Stack
-                            spacing={1}
-                            flexDirection="column"
-                        >
-                            <CustomTextArea
-                                fullWidth={true}
-                                query={postText}
-                                handleQuery={handlePostText}
-                            />
-                        </Stack>
+                        <TextField
+                            multiline
+                            sx={{
+                                border: "none !important",
+                                outline: "none !important"
+                            }}
+                            fullWidth
+                            autoCorrect="true"
+                            className="hide-scrollbar"
+                            placeholder="What's on your mind"
+                            name="what's text in your mind"
+                            rows={4}
+                            cols="50"
+                            value={postText}
+                            onChange={handlePostText}
+                        />
                     </Stack>
 
                     {postMedia && <Image height="150px" width="150px" fit="contain" src={postMedia} />}
