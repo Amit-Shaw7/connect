@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import Card from "@mui/material/Card";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
-import CustomTextArea from "../../components/customInput/CustomTextArea";
 import CustomButton from "../../components/CustomButton";
 import CollectionsOutlined from "@mui/icons-material/CollectionsOutlined";
 import SentimentSatisfiedAlt from "@mui/icons-material/SentimentSatisfiedAlt";
@@ -75,11 +74,6 @@ const AddPost = ({ user }) => {
         const data = {
             media: postMediaUrl,
             postText,
-        }
-        const dataToShow = {
-            media: postMediaUrl,
-            postText,
-            user
         }
         dispatch(addPostFn(data, user));
     }

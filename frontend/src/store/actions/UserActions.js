@@ -51,7 +51,7 @@ export const fetchFollowersFn = (id, setLoading) => async (dispatch) => {
     }
 }
 
-export const fetchFollowingsFn = (id , setLoading) => async (dispatch) => {
+export const fetchFollowingsFn = (id, setLoading) => async (dispatch) => {
     const url = `user/followings/${id}`;
     let response = {};
     setLoading(true);
@@ -68,16 +68,18 @@ export const fetchFollowingsFn = (id , setLoading) => async (dispatch) => {
     }
 }
 
-export const fetchSuggestedUsersFn = () => async (dispatch) => {
+export const fetchSuggestedUsersFn = (setLoading) => async (dispatch) => {
     const url = "/user/suggesteduser";
     let response = {};
-
+    setLoading(true);
     try {
         response = await instance.get(url);
     } catch (error) {
-        toast.error(error?.response?.data?.msg);
+        setLoading(false);
+        return [];
     } finally {
         if (response?.status === 200) {
+            setLoading(false);
             return response?.data?.users;
         }
     }

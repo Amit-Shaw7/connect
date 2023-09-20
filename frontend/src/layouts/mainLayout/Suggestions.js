@@ -5,8 +5,8 @@ import { fetchSuggestedUsersFn } from "../../store/actions/UserActions";
 import UserList from "./UserList";
 import { Typography } from "@mui/material";
 
-const fetchSuggestedUser = async (dispatch, setUsers) => {
-    const users = await dispatch(fetchSuggestedUsersFn());
+const fetchSuggestedUser = async (dispatch, setUsers , setLoading) => {
+    const users = await dispatch(fetchSuggestedUsersFn(setLoading));
     setUsers(users);
 };
 
@@ -18,7 +18,7 @@ const Suggestions = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        fetchSuggestedUser(dispatch, setUsers);
+        fetchSuggestedUser(dispatch, setUsers , setLoading);
     }, [dispatch]);
 
     return (

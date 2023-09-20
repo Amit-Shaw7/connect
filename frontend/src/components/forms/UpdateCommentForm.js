@@ -1,12 +1,15 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, CircularProgress, Stack, TextField, Typography } from '@mui/material'
-import React, { useState } from 'react'
-import updatePostSchema from '../../schema/UpdatePostSchema';
-import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { updatePostFn } from '../../store/actions/PostActions';
-import { editCommentFn } from '../../store/actions/CommentActions';
-import updateCommentSchema from '../../schema/UpdateCommentSchema';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+import Stack from "@mui/material/Stack";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import { editCommentFn } from "../../store/actions/CommentActions";
+import updateCommentSchema from "../../schema/UpdateCommentSchema";
 
 const UpdateCommentForm = ({ handleClose, handleCommentText, comment }) => {
     const { loading } = useSelector(state => state.post);
@@ -55,9 +58,9 @@ const UpdateCommentForm = ({ handleClose, handleCommentText, comment }) => {
             </Typography>
 
             <Button
-                type='submit'
-                variant='contained'
-                size='large'
+                type="submit"
+                variant="contained"
+                size="large"
             >
                 {loading ? <CircularProgress color="inherit" size="26px" /> : "Submit"}
             </Button>

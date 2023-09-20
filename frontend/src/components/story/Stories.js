@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 import { Box, Stack } from "@mui/material";
-import Story from './Story';
-import AddStory from './AddStory';
+import Story from "./Story";
+import AddStory from "./AddStory";
 
 const Stories = ({ openStoryModal, user, stories, myStory }) => {
   return (
     <Stack
-      className='hide-scrollbar'
+      className="hide-scrollbar"
       width="100%"
       gap={1}
       justifyContent="flex-start"

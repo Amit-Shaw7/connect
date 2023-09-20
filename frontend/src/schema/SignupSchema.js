@@ -11,7 +11,7 @@ const signupSchema = yup.object({
         .required("Email is required"),
     username: yup
         .string()
-        .matches("^\@", "Username must start with '@'")
+        .matches(/^@/, "Username must start with '@'")
         .min(3, "Username must be atleast 3 character")
         .required("Username is required")
         .test("username", "This username has already been taken",

@@ -1,7 +1,5 @@
 import { toast } from "react-hot-toast";
 import instance from "../../utils/axiosInstance";
-import { delay } from "../../utils/delay";
-
 
 export const fetchStoriesFn = () => async (dispatch) => {
     const url = `/story/all`;

@@ -1,9 +1,9 @@
-import { Avatar, Button, Fab, Stack, Typography } from '@mui/material'
-import React, { useState } from 'react'
-import Image from '../image/Image'
-import CustomAvatar from '../CustomAvatar'
-import { Add } from '@mui/icons-material'
-import AddStoryModal from '../modals/AddStoryModal'
+import React, { useState } from "react"
+import Fab from "@mui/material/Fab";
+import Stack from "@mui/material/Stack";
+import CustomAvatar from "../CustomAvatar";
+import Add from "@mui/icons-material/Add";
+import AddStoryModal from "../modals/AddStoryModal";
 
 const AddStory = ({ user }) => {
     const [openStoryModal, setOpenStoryModal] = useState(false);
@@ -40,7 +40,7 @@ const AddStory = ({ user }) => {
                     color="primary"
                     aria-label="add"
                     variant="contained"
-                    type='button'
+                    type="button"
                     sx={{
                         position: "absolute",
                         bottom: "5px",

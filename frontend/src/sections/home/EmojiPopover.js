@@ -3,18 +3,23 @@ import axios from "axios"
 import React, {  useState } from "react"
 import CustomTextInput from "../../components/customInput/CustomInput";
 import Loader from "../../components/Loader";
+import toast from "react-hot-toast";
 
 
-const searchEmoji = async (query, setEmojis) => {
+const searchEmoji = async (query, setEmojis , setLoading) => {
+    setLoading(true);
     let response = {};
     const url = `https://emoji-api.com/emojis?search=${query}&access_key=${process.env.REACT_APP_EMOJI_API_KEY}`;
     try {
         response = await axios.get(url);
     } catch (error) {
-        console.log(error);
+        setLoading(false);
+        toast.error(error?.response?.data?.message || "Cannot fetch emojis");
+        setEmojis([]);
     } finally {
         if (response.status === 200) {
             setEmojis(response?.data);
+            setLoading(false);
         }
     }
 }
@@ -30,7 +35,7 @@ const EmojiPopover = ({ emojis , setEmojis , posText, setPostText, open, anchorE
 
     const handleSearchQuery = (e) => {
         setSearchQuery(e.target.value);
-        searchEmoji(e.target.value, setEmojis);
+        searchEmoji(e.target.value, setEmojis , setLoading);
     }
 
     return (

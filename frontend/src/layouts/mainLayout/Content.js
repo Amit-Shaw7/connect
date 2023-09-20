@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loadUserFn } from "../../store/actions/UserActions";
 import Loader from "../../components/Loader";
 import { Box } from "@mui/material";
 import { fetchMyStory, fetchStoriesFn } from "../../store/actions/StoryAction";

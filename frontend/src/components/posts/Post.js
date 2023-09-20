@@ -1,10 +1,9 @@
-import { Card } from '@mui/material';
-import React, { useState } from 'react';
-import PostOwner from './PostOwner';
-import PostTitle from './PostTitle';
-import PostMedia from './PostMedia';
-import PostActions from './PostActions';
-import CustomCard from '../CustomCard';
+import React, { useState } from "react";
+import PostOwner from "./PostOwner";
+import PostTitle from "./PostTitle";
+import PostMedia from "./PostMedia";
+import PostActions from "./PostActions";
+import CustomCard from "../CustomCard";
 
 
 const Post = ({ editable, user, post }) => {
