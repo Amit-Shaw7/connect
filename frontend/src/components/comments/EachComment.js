@@ -16,7 +16,6 @@ import { getUserProfileFn } from "../../store/actions/UserActions";
 import MoreVertical from "../MoreVertical";
 import { dislikeCommentFn, likeCommentFn } from "../../store/actions/CommentActions";
 import CommentActionPopover from "../popovers/CommentPopover";
-import EditCommentModal from "../modals/EditCommentModal";
 
 const style = {
     cursor: "pointer"
@@ -205,12 +204,12 @@ const EachComment = ({ comment }) => {
                     </Stack>
                 </Stack>
             </Stack>
-            <EditCommentModal
+            {/* <EditCommentModal
                 open={openModal}
                 handleClose={handleCloseModal}
                 handleCommentText={handleCommentText}
                 comment={comment}
-            />
+            /> */}
         </>
     )
 }
