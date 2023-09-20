@@ -7,7 +7,7 @@ import ListItemText from "@mui/material/ListItemText";
 import CustomButton from "../../components/CustomButton";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { followUserFn, unfollowUserFn } from "../../store/actions/UserActions";
+import { followUnfollowUserFn } from "../../store/actions/UserActions";
 
 
 const User = ({ user, createdAt, type }) => {
@@ -22,22 +22,9 @@ const User = ({ user, createdAt, type }) => {
         navigate(`/user/${id}`);
     }
 
-    const follow = async (id) => {
-        setFollowed(true);
-        const follow = await dispatch(followUserFn(id));
-        console.log("Followed" + follow);
-        if (!follow) {
-            setFollowed(false);
-        }
-        
-    }
-    const unfollow = async (id) => {
-        setFollowed(false);
-        const unfollow = await dispatch(unfollowUserFn(id));
-        console.log("unFollowed" + unfollow);
-        if (!unfollow) {
-            setFollowed(true);
-        }
+    const handleFollowUnfollow = () => {
+        setFollowed((prev) => !prev);
+        dispatch(followUnfollowUserFn(user?._id));
     }
     return (
         <>
@@ -45,20 +32,11 @@ const User = ({ user, createdAt, type }) => {
                 secondaryAction={
                     type === "user" &&
                     (
-                        followed
-                            ?
-                            <CustomButton
-                                onClickFn={() => unfollow(user?._id)}
-                                size="small"
-                                text="UnFollow"
-                            />
-                            :
-                            <CustomButton
-                                onClickFn={() => follow(user?._id)}
-                                size="small"
-                                text="Follow"
-                            />
-
+                        <CustomButton
+                            onClickFn={handleFollowUnfollow}
+                            size="small"
+                            text={followed ? "UnFollow" : "Follow"}
+                        />
                     )
                 }
                 disablePadding
@@ -84,18 +62,18 @@ const User = ({ user, createdAt, type }) => {
                         primary={user?.name}
                         secondary={
                             createdAt
-                                &&
-                                // <Stack flexDirection="row" alignItems="center" gap={1}>
-                                //     <Typography variant="caption">
-                                       <> {user?.username} - {moment(createdAt, "YYYYMMDD HH:mm:ss GMT Z").fromNow()}</>
-                                //     </Typography>
-                                //     <Typography>
-                                //         -
-                                //     </Typography>
-                                //     <Typography variant="caption">
-                                //         {moment(createdAt, "YYYYMMDD HH:mm:ss GMT Z").fromNow()}
-                                //     </Typography>
-                                // </Stack>
+                            &&
+                            // <Stack flexDirection="row" alignItems="center" gap={1}>
+                            //     <Typography variant="caption">
+                            <> {user?.username} - {moment(createdAt, "YYYYMMDD HH:mm:ss GMT Z").fromNow()}</>
+                            //     </Typography>
+                            //     <Typography>
+                            //         -
+                            //     </Typography>
+                            //     <Typography variant="caption">
+                            //         {moment(createdAt, "YYYYMMDD HH:mm:ss GMT Z").fromNow()}
+                            //     </Typography>
+                            // </Stack>
                         }
                         onClick={() => goToUserPage(user?._id)}
                     />

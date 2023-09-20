@@ -10,8 +10,10 @@ const UserInfo = ({ user, setCurrentTab }) => {
 
     return (
         <Stack
-            mx="30px"
             spacing={2}
+            sx={{
+                mx: { lg: "50px", md: "50px", sm: "20px", xs: "10px" }
+            }}
         >
             <Box>
                 <Typography

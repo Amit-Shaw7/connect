@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import CustomContainer from "../../components/CustomContainer";
-import { getUserProfileFn } from "../../store/actions/UserActions";
+import { followUnfollowUserFn, getUserProfileFn } from "../../store/actions/UserActions";
 import CustomCard from "../../components/CustomCard";
 import CustomButton from "../../components/CustomButton";
 import EditProfileModal from "../../components/modals/EditProfileModal";
@@ -20,6 +20,7 @@ const fetchSavedPosts = async (setLoading, dispatch, paramId, setUser) => {
 }
 
 const Profile = () => {
+  const { user: currUser } = useSelector(state => state.user);
   const dispatch = useDispatch();
   const params = useParams();
 
@@ -27,6 +28,13 @@ const Profile = () => {
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState();
   const [currentTab, setCurrentTab] = useState("posts");
+
+  const [isFollowing, setIsFollowing] = useState(currUser?.followings?.includes(user?._id));
+
+  const handleFollowUnfollow = () => {
+    setIsFollowing((prev) => !prev);
+    dispatch(followUnfollowUserFn(user?._id));
+  }
 
   const handleOpenEditProfileModal = () => {
     setOpen(true);
@@ -49,13 +57,23 @@ const Profile = () => {
         <CustomCard>
           <UserImages user={user} />
 
-          <CustomButton
-            onClickFn={handleOpenEditProfileModal}
-            sx={{
-              alignSelf: "end"
-            }}
-            text="Edit Profile"
-          />
+          {user?._id === currUser?._id ?
+            <CustomButton
+              onClickFn={handleOpenEditProfileModal}
+              sx={{
+                alignSelf: "end"
+              }}
+              text="Edit Profile"
+            />
+            :
+            <CustomButton
+              onClickFn={handleFollowUnfollow}
+              sx={{
+                alignSelf: "end"
+              }}
+              text={currUser?.followings?.includes(user?._id) ? "UnFollow" : "Follow"}
+            />
+          }
 
           <UserInfo user={user} setCurrentTab={setCurrentTab} />
         </CustomCard>

@@ -27,7 +27,7 @@ const Content = ({ children }) => {
         width: { xs:"100vw" , sm: "100%", md: "50%" },
         height: "90vh",
         overflowY: "scroll",
-        px: { sm: 12, md: 0 },
+        px: { sm: 8, md: 0 },
       }}>
       {children}
     </Box>

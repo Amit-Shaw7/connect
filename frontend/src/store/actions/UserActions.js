@@ -118,8 +118,8 @@ export const getUserProfileFn = (id) => async (dispatch) => {
     }
 }
 
-export const followUserFn = (id) => async (dispatch) => {
-    const url = `/user/follow/${id}`;
+export const followUnfollowUserFn = (id) => async (dispatch) => {
+    const url = `/user/followUnfollow/${id}`;
     let response = {};
 
     try {
@@ -129,23 +129,11 @@ export const followUserFn = (id) => async (dispatch) => {
         return false;
     } finally {
         if (response?.status === 200) {
-            dispatch({ type: "FOLLOW_USER_SUCCESS", payload: id });
-            return true;
-        }
-    }
-}
-export const unfollowUserFn = (id) => async (dispatch) => {
-    const url = `/user/unfollow/${id}`;
-    let response = {};
-
-    try {
-        response = await instance.patch(url);
-    } catch (error) {
-        toast.error(error.message);
-        return false;
-    } finally {
-        if (response?.status === 200) {
-            dispatch({ type: "UNFOLLOW_USER_SUCCESS", payload: id });
+            if(response?.data?.followed){
+                dispatch({ type: "FOLLOW_USER_SUCCESS", payload: id });
+            }else{
+                dispatch({ type: "UNFOLLOW_USER_SUCCESS", payload: id });
+            }
             return true;
         }
     }
