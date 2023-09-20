@@ -111,7 +111,7 @@ const EachComment = ({ comment }) => {
     return (
         <>
             <Stack flexDirection="row" position="relative" width="100%">
-                {comment?.user === currentUser?._id && <MoreVertical onclickFn={handlePopoverOpen} />}
+                {comment?.user === currentUser?._id && <MoreVertical top="0px" onclickFn={handlePopoverOpen} />}
                 <CommentActionPopover
                     handleOpenModal={handleOpenModal}
                     anchorEl={anchorEl}
