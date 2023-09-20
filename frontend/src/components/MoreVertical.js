@@ -11,8 +11,8 @@ const MoreVertical = ({ onclickFn, right, top, variant }) => {
                 right: right || "10px"
             }}
         >
-            <IconButton onClick={onclickFn}>
-                <MoreVert color={variant === "dark" ? "black" : "white"} />
+            <IconButton size='small' onClick={onclickFn}>
+                <MoreVert fontSize='small' color={variant === "dark" ? "black" : "white"} />
             </IconButton>
         </Box>
     )
