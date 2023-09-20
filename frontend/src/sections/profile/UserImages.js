@@ -10,7 +10,7 @@ const UserImages = ({ user }) => {
     return (
         <>
             <Stack spacing={2}>
-                <CoverImage src={user?.cover} fit="contain" />
+                <CoverImage src={user?.cover} fit={user?.cover ? "cover" :"contain"} />
 
                 <Box
                     sx={{

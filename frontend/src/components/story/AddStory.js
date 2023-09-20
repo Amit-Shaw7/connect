@@ -19,12 +19,12 @@ const AddStory = ({ user }) => {
         <>
             <Stack
                 position="relative"
-                bgcolor="background.default"
+                bgcolor="action.disabledBackground"
                 alignItems="center"
                 justifyContent="center"
                 height="180px"
                 width="120px"
-                border="1px solid lightgrey"
+                // border="1px solid lightgrey"
                 sx={{
                     borderRadius: "10px",
                     // border:"1px solid pallete.divider"

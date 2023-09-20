@@ -81,29 +81,22 @@ const Header = ({ openDrawer, toggleDrawer, user }) => {
                                     </IconButton>
                             }
                         </Box>
-                        <IconButton sx={{mx:1}} onClick={handleMode}>
+                        <IconButton sx={{ mx: 1 }} onClick={handleMode}>
                             {mode === "light" ? <DarkMode /> : <LightMode />}
                         </IconButton>
-                        <IconButton
-                            size="large"
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls=""
-                            aria-haspopup="true"
+
+                        <Avatar
                             onClick={handleOpenUserMenu}
-                            color="inherit"
+                            src={user?.avatar}
+                            alt={user?.name}
+                            sx={{
+                                height: "40px",
+                                width: "40px",
+                                cursor: "pointer"
+                            }}
                         >
-                            <Avatar
-                                src={user?.avatar}
-                                alt={user?.name}
-                                sx={{
-                                    height: "36px",
-                                    width: "36px"
-                                }}
-                            >
-                                {user?.avatar ? "" : user?.name?.charAt(0).toUpperCase()}
-                            </Avatar>
-                        </IconButton>
+                            {user?.avatar ? "" : user?.name?.charAt(0).toUpperCase()}
+                        </Avatar>
 
                         <UserMenu user={user} handleCloseUserMenu={handleCloseUserMenu} openMenu={openMenu} />
                         {/* <UserListMenu users={users} openSearchMenu={openSearchMenu} handleCloseSearch={handleCloseSearchMenu} /> */}
