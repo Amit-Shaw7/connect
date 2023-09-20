@@ -36,7 +36,7 @@ export default function MainLayout() {
                 sx={{
                     width: "100%",
                     height: "90vh",
-                    mt: "70px",
+                    mt: "60px",
                     flexDirection: "row",
                     justifyContent: "space-between",
                     px: { lg: 20, md: 0, sm: 6, xs: 0 },
