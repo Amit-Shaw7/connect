@@ -1,17 +1,41 @@
 import { toast } from "react-hot-toast";
 import instance from "../../utils/axiosInstance";
 
-export const addPostFn = (data, dataToShow) => async (dispatch) => {
+export const addPostFn = (data, user) => async (dispatch) => {
     const url = "/post";
     let response = {};
-    dispatch({ type: "ADD_POST_SUCCESS", payload: dataToShow });
     try {
+        toast.loading("Adding post");
         response = await instance.post(url, data);
     } catch (error) {
         toast.error(error.response.data.msg);
         window.location.reload();
     } finally {
         if (response?.status === 200) {
+            toast.dismiss();
+            const {
+                _id,
+                postText,
+                media,
+                likes,
+                dislikes,
+                savedBy,
+                comments,
+                createdAt
+            } = response?.data?.post;
+            const post = {
+                _id,
+                postText,
+                media,
+                likes,
+                dislikes,
+                savedBy,
+                comments,
+                createdAt,
+                user
+            }
+
+            dispatch({ type: "ADD_POST_SUCCESS", payload: post });
             toast.success("Post Added Successfully");
         }
     }
@@ -130,7 +154,7 @@ export const savePostFn = (postId) => async (dispatch) => {
         }
     }
 }
-export const getUserPostsFn = (userId  , setLoading) => async (dispatch) => {
+export const getUserPostsFn = (userId, setLoading) => async (dispatch) => {
     const url = `post/all/${userId}`;
     let response = {};
     setLoading(true);

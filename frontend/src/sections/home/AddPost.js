@@ -81,7 +81,7 @@ const AddPost = ({ user }) => {
             postText,
             user
         }
-        dispatch(addPostFn(data, dataToShow));
+        dispatch(addPostFn(data, user));
     }
 
     useEffect(() => {
