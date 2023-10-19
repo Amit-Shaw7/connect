@@ -1,0 +1,16 @@
+import toast from "react-hot-toast";
+import instance from "../../utils/axiosInstance";
+
+export const fetchPostsForFeed = async (page) => {
+    const url = `post/feed?page=${page}&limit=5&query=latest`;
+    let response = {};
+    try {
+        response = await instance.get(url);
+    } catch (error) {
+        toast.error(error?.response?.data?.msg);
+    } finally {
+        if (response?.status === 200) {
+            return response.data?.posts
+        }
+    }
+}

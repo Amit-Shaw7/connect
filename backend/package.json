@@ -24,6 +24,7 @@
     "jsonwebtoken": "^9.0.1",
     "mongodb": "^6.0.0",
     "mongoose": "^7.4.1",
+    "mongoose-paginate-v2": "^1.7.4",
     "uuid": "^9.0.0"
   }
 }
