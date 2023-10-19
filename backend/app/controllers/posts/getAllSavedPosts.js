@@ -5,8 +5,15 @@ import { asyncError } from "../../utils/errors/asyncError.js";
 
 const getAllSavedPosts = asyncError(async (req, res, next) => {
     const user = req.user;
-    const likedPosts = await Post.find({_id : {$in : user.savedPosts}}).populate("user"); // Fetch top 10 trending posts
-    if (!likedPosts) {
+    const { page, limit } = req.query;
+    const options = {
+        page: parseInt(page, 10) || 1,
+        limit: parseInt(limit, 10) || 5,
+        populate: "user",
+        sort: { createdAt: -1 }
+    }
+    const savedPosts = await Post.paginate({ _id: { $in: user.savedPosts } } , options);
+    if (!savedPosts) {
         return res.status(200).json({
             msg: "POSTS_FETCHED_SUCCESFULLY",
             posts: []
@@ -15,7 +22,7 @@ const getAllSavedPosts = asyncError(async (req, res, next) => {
 
     return res.status(200).json({
         msg: "POSTS_FETCHED_SUCCESFULLY",
-        posts : likedPosts
+        posts: savedPosts
     });
 });
 
