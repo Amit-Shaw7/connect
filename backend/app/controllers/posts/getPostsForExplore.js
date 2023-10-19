@@ -17,11 +17,11 @@ const getPostsForExplore = asyncError(async (req, res, next) => {
 
     let posts = [];
     if (query === "trending") {
-        posts = await Post.paginate(options);
+        posts = await Post.paginate({} , options);
     } else if (query === "latest") {
-        posts = await Post.paginate(options);
+        posts = await Post.paginate({} , options);
     } else if (query === "oldest") {
-        posts = await Post.paginate(options);
+        posts = await Post.paginate({} , options);
     } else {
         return res.status(200).json({
             msg: "POSTS_FOR_EXPLORE_PAGE_FETCHED_SUCCESFULLY",
