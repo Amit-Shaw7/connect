@@ -37,7 +37,7 @@ const Feed = ({ user, sortBy }) => {
     useEffect(() => {
         fetchPostsForFeed();
         // eslint-disable-next-line
-    }, []);
+    }, [sortBy]);
 
     return (
         <PostList fetchMorePosts={fetchPostsForFeed} hasMore={hasMore} user={user} posts={feed} />

@@ -22,6 +22,7 @@ const Home = () => {
 
   const [sortBy, setSortBy] = useState("trending");
   const [open, setOpen] = useState(false);
+  
   const handleChange = (e) => {
     setSortBy(e.target.value);
   }

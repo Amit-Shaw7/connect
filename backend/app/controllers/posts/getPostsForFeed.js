@@ -9,13 +9,13 @@ const getPostsForFeed = asyncError(async (req, res, next) => {
     const user = req.user;
     let posts = [];
     const options = {
-        page: parseInt(page, 10) || 1, 
-        limit: parseInt(limit, 10) || 5, 
+        page: parseInt(page, 10) || 1,
+        limit: parseInt(limit, 10) || 5,
         populate: "user",
         sort:
-            query === "trending" && { likes: 1 } ||
-            query === "latest" && { createdAt: -1 } ||
-            query === "oldest" && { createdAt: 1 }
+            (query === "trending" && { likes: 1 }) ||
+            (query === "latest" && { createdAt: -1 }) ||
+            (query === "oldest" && { createdAt: 1 })
     }
 
 

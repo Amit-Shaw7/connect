@@ -29,7 +29,7 @@ const PostSort = ({ sortBy, heading, handleChange }) => {
                 >
                     {
                         types?.map((type) => (
-                            <MenuItem value={type} key={type}>{type}</MenuItem>
+                            <MenuItem value={type?.toLowerCase()} key={type}>{type}</MenuItem>
                         ))
                     }
                 </Select>
