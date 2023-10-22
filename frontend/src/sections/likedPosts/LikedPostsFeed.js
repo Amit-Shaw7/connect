@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
-import PostList from "../../components/posts/PostList";
+import { delay } from "../../utils/delay";
 import instance from "../../utils/axiosInstance";
 import toast from "react-hot-toast";
-import { delay } from "../../utils/delay";
+import PostList from "../../components/posts/PostList";
 import { limit } from "../../utils/infiniteScrollOptions";
 import { useDispatch, useSelector } from "react-redux";
-import { setPostsForExploreFeedfn } from "../../store/actions/PostActions";
+import { setPostsForLikedPostsFeedfn } from "../../store/actions/PostActions";
 
-const ExploreFeed = ({ user, sortBy }) => {
-    // const [posts, setPosts] = useState([]);
-    const { posts } = useSelector(state => state.post);
+const LikedPostsFeed = ({ user , sortBy}) => {
+    const { likedPosts } = useSelector(state => state.post);
     const dispatch = useDispatch();
-    
+
+
+    // const [posts, setPosts] = useState([]);
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(1);
-
     const fetchPostsForFeed = async () => {
         await delay(3000);
-        const url = `post/explore?page=${page}&limit=${limit}&query=${sortBy}`;
+        const url = `post/likedposts?page=${page}&limit=${limit}&query=${sortBy}`;
         let response = {};
         try {
             response = await instance.get(url);
@@ -28,12 +28,12 @@ const ExploreFeed = ({ user, sortBy }) => {
                 if (response?.data?.posts?.docs?.length < limit) {
                     setHasMore(false);
                 }
-                dispatch(setPostsForExploreFeedfn(response.data?.posts?.docs))
                 // setPosts((prev) => [...prev, ...response.data?.posts?.docs]);
+                dispatch(setPostsForLikedPostsFeedfn(response.data?.posts?.docs))
                 setPage((page) => page + 1);
             }
         }
-    }
+    };
 
     useEffect(() => {
         fetchPostsForFeed();
@@ -41,8 +41,8 @@ const ExploreFeed = ({ user, sortBy }) => {
     }, []);
 
     return (
-        <PostList fetchMorePosts={fetchPostsForFeed} hasMore={hasMore} user={user} posts={posts} />
+        <PostList fetchMorePosts={fetchPostsForFeed} hasMore={hasMore} user={user} posts={likedPosts} />
     )
 }
 
-export default ExploreFeed;
+export default LikedPostsFeed

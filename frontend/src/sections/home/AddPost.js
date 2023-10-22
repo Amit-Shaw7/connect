@@ -69,13 +69,16 @@ const AddPost = ({ user }) => {
         setUpLoading(e.target.files[0]);
     }
 
-    const handleAddPost = (e) => {
+    const handleAddPost = async (e) => {
         e.preventDefault();
         const data = {
             media: postMediaUrl,
             postText,
         }
-        dispatch(addPostFn(data, user));
+        await dispatch(addPostFn(data, user));
+        setPostMedia("");
+        setPostMediaUrl("");
+        setPostText("");
     }
 
     useEffect(() => {

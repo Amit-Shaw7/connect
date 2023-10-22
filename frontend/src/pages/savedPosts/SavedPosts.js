@@ -1,31 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import CustomContainer from "../../components/CustomContainer";
-import PostList from "../../components/posts/PostList";
 import PostSort from "../../components/posts/PostSort";
-import { getSavedPostsFn } from "../../store/actions/PostActions";
 import Loader from "../../components/Loader";
 import { Stack } from "@mui/material";
-
-const fetchSavedPosts = async (dispatch, setLoading) => {
-  await dispatch(getSavedPostsFn(setLoading));
-};
+import SavedPostsFeed from "../../sections/savedPosts/SavedPostsFeed";
 
 const SavedPosts = () => {
   const { user } = useSelector(state => state.user);
-  const { savedPosts } = useSelector(state => state.post);
 
-  const [loading, setLoading] = useState(false);
-
-  const dispatch = useDispatch();
-  const [sortBy, setSortBy] = useState("Trending");
+  const [sortBy, setSortBy] = useState("trending");
   const handleChange = (e) => {
     setSortBy(e.target.value);
-  }
-
-  useEffect(() => {
-    fetchSavedPosts(dispatch, setLoading);
-  }, [dispatch]);
+  };
+  const loading = false;
 
   return (
     <CustomContainer>
@@ -38,7 +26,7 @@ const SavedPosts = () => {
               <Loader />
             </Stack>
             :
-            <PostList user={user} posts={savedPosts} />
+            <SavedPostsFeed user={user} sortBy={sortBy} />
         }
       </Stack>
     </CustomContainer>

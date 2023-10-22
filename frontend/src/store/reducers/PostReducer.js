@@ -1,16 +1,17 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 const initialState = {
-    posts: [],
-    myposts: [],
-    savedPosts: [],
-    likedPosts: [],
+    posts: [], // for explore page
+    feed: [], // for home page
+    myposts: [], // for mypost page
+    savedPosts: [], // for saved posts page 
+    likedPosts: [], // for liked posts page
 }
 
 const PostReducer = createReducer(initialState, {
     // Add post
     ADD_POST_SUCCESS: (state, action) => {
-        state.posts = [action.payload, ...state.posts];
+        state.feed = [action.payload, ...state.feed];
     },
     ADD_POST_FAILURE: (state) => {
         state.user = null;
@@ -61,7 +62,30 @@ const PostReducer = createReducer(initialState, {
         state.myposts = [];
         state.posts = [];
         state.savedPosts = [];
-    }
+    },
+
+
+    // New flow
+    APPEND_POSTS_FOR_EXPLORE_FEED: (state, action) => {
+        console.log(action.payload);
+        state.posts = [...state.posts , ...action.payload];
+    },
+    APPEND_POSTS_FOR_HOME_FEED: (state, action) => {
+        console.log(action.payload);
+        state.feed = [...state.feed , ...action.payload];
+    },
+    APPEND_POSTS_FOR_MYPOSTS_FEED: (state, action) => {
+        console.log(action.payload);
+        state.myposts = [...state.myposts , ...action.payload];
+    },
+    APPEND_POSTS_FOR_SAVED_POSTS_FEED: (state, action) => {
+        console.log(action.payload);
+        state.savedPosts = [...state.savedPosts , ...action.payload];
+    },
+    APPEND_POSTS_FOR_LIKKED_POSTS_FEED: (state, action) => {
+        console.log(action.payload);
+        state.likedPosts = [...state.likedPosts , ...action.payload];
+    },
 });
 
 export default PostReducer;

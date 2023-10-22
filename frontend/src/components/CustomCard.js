@@ -9,7 +9,7 @@ const CustomCard = ({ children, p}) => {
             sx={{
                 p: p ? p : 2,
                 position: "relative",
-                boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+                // boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
                 display: "flex",
                 justifyContent: "space-between",
                 gap: "20px",

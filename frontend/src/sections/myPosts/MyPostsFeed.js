@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { delay } from "../../utils/delay";
 import PostList from "../../components/posts/PostList";
 import instance from "../../utils/axiosInstance";
 import toast from "react-hot-toast";
-import { delay } from "../../utils/delay";
 import { limit } from "../../utils/infiniteScrollOptions";
+import { setPostsForMypostsFeedfn } from "../../store/actions/PostActions";
 import { useDispatch, useSelector } from "react-redux";
-import { setPostsForExploreFeedfn } from "../../store/actions/PostActions";
 
-const ExploreFeed = ({ user, sortBy }) => {
-    // const [posts, setPosts] = useState([]);
-    const { posts } = useSelector(state => state.post);
+const MyPostsFeed = ({ user, sortBy }) => {
+    const { myposts } = useSelector(state => state.post);
     const dispatch = useDispatch();
-    
+
+    // const [posts, setPosts] = useState([]);
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(1);
 
@@ -28,8 +28,8 @@ const ExploreFeed = ({ user, sortBy }) => {
                 if (response?.data?.posts?.docs?.length < limit) {
                     setHasMore(false);
                 }
-                dispatch(setPostsForExploreFeedfn(response.data?.posts?.docs))
                 // setPosts((prev) => [...prev, ...response.data?.posts?.docs]);
+                dispatch(setPostsForMypostsFeedfn(response.data?.posts?.docs))
                 setPage((page) => page + 1);
             }
         }
@@ -41,8 +41,8 @@ const ExploreFeed = ({ user, sortBy }) => {
     }, []);
 
     return (
-        <PostList fetchMorePosts={fetchPostsForFeed} hasMore={hasMore} user={user} posts={posts} />
+        <PostList editable fetchMorePosts={fetchPostsForFeed} hasMore={hasMore} user={user} posts={myposts} />
     )
 }
 
-export default ExploreFeed;
+export default MyPostsFeed

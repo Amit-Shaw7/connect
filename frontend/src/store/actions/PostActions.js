@@ -73,20 +73,29 @@ export const getPostsForFeedFn = (type, setLoading) => async (dispatch) => {
     }
 }
 
-export const getPostsForExplorefn = (type, setLoading) => async (dispatch) => {
-    const url = `post/explore?query=${type.toLowerCase()}`;
-    let response = {};
-    setLoading(true);
-    try {
-        response = await instance.get(url);
-    } catch (error) {
-        toast.error(error?.response?.data?.msg);
-        setLoading(false);
-    } finally {
-        if (response?.status === 200) {
-            setLoading(false);
-            return response.data?.posts;
-        }
+export const setPostsForExploreFeedfn = (posts) => async (dispatch) => {
+    if (posts?.length !== 0) {
+        dispatch({ type: "APPEND_POSTS_FOR_EXPLORE_FEED", payload: posts });
+    }
+}
+export const setPostsForHomeFeedfn = (posts) => async (dispatch) => {
+    if (posts?.length !== 0) {
+        dispatch({ type: "APPEND_POSTS_FOR_HOME_FEED", payload: posts });
+    }
+}
+export const setPostsForMypostsFeedfn = (posts) => async (dispatch) => {
+    if (posts?.length !== 0) {
+        dispatch({ type: "APPEND_POSTS_FOR_MYPOSTS_FEED", payload: posts });
+    }
+}
+export const setPostsForSavedPostsFeedfn = (posts) => async (dispatch) => {
+    if (posts?.length !== 0) {
+        dispatch({ type: "APPEND_POSTS_FOR_SAVED_POSTS_FEED", payload: posts });
+    }
+}
+export const setPostsForLikedPostsFeedfn = (posts) => async (dispatch) => {
+    if (posts?.length !== 0) {
+        dispatch({ type: "APPEND_POSTS_FOR_LIKKED_POSTS_FEED", payload: posts });
     }
 }
 

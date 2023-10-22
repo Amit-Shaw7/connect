@@ -1,32 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {  useState } from "react";
+import {  useSelector } from "react-redux";
 import CustomContainer from "../../components/CustomContainer";
-import PostList from "../../components/posts/PostList";
 import PostSort from "../../components/posts/PostSort";
-import { getLikedPostsFn } from "../../store/actions/PostActions";
 import Loader from "../../components/Loader";
 import { Stack } from "@mui/material";
+import LikedPostsFeed from "../../sections/likedPosts/LikedPostsFeed";
 
-const fetchSavedPosts = async (dispatch, setLoading) => {
-  setLoading(true);
-  await dispatch(getLikedPostsFn(setLoading));
-};
 
 const LikedPosts = () => {
   const { user } = useSelector(state => state.user);
-  const { likedPosts } = useSelector(state => state.post);
 
-  const [loading, setLoading] = useState(false);
 
-  const dispatch = useDispatch();
   const [sortBy, setSortBy] = useState("Trending");
   const handleChange = (e) => {
     setSortBy(e.target.value);
-  }
-
-  useEffect(() => {
-    fetchSavedPosts(dispatch, setLoading);
-  }, [dispatch, sortBy]);
+  };
+  const loading = false;
 
 
   return (
@@ -40,7 +29,7 @@ const LikedPosts = () => {
               <Loader />
             </Stack>
             :
-            <PostList user={user} posts={likedPosts} />
+            <LikedPostsFeed sortBy={sortBy} user={user} />
         }
       </Stack>
     </CustomContainer>
