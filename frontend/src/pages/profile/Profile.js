@@ -12,7 +12,7 @@ import UserInfo from "../../sections/profile/UserInfo";
 import UserImages from "../../sections/profile/UserImages";
 import MoreInfo from "../../sections/profile/MoreInfo";
 
-const fetchSavedPosts = async (setLoading, dispatch, paramId, setUser) => {
+const fetchUserPosts = async (setLoading, dispatch, paramId, setUser) => {
   setLoading(true);
   const user = await dispatch(getUserProfileFn(paramId));
   setUser(user);
@@ -44,7 +44,7 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    fetchSavedPosts(setLoading, dispatch, params.id, setUser);
+    fetchUserPosts(setLoading, dispatch, params.id, setUser);
   }, [dispatch, params.id]);
 
   if (loading || !user) {

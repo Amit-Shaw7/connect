@@ -17,7 +17,7 @@ const Post = ({ editable, user, post }) => {
                 <CustomCard>
                     <PostOwner handlePostText={handlePostText} editable={editable} post={post} />
                     <PostTitle postText={postText} />
-                    <PostMedia post={post} />
+                    {post?.media && <PostMedia post={post} />}
                     <PostActions user={user} post={post} />
                 </CustomCard>
             }

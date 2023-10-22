@@ -33,9 +33,9 @@ const AddComment = ({ postId }) => {
                 flexDirection: "row",
                 alignItems: "center",
                 gap: 2,
-                position: "static",
-                bottom: 0,
-                width: "100%",
+                position: "absolute",
+                bottom: 10,
+                width: {xs : "300px" , sm:"350px" , md:"600px"},
                 p: 1,
                 boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
             }}
