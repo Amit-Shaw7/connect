@@ -19,6 +19,7 @@ const UserReducer = createReducer(initialState, {
 
     // Edit profile
     EDIT_PROFILE_SUCCESS: (state, action) => {
+        console.log(action.payload);
         state.user = action.payload;
     },
 

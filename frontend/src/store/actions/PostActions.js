@@ -175,7 +175,7 @@ export const getUserPostsFn = (userId, setLoading) => async (dispatch) => {
     } finally {
         if (response?.status === 200) {
             setLoading(false)
-            return response.data?.posts;
+            return response.data?.posts?.docs;
         }
     }
 }

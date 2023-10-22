@@ -26,7 +26,7 @@ const EditProfileModal = ({ user, open, handleClose }) => {
                         <CrossButton handleClose={handleClose} />
 
                         <Typography color="text.primary" sx={{ mb: "5px" }} variant="h5">Edit Profile</Typography>
-                        <UpdateProfileForm loading={loading} user={user}/>
+                        <UpdateProfileForm handleClose={handleClose} loading={loading} user={user}/>
                     </Box>
             }
         </Modal>

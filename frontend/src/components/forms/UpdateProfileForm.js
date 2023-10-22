@@ -18,7 +18,7 @@ import { editProfileFn, uploadImage } from "../../store/actions/UserActions";
 import Image from "../image/Image";
 import UploadingModal from "../modals/UploadingModal";
 
-const UpdateProfileForm = () => {
+const UpdateProfileForm = ({ handleClose }) => {
     const { loading } = useSelector(state => state.auth);
     const { user } = useSelector(state => state.user);
 
@@ -41,14 +41,15 @@ const UpdateProfileForm = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(EditProfileSchema),
-        defaultValues
+        defaultValues,
     });
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         console.log(data);
         data.cover = coverPicUrl;
         data.avatar = profilePicUrl
-        dispatch(editProfileFn(data, setErrorMsg, navigate));
+        await dispatch(editProfileFn(data, setErrorMsg, navigate));
+        handleClose();
     };
 
     const handleChangeProfilePic = async (e) => {
