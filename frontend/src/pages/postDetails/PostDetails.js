@@ -7,11 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPostById } from "../../store/actions/PostActions";
 import { useState } from "react";
 import Loader from "../../components/Loader";
+import { Stack } from "@mui/material";
 
 const fetchPost = async (dispatch, postId, setPost) => {
     const post = await dispatch(fetchPostById(postId));
     setPost(post);
-}
+};
+
 
 const PostDetails = () => {
     const { user } = useSelector(state => state.user);
@@ -31,8 +33,10 @@ const PostDetails = () => {
 
     return (
         <CustomContainer>
-            {post && <Post user={user} post={post} />}
-            <Comments postId={params.id} />
+            <Stack width="100%">
+                {post && <Post user={user} post={post} />}
+                <Comments postId={params.id} />
+            </Stack>
         </CustomContainer>
     )
 }

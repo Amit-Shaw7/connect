@@ -4,7 +4,7 @@ import PostList from "../../components/posts/PostList";
 import instance from "../../utils/axiosInstance";
 import toast from "react-hot-toast";
 import { limit } from "../../utils/infiniteScrollOptions";
-import { setPostsForMypostsFeedfn } from "../../store/actions/PostActions";
+import { clearMypostsFeed, setPostsForMypostsFeedfn } from "../../store/actions/PostActions";
 import { useDispatch, useSelector } from "react-redux";
 
 const MyPostsFeed = ({ user, sortBy }) => {
@@ -36,6 +36,7 @@ const MyPostsFeed = ({ user, sortBy }) => {
     }
 
     useEffect(() => {
+        dispatch(clearMypostsFeed());
         fetchPostsForFeed();
         // eslint-disable-next-line
     }, []);

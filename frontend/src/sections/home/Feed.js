@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { delay } from "../../utils/delay";
 import { limit } from "../../utils/infiniteScrollOptions";
 import { useDispatch, useSelector } from "react-redux";
-import { setPostsForHomeFeedfn } from "../../store/actions/PostActions";
+import { clearHomeFeed, setPostsForHomeFeedfn } from "../../store/actions/PostActions";
 
 const Feed = ({ user, sortBy }) => {
     // const [posts, setPosts] = useState([]);
@@ -35,6 +35,7 @@ const Feed = ({ user, sortBy }) => {
     }
 
     useEffect(() => {
+        dispatch(clearHomeFeed());
         fetchPostsForFeed();
         // eslint-disable-next-line
     }, [sortBy]);

@@ -6,11 +6,13 @@ import Send from "@mui/icons-material/Send";
 import { useDispatch, useSelector } from "react-redux";
 import { addCommentFn } from "../../store/actions/CommentActions";
 import { TextField } from "@mui/material";
+import useResponsive from "../../hooks/usResponsive";
 
 const AddComment = ({ postId }) => {
     const { user } = useSelector(state => state.user);
 
     const dispatch = useDispatch();
+    const isDesktop = useResponsive("up", "md");
 
     const [postText, setPostText] = useState("");
 
@@ -35,12 +37,12 @@ const AddComment = ({ postId }) => {
                 gap: 2,
                 position: "absolute",
                 bottom: 10,
-                width: {xs : "300px" , sm:"350px" , md:"600px"},
+                width: "100%",
                 p: 1,
                 boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
             }}
         >
-            <CustomAvatar height="35px" width="35px" user={user} />
+            {isDesktop && <CustomAvatar height="35px" width="35px" user={user} />}
 
             <TextField
                 fullWidth
@@ -50,9 +52,12 @@ const AddComment = ({ postId }) => {
                 type="text"
                 value={postText}
                 onChange={handlePostText}
+                sx={{
+                    fontSize: { md: "1rem", sm: "0.9rem" },
+                }}
             />
 
-            <IconButton onClick={handleAddComment}>
+            <IconButton size="small" onClick={handleAddComment}>
                 <Send color="primary" />
             </IconButton>
         </Card>

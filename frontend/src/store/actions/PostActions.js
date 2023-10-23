@@ -77,27 +77,45 @@ export const setPostsForExploreFeedfn = (posts) => async (dispatch) => {
     if (posts?.length !== 0) {
         dispatch({ type: "APPEND_POSTS_FOR_EXPLORE_FEED", payload: posts });
     }
-}
+};
+export const clearExploreFeed = () => async (dispatch) => {
+    dispatch({ type: "CLEAR_EXPLORE_FEED" });
+};
+
 export const setPostsForHomeFeedfn = (posts) => async (dispatch) => {
     if (posts?.length !== 0) {
         dispatch({ type: "APPEND_POSTS_FOR_HOME_FEED", payload: posts });
     }
-}
+};
+export const clearHomeFeed = () => async (dispatch) => {
+    dispatch({ type: "CLEAR_HOME_FEED" });
+};
+
 export const setPostsForMypostsFeedfn = (posts) => async (dispatch) => {
     if (posts?.length !== 0) {
         dispatch({ type: "APPEND_POSTS_FOR_MYPOSTS_FEED", payload: posts });
     }
 }
+export const clearMypostsFeed = () => async (dispatch) => {
+    dispatch({ type: "CLEAR_MYPOSTS_FEED" });
+};
 export const setPostsForSavedPostsFeedfn = (posts) => async (dispatch) => {
     if (posts?.length !== 0) {
         dispatch({ type: "APPEND_POSTS_FOR_SAVED_POSTS_FEED", payload: posts });
     }
-}
+};
+export const clearSavedPostsFeed = () => async (dispatch) => {
+    dispatch({ type: "CLEAR_SAVED_POSTS_FEED" });
+};
+
 export const setPostsForLikedPostsFeedfn = (posts) => async (dispatch) => {
     if (posts?.length !== 0) {
-        dispatch({ type: "APPEND_POSTS_FOR_LIKKED_POSTS_FEED", payload: posts });
+        dispatch({ type: "APPEND_POSTS_FOR_LIKED_POSTS_FEED", payload: posts });
     }
-}
+};
+export const clearLikedPostsFeed = () => async (dispatch) => {
+    dispatch({ type: "CLEAR_LIKED_POSTS_FEED" });
+};
 
 
 export const getSavedPostsFn = (setLoading) => async (dispatch) => {

@@ -5,13 +5,12 @@ import toast from "react-hot-toast";
 import { delay } from "../../utils/delay";
 import { limit } from "../../utils/infiniteScrollOptions";
 import { useDispatch, useSelector } from "react-redux";
-import { setPostsForExploreFeedfn } from "../../store/actions/PostActions";
+import { clearExploreFeed, setPostsForExploreFeedfn } from "../../store/actions/PostActions";
 
 const ExploreFeed = ({ user, sortBy }) => {
-    // const [posts, setPosts] = useState([]);
     const { posts } = useSelector(state => state.post);
     const dispatch = useDispatch();
-    
+
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(1);
 
@@ -29,13 +28,13 @@ const ExploreFeed = ({ user, sortBy }) => {
                     setHasMore(false);
                 }
                 dispatch(setPostsForExploreFeedfn(response.data?.posts?.docs))
-                // setPosts((prev) => [...prev, ...response.data?.posts?.docs]);
                 setPage((page) => page + 1);
             }
         }
     }
 
     useEffect(() => {
+        dispatch(clearExploreFeed());
         fetchPostsForFeed();
         // eslint-disable-next-line
     }, []);

@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { delay } from "../../utils/delay";
 import { limit } from "../../utils/infiniteScrollOptions";
 import { useDispatch, useSelector } from "react-redux";
-import { setPostsForSavedPostsFeedfn } from "../../store/actions/PostActions";
+import { clearLikedPostsFeed, setPostsForSavedPostsFeedfn } from "../../store/actions/PostActions";
 
 const SavedPostsFeed = ({ user , sortBy}) => {
     const { savedPosts } = useSelector(state => state.post);
@@ -37,6 +37,7 @@ const SavedPostsFeed = ({ user , sortBy}) => {
     }
 
     useEffect(() => {
+        dispatch(clearLikedPostsFeed());
         fetchPostsForFeed();
         // eslint-disable-next-line
     }, []);

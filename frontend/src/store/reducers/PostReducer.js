@@ -68,23 +68,44 @@ const PostReducer = createReducer(initialState, {
     // New flow
     APPEND_POSTS_FOR_EXPLORE_FEED: (state, action) => {
         console.log(action.payload);
-        state.posts = [...state.posts , ...action.payload];
+        state.posts = [...state.posts, ...action.payload];
     },
+    CLEAR_EXPLORE_FEED: (state, action) => {
+        state.posts = [];
+    },
+
     APPEND_POSTS_FOR_HOME_FEED: (state, action) => {
         console.log(action.payload);
-        state.feed = [...state.feed , ...action.payload];
+        state.feed = [...state.feed, ...action.payload];
     },
+    CLEAR_HOME_FEED: (state, action) => {
+        state.feed = []; 
+    },
+
     APPEND_POSTS_FOR_MYPOSTS_FEED: (state, action) => {
         console.log(action.payload);
-        state.myposts = [...state.myposts , ...action.payload];
+        state.myposts = [...state.myposts, ...action.payload];
     },
+    CLEAR_MYPOSTS_FEED: (state, action) => {
+        state.myposts = [];
+    },
+
     APPEND_POSTS_FOR_SAVED_POSTS_FEED: (state, action) => {
         console.log(action.payload);
-        state.savedPosts = [...state.savedPosts , ...action.payload];
+        state.savedPosts = [...state.savedPosts, ...action.payload];
     },
-    APPEND_POSTS_FOR_LIKKED_POSTS_FEED: (state, action) => {
+    CLEAR_SAVED_POSTS_FEED: (state, action) => {
+        state.savedPosts = [];
+    },
+
+
+    APPEND_POSTS_FOR_LIKED_POSTS_FEED: (state, action) => {
         console.log(action.payload);
-        state.likedPosts = [...state.likedPosts , ...action.payload];
+        state.likedPosts = [...state.likedPosts, ...action.payload];
+    },
+    CLEAR_LIKED_POSTS_FEED: (state, action) => {
+        console.log(action.payload);
+        state.likedPosts = [];
     },
 });
 

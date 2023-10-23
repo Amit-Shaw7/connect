@@ -39,7 +39,6 @@ const Comments = ({ postId }) => {
                     sx={{
                         height: "max-content",
                         overflowY: "scroll",
-                        position: "relative",
                         gap: 1,
                     }}
                 >
@@ -52,9 +51,9 @@ const Comments = ({ postId }) => {
                     }
                 </List>
             </Stack>
-            <Stack p={1}>
+            {/* <Stack>
                 <AddComment postId={postId} />
-            </Stack>
+            </Stack> */}
         </>
     )
 }
