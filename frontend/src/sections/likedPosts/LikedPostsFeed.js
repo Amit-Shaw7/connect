@@ -15,9 +15,9 @@ const LikedPostsFeed = ({ user , sortBy}) => {
     // const [posts, setPosts] = useState([]);
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(1);
-    const fetchPostsForFeed = async () => {
+    const fetchPostsForFeed = async (initial) => {
         await delay(3000);
-        const url = `post/likedposts?page=${page}&limit=${limit}&query=${sortBy}`;
+        const url = `post/likedposts?page=${initial ? initial : page}&limit=${limit}&query=${sortBy}`;
         let response = {};
         try {
             response = await instance.get(url);
@@ -35,9 +35,15 @@ const LikedPostsFeed = ({ user , sortBy}) => {
         }
     };
 
-    useEffect(() => {
+    const clearPosts = () => {
+        setPage(1);
+        setHasMore(true);
         dispatch(clearLikedPostsFeed());
-        fetchPostsForFeed();
+    }
+
+    useEffect(() => {
+       clearPosts();
+        fetchPostsForFeed(1);
         // eslint-disable-next-line
     }, []);
 

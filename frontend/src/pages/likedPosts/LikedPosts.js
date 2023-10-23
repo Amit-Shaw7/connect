@@ -11,7 +11,7 @@ const LikedPosts = () => {
   const { user } = useSelector(state => state.user);
 
 
-  const [sortBy, setSortBy] = useState("Trending");
+  const [sortBy, setSortBy] = useState("trending");
   const handleChange = (e) => {
     setSortBy(e.target.value);
   };

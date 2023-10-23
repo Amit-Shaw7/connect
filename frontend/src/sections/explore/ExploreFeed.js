@@ -14,9 +14,9 @@ const ExploreFeed = ({ user, sortBy }) => {
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(1);
 
-    const fetchPostsForFeed = async () => {
+    const fetchPostsForFeed = async (initial) => {
         await delay(3000);
-        const url = `post/explore?page=${page}&limit=${limit}&query=${sortBy}`;
+        const url = `post/explore?page=${initial ? initial : page}&limit=${limit}&query=${sortBy?.toLowerCase()}`;
         let response = {};
         try {
             response = await instance.get(url);
@@ -33,11 +33,17 @@ const ExploreFeed = ({ user, sortBy }) => {
         }
     }
 
-    useEffect(() => {
+    const clearPosts = () => {
+        setPage(1);
+        setHasMore(true);
         dispatch(clearExploreFeed());
-        fetchPostsForFeed();
+    }
+    
+    useEffect(() => {
+        clearPosts();
+        fetchPostsForFeed(1);
         // eslint-disable-next-line
-    }, []);
+    }, [sortBy]);
 
     return (
         <PostList fetchMorePosts={fetchPostsForFeed} hasMore={hasMore} user={user} posts={posts} />

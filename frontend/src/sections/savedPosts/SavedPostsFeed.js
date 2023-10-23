@@ -7,7 +7,7 @@ import { limit } from "../../utils/infiniteScrollOptions";
 import { useDispatch, useSelector } from "react-redux";
 import { clearLikedPostsFeed, setPostsForSavedPostsFeedfn } from "../../store/actions/PostActions";
 
-const SavedPostsFeed = ({ user , sortBy}) => {
+const SavedPostsFeed = ({ user, sortBy }) => {
     const { savedPosts } = useSelector(state => state.post);
     const dispatch = useDispatch();
 
@@ -15,9 +15,9 @@ const SavedPostsFeed = ({ user , sortBy}) => {
     const [page, setPage] = useState(1);
 
 
-    const fetchPostsForFeed = async () => {
+    const fetchPostsForFeed = async (initial) => {
         await delay(3000);
-        const url = `post/savedposts?page=${page}&limit=${limit}&query=${sortBy}`;
+        const url = `post/savedposts?page=${initial ? initial : page}&limit=${limit}&query=${sortBy}`;
         let response = {};
         try {
             response = await instance.get(url);
@@ -34,11 +34,17 @@ const SavedPostsFeed = ({ user , sortBy}) => {
                 // dispatch()
             }
         }
+    };
+
+    const clearPosts = () => {
+        setPage(1);
+        setHasMore(true);
+        dispatch(clearLikedPostsFeed());
     }
 
     useEffect(() => {
-        dispatch(clearLikedPostsFeed());
-        fetchPostsForFeed();
+        clearPosts();
+        fetchPostsForFeed(1);
         // eslint-disable-next-line
     }, []);
 
