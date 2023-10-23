@@ -6,9 +6,9 @@ import Typography from "@mui/material/Typography";
 import React, { useEffect } from "react";
 import EachComment from "./EachComment";
 import Loader from "../Loader";
-import AddComment from "./AddComment";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCommentsOfPostFn } from "../../store/actions/CommentActions";
+import AddComment from "./AddComment";
 
 const Comments = ({ postId }) => {
     const { comments, loading } = useSelector(state => state.comment);
@@ -24,7 +24,7 @@ const Comments = ({ postId }) => {
 
     return (
         <>
-            <Stack height="100%" spacing={3} mx={2} >
+            <Stack height="100%" spacing={3} mx={1} >
                 <Divider sx={{ mb: 1 }} />
 
                 {
@@ -51,9 +51,9 @@ const Comments = ({ postId }) => {
                     }
                 </List>
             </Stack>
-            {/* <Stack>
+            <Stack alignItems="center" justifyContent="center">
                 <AddComment postId={postId} />
-            </Stack> */}
+            </Stack>
         </>
     )
 }

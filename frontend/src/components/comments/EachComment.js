@@ -121,10 +121,6 @@ const EachComment = ({ comment }) => {
                 />
                 <ListItemAvatar>
                     <Avatar
-                        sx={{
-                            height: "30px",
-                            width: "30px"
-                        }}
                         alt={"image"}
                         src={user?.avatar}
                         onClick={() => goToUserPage(user?._id)}

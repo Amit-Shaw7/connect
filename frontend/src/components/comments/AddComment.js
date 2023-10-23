@@ -37,7 +37,7 @@ const AddComment = ({ postId }) => {
                 gap: 2,
                 position: "absolute",
                 bottom: 10,
-                width: "100%",
+                width: "90%",
                 p: 1,
                 boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
             }}
