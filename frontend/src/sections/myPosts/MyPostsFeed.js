@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { limit } from "../../utils/infiniteScrollOptions";
 import { clearMypostsFeed, setPostsForMypostsFeedfn } from "../../store/actions/PostActions";
 import { useDispatch, useSelector } from "react-redux";
+import { Stack } from "@mui/material";
 
 const MyPostsFeed = ({ user, sortBy }) => {
     const { myposts } = useSelector(state => state.post);
@@ -48,7 +49,9 @@ const MyPostsFeed = ({ user, sortBy }) => {
     }, []);
 
     return (
-        <PostList editable fetchMorePosts={fetchPostsForFeed} hasMore={hasMore} user={user} posts={myposts} />
+        <Stack p={1}>
+            <PostList editable fetchMorePosts={fetchPostsForFeed} hasMore={hasMore} user={user} posts={myposts} />
+        </Stack>
     )
 }
 

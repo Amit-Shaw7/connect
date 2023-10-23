@@ -6,6 +6,7 @@ import { delay } from "../../utils/delay";
 import { limit } from "../../utils/infiniteScrollOptions";
 import { useDispatch, useSelector } from "react-redux";
 import { clearLikedPostsFeed, setPostsForSavedPostsFeedfn } from "../../store/actions/PostActions";
+import { Stack } from "@mui/material";
 
 const SavedPostsFeed = ({ user, sortBy }) => {
     const { savedPosts } = useSelector(state => state.post);
@@ -49,7 +50,9 @@ const SavedPostsFeed = ({ user, sortBy }) => {
     }, []);
 
     return (
-        <PostList fetchMorePosts={fetchPostsForFeed} hasMore={hasMore} user={user} posts={savedPosts} />
+        <Stack p={1}>
+            <PostList fetchMorePosts={fetchPostsForFeed} hasMore={hasMore} user={user} posts={savedPosts} />
+        </Stack>
     )
 }
 

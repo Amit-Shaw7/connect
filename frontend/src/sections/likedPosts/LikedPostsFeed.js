@@ -6,8 +6,9 @@ import PostList from "../../components/posts/PostList";
 import { limit } from "../../utils/infiniteScrollOptions";
 import { useDispatch, useSelector } from "react-redux";
 import { clearLikedPostsFeed, setPostsForLikedPostsFeedfn } from "../../store/actions/PostActions";
+import { Stack } from "@mui/material";
 
-const LikedPostsFeed = ({ user , sortBy}) => {
+const LikedPostsFeed = ({ user, sortBy }) => {
     const { likedPosts } = useSelector(state => state.post);
     const dispatch = useDispatch();
 
@@ -42,13 +43,15 @@ const LikedPostsFeed = ({ user , sortBy}) => {
     }
 
     useEffect(() => {
-       clearPosts();
+        clearPosts();
         fetchPostsForFeed(1);
         // eslint-disable-next-line
     }, []);
 
     return (
-        <PostList fetchMorePosts={fetchPostsForFeed} hasMore={hasMore} user={user} posts={likedPosts} />
+        <Stack p={1}>
+            <PostList fetchMorePosts={fetchPostsForFeed} hasMore={hasMore} user={user} posts={likedPosts} />
+        </Stack>
     )
 }
 

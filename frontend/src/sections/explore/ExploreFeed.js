@@ -6,6 +6,7 @@ import { delay } from "../../utils/delay";
 import { limit } from "../../utils/infiniteScrollOptions";
 import { useDispatch, useSelector } from "react-redux";
 import { clearExploreFeed, setPostsForExploreFeedfn } from "../../store/actions/PostActions";
+import { Stack } from "@mui/material";
 
 const ExploreFeed = ({ user, sortBy }) => {
     const { posts } = useSelector(state => state.post);
@@ -38,7 +39,7 @@ const ExploreFeed = ({ user, sortBy }) => {
         setHasMore(true);
         dispatch(clearExploreFeed());
     }
-    
+
     useEffect(() => {
         clearPosts();
         fetchPostsForFeed(1);
@@ -46,7 +47,9 @@ const ExploreFeed = ({ user, sortBy }) => {
     }, [sortBy]);
 
     return (
-        <PostList fetchMorePosts={fetchPostsForFeed} hasMore={hasMore} user={user} posts={posts} />
+        <Stack p={1}>
+            <PostList fetchMorePosts={fetchPostsForFeed} hasMore={hasMore} user={user} posts={posts} />
+        </Stack>
     )
 }
 
