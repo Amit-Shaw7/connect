@@ -6,7 +6,7 @@ import Stack from "@mui/material/Stack";
 import Work from "@mui/icons-material/Work";
 import Button from "@mui/material/Button";
 
-const UserInfo = ({ user, setCurrentTab }) => {
+const UserInfo = ({ currentTab, user, setCurrentTab }) => {
 
     return (
         <Stack
@@ -58,15 +58,33 @@ const UserInfo = ({ user, setCurrentTab }) => {
                 alignItems="center"
                 justifyContent="space-between"
             >
-                <Button onClick={() => setCurrentTab("posts")} sx={{ color: "gray", textTransform: "capitalize" }}>
+                <Button
+                    onClick={() => setCurrentTab("posts")}
+                    sx={{
+                        color: currentTab === "posts" ? "pallete.primary" : "gray",
+                        textTransform: "capitalize"
+                    }}
+                >
                     {user?.posts?.length} Posts
                 </Button>
 
-                <Button onClick={() => setCurrentTab("followers")} sx={{ color: "gray", textTransform: "capitalize" }}>
+                <Button
+                    onClick={() => setCurrentTab("followers")}
+                    sx={{
+                        color: currentTab === "followers" ? "pallete.primary" : "gray",
+                        textTransform: "capitalize"
+                    }}
+                >
                     {user?.followers?.length} Followers
                 </Button>
 
-                <Button onClick={() => setCurrentTab("followings")} sx={{ color: "gray", textTransform: "capitalize" }}>
+                <Button
+                    onClick={() => setCurrentTab("followings")}
+                    sx={{
+                        color: currentTab === "followings" ? "pallete.primary" : "gray",
+                        textTransform: "capitalize"
+                    }}
+                >
                     {user?.followings?.length} Following
                 </Button>
             </Stack>

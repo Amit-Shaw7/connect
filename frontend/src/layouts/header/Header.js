@@ -13,7 +13,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 import DrawerNavigation from "../navigation/DrawerNavigation";
 import SearchUserMenu from "../../components/Autocomplete";
-import { DarkMode, LightMode } from "@mui/icons-material";
+import LightMode from "@mui/icons-material/LightMode";
+import LightModeOutlined from "@mui/icons-material/LightModeOutlined";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMode } from "../../store/actions/AppAction";
 
@@ -53,7 +54,7 @@ const Header = ({ openDrawer, toggleDrawer, user }) => {
                             edge="start"
                             color="inherit"
                             aria-label="open drawer"
-                            // sx={{ mr: 2 }} 
+                        // sx={{ mr: 2 }} 
                         >
                             <Menu />
                         </IconButton>}
@@ -62,7 +63,7 @@ const Header = ({ openDrawer, toggleDrawer, user }) => {
                         <Logo />
                     </Stack>
 
-                    <Stack flexDirection="row" alignItems="center" px={2} position="relative">
+                    <Stack flexDirection="row" alignItems="center" position="relative">
                         <Box
                             aria-label="search users list"
                             aria-controls=""
@@ -81,8 +82,9 @@ const Header = ({ openDrawer, toggleDrawer, user }) => {
                                     </IconButton>
                             }
                         </Box>
+
                         <IconButton sx={{ mx: 1 }} onClick={handleMode}>
-                            {mode === "light" ? <DarkMode /> : <LightMode />}
+                            {mode === "light" ? <LightMode /> : <LightModeOutlined />}
                         </IconButton>
 
                         <Avatar
@@ -92,7 +94,7 @@ const Header = ({ openDrawer, toggleDrawer, user }) => {
                             sx={{
                                 height: "40px",
                                 width: "40px",
-                                cursor: "pointer"
+                                cursor: "pointer",
                             }}
                         >
                             {user?.avatar ? "" : user?.name?.charAt(0).toUpperCase()}

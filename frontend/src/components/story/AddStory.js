@@ -24,10 +24,8 @@ const AddStory = ({ user }) => {
                 justifyContent="center"
                 height="180px"
                 width="120px"
-                // border="1px solid lightgrey"
                 sx={{
                     borderRadius: "10px",
-                    // border:"1px solid pallete.divider"
                 }}>
                 <CustomAvatar
                     height="100px"

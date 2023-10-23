@@ -8,6 +8,7 @@ import CustomButton from "../../components/CustomButton";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { followUnfollowUserFn } from "../../store/actions/UserActions";
+import useResponsive from "../../hooks/usResponsive";
 
 
 const User = ({ user, createdAt, type }) => {
@@ -17,6 +18,7 @@ const User = ({ user, createdAt, type }) => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const isTablet = useResponsive("up", "sm");
 
     const goToUserPage = (id) => {
         navigate(`/user/${id}`);
@@ -49,8 +51,8 @@ const User = ({ user, createdAt, type }) => {
                     <ListItemAvatar>
                         <Avatar
                             sx={{
-                                height: "40px",
-                                width: "40px"
+                                height: { md: "40px", sm: "30px" },
+                                width: { md: "40px", sm: "30px" }
                             }}
                             alt={"image"}
                             src={user?.avatar}
@@ -59,21 +61,15 @@ const User = ({ user, createdAt, type }) => {
                     </ListItemAvatar>
                     <ListItemText
                         id={user?.username}
-                        primary={user?.name}
+                        primary={
+                            isTablet ? user?.name : (user?.name?.length > 10 ? user?.name?.slice(0, 10) + "..." : user?.name?.slice(0, 10))
+                        }
                         secondary={
                             createdAt
                             &&
-                            // <Stack flexDirection="row" alignItems="center" gap={1}>
-                            //     <Typography variant="caption">
-                            <> {user?.username} - {moment(createdAt, "YYYYMMDD HH:mm:ss GMT Z").fromNow()}</>
-                            //     </Typography>
-                            //     <Typography>
-                            //         -
-                            //     </Typography>
-                            //     <Typography variant="caption">
-                            //         {moment(createdAt, "YYYYMMDD HH:mm:ss GMT Z").fromNow()}
-                            //     </Typography>
-                            // </Stack>
+                            <>
+                                {user?.username} - {moment(createdAt, "YYYYMMDD HH:mm:ss GMT Z").fromNow()}
+                            </>
                         }
                         onClick={() => goToUserPage(user?._id)}
                     />

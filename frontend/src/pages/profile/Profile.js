@@ -11,6 +11,7 @@ import Loader from "../../components/Loader";
 import UserInfo from "../../sections/profile/UserInfo";
 import UserImages from "../../sections/profile/UserImages";
 import MoreInfo from "../../sections/profile/MoreInfo";
+import { Stack } from "@mui/material";
 
 const fetchUserPosts = async (setLoading, dispatch, paramId, setUser) => {
   setLoading(true);
@@ -52,7 +53,7 @@ const Profile = () => {
   }
 
   return (
-    <>
+    <Stack p={1}>
       <CustomContainer>
         <CustomCard>
           <UserImages user={user} />
@@ -71,11 +72,11 @@ const Profile = () => {
               sx={{
                 alignSelf: "end"
               }}
-              text={isFollowing ? "UnFollow" : "Follow"}
+              text={isFollowing || loggedInUser?.followings?.includes(user?._id) ? "UnFollow" : "Follow"}
             />
           }
 
-          <UserInfo user={user} setCurrentTab={setCurrentTab} />
+          <UserInfo currentTab={currentTab} user={user} setCurrentTab={setCurrentTab} />
         </CustomCard>
 
         <Box sx={{ my: "20px" }}>
@@ -83,7 +84,7 @@ const Profile = () => {
         </Box>
       </CustomContainer>
       <EditProfileModal user={user} open={open} handleClose={handleClose} />
-    </>
+    </Stack>
   )
 }
 
