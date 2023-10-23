@@ -20,7 +20,7 @@ const fetchUserPosts = async (setLoading, dispatch, paramId, setUser) => {
 }
 
 const Profile = () => {
-  const { user: currUser } = useSelector(state => state.user);
+  const { user: loggedInUser } = useSelector(state => state.user);
   const dispatch = useDispatch();
   const params = useParams();
 
@@ -29,7 +29,7 @@ const Profile = () => {
   const [user, setUser] = useState();
   const [currentTab, setCurrentTab] = useState("posts");
 
-  const [isFollowing, setIsFollowing] = useState(currUser?.followings?.includes(user?._id));
+  const [isFollowing, setIsFollowing] = useState(loggedInUser?.followings?.includes(user?._id));
 
   const handleFollowUnfollow = () => {
     setIsFollowing((prev) => !prev);
@@ -57,7 +57,7 @@ const Profile = () => {
         <CustomCard>
           <UserImages user={user} />
 
-          {user?._id === currUser?._id ?
+          {user?._id === loggedInUser?._id ?
             <CustomButton
               onClickFn={handleOpenEditProfileModal}
               sx={{
@@ -71,7 +71,7 @@ const Profile = () => {
               sx={{
                 alignSelf: "end"
               }}
-              text={currUser?.followings?.includes(user?._id) ? "UnFollow" : "Follow"}
+              text={isFollowing ? "UnFollow" : "Follow"}
             />
           }
 
