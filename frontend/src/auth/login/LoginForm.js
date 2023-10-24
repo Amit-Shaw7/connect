@@ -17,8 +17,6 @@ import loginSchema from "../../schema/LoginSchema";
 import { loginFn } from "../../store/actions/AuthActions";
 
 const LoginForm = () => {
-
-    const { loading } = useSelector(state => state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [errorMsg, setErrorMsg] = useState("");
@@ -31,9 +29,16 @@ const LoginForm = () => {
         password: ""
     };
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register,
+        handleSubmit,
+        formState: {
+            errors,
+            isSubmitting,
+            isLoading,
+        }
+    } = useForm({
         resolver: yupResolver(loginSchema),
-        defaultValues
+        defaultValues,
     });
 
     const onSubmit = (data) => {
@@ -108,9 +113,9 @@ const LoginForm = () => {
                     type="submit"
                     variant="contained"
                     size="large"
-                    disabled={loading}
+                    disabled={isSubmitting || isLoading}
                 >
-                    {loading ? <CircularProgress color="inherit" size="26px" /> : "Submit"}
+                    {(isSubmitting || isLoading) ? <CircularProgress color="inherit" size="26px" /> : "Submit"}
                 </Button>
             </Stack>
         </form>

@@ -38,7 +38,15 @@ const SignupForm = () => {
         password: ""
     }
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const {
+        register,
+        handleSubmit,
+        formState: {
+            errors,
+            isSubmitting,
+            isLoading,
+        }
+    } = useForm({
         resolver: yupResolver(signupSchema),
         defaultValues
     });
@@ -173,9 +181,9 @@ const SignupForm = () => {
                     type="submit"
                     variant="contained"
                     size="large"
-                    diasbled={loading}
+                    disabled={isSubmitting || isLoading}
                 >
-                    {loading ? <CircularProgress /> : "Submit"}
+                    {(isSubmitting || isLoading) ? <CircularProgress color="inherit" size="26px" /> : "Submit"}
                 </Button>
 
             </Stack>
