@@ -15,6 +15,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import loginSchema from "../../schema/LoginSchema";
 import { loginFn } from "../../store/actions/AuthActions";
+import { formatErrorMessage } from "../../utils/formatError";
 
 const LoginForm = () => {
     const dispatch = useDispatch();
@@ -106,7 +107,7 @@ const LoginForm = () => {
                     textAlign="center"
                     color="red"
                 >
-                    {errorMsg && errorMsg}
+                    {errorMsg && formatErrorMessage(errorMsg)}
                 </Typography>
 
                 <Button

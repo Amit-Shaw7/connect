@@ -4,6 +4,7 @@ import React, {  useState } from "react"
 import CustomTextInput from "../../components/customInput/CustomInput";
 import Loader from "../../components/Loader";
 import toast from "react-hot-toast";
+import { formatErrorMessage } from "../../utils/formatError";
 
 
 const searchEmoji = async (query, setEmojis , setLoading) => {
@@ -14,7 +15,7 @@ const searchEmoji = async (query, setEmojis , setLoading) => {
         response = await axios.get(url);
     } catch (error) {
         setLoading(false);
-        toast.error(error?.response?.data?.message || "Cannot fetch emojis");
+        toast.error(formatErrorMessage(error?.response?.data?.message || "Cannot fetch emojis"));
         setEmojis([]);
     } finally {
         if (response.status === 200) {

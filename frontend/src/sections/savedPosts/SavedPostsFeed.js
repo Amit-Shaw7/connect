@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import PostList from "../../components/posts/PostList";
 import instance from "../../utils/axiosInstance";
 import toast from "react-hot-toast";
-import { delay } from "../../utils/delay";
 import { limit } from "../../utils/infiniteScrollOptions";
 import { useDispatch, useSelector } from "react-redux";
 import { clearLikedPostsFeed, setPostsForSavedPostsFeedfn } from "../../store/actions/PostActions";
 import { Stack } from "@mui/material";
+import { formatErrorMessage } from "../../utils/formatError";
 
 const SavedPostsFeed = ({ user, sortBy }) => {
     const { savedPosts } = useSelector(state => state.post);
@@ -17,13 +17,12 @@ const SavedPostsFeed = ({ user, sortBy }) => {
 
 
     const fetchPostsForFeed = async (initial) => {
-        await delay(3000);
         const url = `post/savedposts?page=${initial ? initial : page}&limit=${limit}&query=${sortBy}`;
         let response = {};
         try {
             response = await instance.get(url);
         } catch (error) {
-            toast.error(error?.response?.data?.msg);
+            toast.error(formatErrorMessage(error?.response?.data?.msg));
         } finally {
             if (response?.status === 200) {
                 if (response?.data?.posts?.docs?.length < limit) {

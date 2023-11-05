@@ -1,5 +1,6 @@
 import { toast } from "react-hot-toast";
 import instance from "../../utils/axiosInstance";
+import { formatErrorMessage } from "../../utils/formatError";
 
 export const signupFn = (data, setErrorMsg, navigate) => async (dispatch) => {
     const url = "/auth/register";
@@ -7,7 +8,7 @@ export const signupFn = (data, setErrorMsg, navigate) => async (dispatch) => {
     try {
         response = await instance.post(url, data);
     } catch (error) {
-        setErrorMsg(error?.response?.data?.msg);
+        setErrorMsg(formatErrorMessage(error?.response?.data?.msg));
     } finally {
         if (response?.status === 200) {
             navigate("/login");
@@ -22,7 +23,7 @@ export const loginFn = (data, setErrorMsg, navigate) => async (dispatch) => {
     try {
         response = await instance.post(url, data);
     } catch (error) {
-        setErrorMsg(error?.response?.data?.msg);
+        setErrorMsg(formatErrorMessage(error?.response?.data?.msg));
     } finally {
         if (response?.status === 200) {
             dispatch({ type: "LOGIN_SUCCESS", payload: response?.data?.user?._id });

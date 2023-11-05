@@ -16,10 +16,9 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/Visibility";
 import signupSchema from "../../schema/SignupSchema";
 import { signupFn } from "../../store/actions/AuthActions";
+import { formatErrorMessage } from "../../utils/formatError";
 
 const SignupForm = () => {
-    const { loading } = useSelector(state => state.auth);
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -174,7 +173,7 @@ const SignupForm = () => {
                     textAlign="center"
                     color="red"
                 >
-                    {errorMsg && errorMsg}
+                    {errorMsg && formatErrorMessage(errorMsg)}
                 </Typography>
 
                 <Button

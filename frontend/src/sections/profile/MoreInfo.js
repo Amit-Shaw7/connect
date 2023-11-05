@@ -5,10 +5,10 @@ import PostList from "../../components/posts/PostList";
 import { useDispatch } from "react-redux";
 import { fetchFollowersFn, fetchFollowingsFn } from "../../store/actions/UserActions";
 import UserList from "../../layouts/mainLayout/UserList";
-import { delay } from "../../utils/delay";
 import { limit } from "../../utils/infiniteScrollOptions";
 import instance from "../../utils/axiosInstance";
 import toast from "react-hot-toast";
+import { formatErrorMessage } from "../../utils/formatError";
 
 const fetchFollowers = async (dispatch, id, setPosts, setLoading) => {
     const posts = await dispatch(fetchFollowersFn(id, setLoading));
@@ -32,13 +32,12 @@ const MoreInfo = ({ currentTab }) => {
 
 
     const fetcUserPosts = async () => {
-        await delay(3000);
         const url = `post/all/${userId}?page=${page}`;
         let response = {};
         try {
             response = await instance.get(url);
         } catch (error) {
-            toast.error(error?.response?.data?.msg);
+            toast.error(formatErrorMessage(error?.response?.data?.msg));
         } finally {
             if (response?.status === 200) {
                 if (response?.data?.posts?.docs?.length < limit) {

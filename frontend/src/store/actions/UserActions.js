@@ -1,6 +1,6 @@
 import { toast } from "react-hot-toast";
 import instance from "../../utils/axiosInstance";
-// import { delay } from "../../utils/delay";
+import { formatErrorMessage } from "../../utils/formatError";
 
 
 export const loadUserFn = (navigate) => async (dispatch) => {
@@ -8,9 +8,15 @@ export const loadUserFn = (navigate) => async (dispatch) => {
     let response = {};
     try {
         response = await instance.get(url);
+        console.log(response);
     } catch (error) {
         dispatch({ type: "LOAD_USER_FAILURE" });
         navigate("/login");
+        if (error?.response?.data?.msg === "UNAUTHORIZED") {
+            toast.error("Please login");
+        }  else {
+            toast.error("Please wait for 15 seconds to let the server start as it is hosted in a free server");
+        }
     } finally {
         if (response?.status === 200) {
             dispatch({ type: "LOAD_USER_SUCCESS", payload: response.data?.user });
@@ -25,7 +31,7 @@ export const editProfileFn = (data, setErrorMsg, navigate) => async (dispatch) =
     try {
         response = await instance.patch(url, data);
     } catch (error) {
-        setErrorMsg(error?.response?.data?.msg);
+        setErrorMsg(formatErrorMessage(error?.response?.data?.msg));
         navigate("/")
     } finally {
         if (response?.status === 200) {
@@ -41,7 +47,7 @@ export const fetchFollowersFn = (id, setLoading) => async (dispatch) => {
     try {
         response = await instance.get(url);
     } catch (error) {
-        toast.error(error.message || "Cannot fetch followings");
+        toast.error(formatErrorMessage(error.message || "Cannot fetch followings"));
         setLoading(false);
     } finally {
         if (response?.status === 200) {
@@ -58,7 +64,7 @@ export const fetchFollowingsFn = (id, setLoading) => async (dispatch) => {
     try {
         response = await instance.get(url);
     } catch (error) {
-        toast.error(error.message || "Cannot fetch followings");
+        toast.error(formatErrorMessage(error.message || "Cannot fetch followings"));
         setLoading(false);
     } finally {
         if (response?.status === 200) {
@@ -110,7 +116,7 @@ export const getUserProfileFn = (id) => async (dispatch) => {
     try {
         response = await instance.get(url);
     } catch (error) {
-        toast.error(error.message);
+        toast.error(formatErrorMessage(error.message || error.response.data?.msg));
     } finally {
         if (response?.status === 200) {
             return response.data?.user;
@@ -125,7 +131,7 @@ export const followUnfollowUserFn = (id) => async (dispatch) => {
     try {
         response = await instance.patch(url);
     } catch (error) {
-        toast.error(error.message);
+        toast.error(formatErrorMessage(error.message || error.response.data?.msg));
         return false;
     } finally {
         if (response?.status === 200) {

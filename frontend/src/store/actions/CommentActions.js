@@ -1,5 +1,6 @@
 import { toast } from "react-hot-toast";
 import instance from "../../utils/axiosInstance";
+import { formatErrorMessage } from "../../utils/formatError";
 
 export const addCommentFn = (data , postId) => async (dispatch) => {
     const url = `/comment/add/${postId}`;
@@ -8,7 +9,7 @@ export const addCommentFn = (data , postId) => async (dispatch) => {
         response = await instance.post(url, data);
     } catch (error) {
         dispatch({ type: "ADD_COMMENT_FAILURE" });
-        toast.error(error.response.data.msg);
+        toast.error(formatErrorMessage(error.response.data.msg));
     } finally {
         if (response?.status === 200) {
             dispatch({ type: "ADD_COMMENT_SUCCESS", payload: response.data?.comment });
@@ -22,7 +23,7 @@ export const fetchCommentsOfPostFn = (postId) => async (dispatch) => {
         response = await instance.get(url);
     } catch (error) {
         dispatch({ type: "FETCH_COMMENT_FAILURE" });
-        toast.error(error.response.data.msg);
+        toast.error(formatErrorMessage(error.response.data.msg));
     } finally {
         if (response?.status === 200) {
             dispatch({ type: "FETCH_COMMENT_SUCCESS", payload: response.data?.comments });
@@ -36,7 +37,7 @@ export const likeCommentFn = (commentId, userId) => async (dispatch) => {
     try {
         response = await instance.patch(url);
     } catch (error) {
-        toast.error(error.response.data.msg);
+        toast.error(formatErrorMessage(error.response.data.msg));
         return false;
     } finally {
         if (response?.status === 200) {
@@ -50,7 +51,7 @@ export const dislikeCommentFn = (commentId, userId) => async (dispatch) => {
     try {
         response = await instance.patch(url);
     } catch (error) {
-        toast.error(error.response.data.msg);
+        toast.error(formatErrorMessage(error.response.data.msg));
         return false;
     } finally {
         if (response?.status === 200) {
@@ -64,7 +65,7 @@ export const deleteCommentFn = (commentId) => async (dispatch) => {
     try {
         await instance.delete(url);
     } catch (error) {
-        toast.error(error.response.data.msg);
+        toast.error(formatErrorMessage(error.response.data.msg));
         window.location.reload();
     }
 }
@@ -74,7 +75,7 @@ export const editCommentFn = (commentId , data , setErrorMsg) => async (dispatch
     try {
         response = await instance.patch(url , data);
     } catch (error) {
-        setErrorMsg(error.response.data.msg);
+        setErrorMsg(formatErrorMessage(error.response.data.msg));
     } finally {
         if (response?.status === 200) {
             toast.success("Comment updated");

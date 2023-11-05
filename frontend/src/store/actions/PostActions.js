@@ -1,5 +1,6 @@
 import { toast } from "react-hot-toast";
 import instance from "../../utils/axiosInstance";
+import { formatErrorMessage } from "../../utils/formatError";
 
 export const addPostFn = (data, user) => async (dispatch) => {
     const url = "/post";
@@ -8,7 +9,7 @@ export const addPostFn = (data, user) => async (dispatch) => {
         toast.loading("Adding post");
         response = await instance.post(url, data);
     } catch (error) {
-        toast.error(error.response.data.msg);
+        toast.error(formatErrorMessage(error.response.data.msg));
         window.location.reload();
     } finally {
         if (response?.status === 200) {
@@ -48,7 +49,7 @@ export const fetchMyPostsFn = (type) => async (dispatch) => {
     try {
         response = await instance.get(url);
     } catch (error) {
-        toast.error(error.response.data.msg);
+        toast.error(formatErrorMessage(error.response.data.msg));
     } finally {
         if (response?.status === 200) {
             dispatch({ type: "GET_MY_POST_SUCCESS", payload: response.data?.posts });
@@ -63,7 +64,7 @@ export const getPostsForFeedFn = (type, setLoading) => async (dispatch) => {
     try {
         response = await instance.get(url);
     } catch (error) {
-        toast.error(error?.response?.data?.msg);
+        toast.error(formatErrorMessage(error?.response?.data?.msg));
         setLoading(false);
     } finally {
         if (response?.status === 200) {
@@ -125,7 +126,7 @@ export const getSavedPostsFn = (setLoading) => async (dispatch) => {
     try {
         response = await instance.get(url);
     } catch (error) {
-        toast.error(error.response.data.msg);
+        toast.error(formatErrorMessage(error.response.data.msg));
         setLoading(false);
     } finally {
         if (response?.status === 200) {
@@ -141,7 +142,7 @@ export const getLikedPostsFn = (setLoading) => async (dispatch) => {
     try {
         response = await instance.get(url);
     } catch (error) {
-        toast.error(error.response.data.msg);
+        toast.error(formatErrorMessage(error.response.data.msg));
         setLoading(false);
     } finally {
         if (response?.status === 200) {
@@ -157,7 +158,7 @@ export const likePostFn = (postId, userId) => async (dispatch) => {
     try {
         response = await instance.patch(url);
     } catch (error) {
-        toast.error(error.response.data.msg);
+        toast.error(formatErrorMessage(error.response.data.msg));
         return false;
     } finally {
         if (response?.status === 200) {
@@ -172,7 +173,7 @@ export const savePostFn = (postId) => async (dispatch) => {
     try {
         response = await instance.patch(url);
     } catch (error) {
-        toast.error(error.response.data.msg);
+        toast.error(formatErrorMessage(error.response.data.msg));
         return false;
     } finally {
         if (response?.status === 200) {
@@ -188,7 +189,7 @@ export const getUserPostsFn = (userId, setLoading) => async (dispatch) => {
     try {
         response = await instance.get(url);
     } catch (error) {
-        toast.error(error.response.data.msg);
+        toast.error(formatErrorMessage(error.response.data.msg));
         setLoading(false);
     } finally {
         if (response?.status === 200) {
@@ -204,7 +205,7 @@ export const fetchPostById = (postId) => async (dispatch) => {
     try {
         response = await instance.get(url);
     } catch (error) {
-        toast.error(error.response.data.msg);
+        toast.error(formatErrorMessage(error.response.data.msg));
     } finally {
         if (response?.status === 200) {
             return response?.data?.post;
@@ -217,7 +218,7 @@ export const updatePostFn = (postId, data, setErrorMsg) => async (dispatch) => {
     try {
         response = await instance.patch(url, data);
     } catch (error) {
-        setErrorMsg(error.response.data.msg);
+        setErrorMsg(formatErrorMessage(error.response.data.msg));
     } finally {
         if (response?.status === 200) {
             toast.success("Post Updated Sucessfully");
@@ -231,7 +232,7 @@ export const deletePostFn = (postId, setErrorMsg) => async (dispatch) => {
     try {
         await instance.delete(url);
     } catch (error) {
-        setErrorMsg(error.response.data.msg);
+        setErrorMsg(formatErrorMessage(error.response.data.msg));
         window.location.reload();
     }
 }
