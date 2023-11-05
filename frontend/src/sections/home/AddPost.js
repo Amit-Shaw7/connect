@@ -75,6 +75,9 @@ const AddPost = ({ user }) => {
             media: postMediaUrl,
             postText,
         }
+        if(!postText){
+            return;
+        }
         await dispatch(addPostFn(data, user));
         setPostMedia("");
         setPostMediaUrl("");

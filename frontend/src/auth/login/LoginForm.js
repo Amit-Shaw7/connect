@@ -14,7 +14,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import loginSchema from "../../schema/LoginSchema";
-import { loginFn } from "../../store/actions/AuthActions";
+import { loginAsGuestFn, loginFn } from "../../store/actions/AuthActions";
 import { formatErrorMessage } from "../../utils/formatError";
 
 const LoginForm = () => {
@@ -45,6 +45,10 @@ const LoginForm = () => {
     const onSubmit = (data) => {
         dispatch(loginFn(data, setErrorMsg, navigate));
     };
+
+    const loginAsGuest = () => {
+        dispatch(loginAsGuestFn(setErrorMsg , navigate));
+    }
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <Stack
@@ -117,6 +121,20 @@ const LoginForm = () => {
                     disabled={isSubmitting || isLoading}
                 >
                     {(isSubmitting || isLoading) ? <CircularProgress color="inherit" size="26px" /> : "Submit"}
+                </Button>
+
+                <Typography textAlign='center' variant="subtitle1">
+                    OR
+                </Typography>
+
+                <Button
+                    type="button"
+                    variant="contained"
+                    size="large"
+                    disabled={isSubmitting || isLoading}
+                    onClick={loginAsGuest}
+                >
+                    {(isSubmitting || isLoading) ? <CircularProgress color="inherit" size="26px" /> : "Login as guest"}
                 </Button>
             </Stack>
         </form>
