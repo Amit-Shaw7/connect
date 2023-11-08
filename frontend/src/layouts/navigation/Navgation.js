@@ -13,7 +13,7 @@ const Navigation = () => {
   return (
     <Stack
       sx={{
-        width: {xs:"0px" , sm: "0px", md: "20%" , lg:"20%"},
+        width: {xs:"0px" , sm: "0px", md: "25%" , lg:"25%"},
         height: "100%",
         overflowY: "scroll",
       }}>

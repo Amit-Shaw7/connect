@@ -14,7 +14,8 @@ import useResponsive from "../../hooks/usResponsive";
 const User = ({ user, createdAt, type }) => {
     const { user: loggedInUser } = useSelector(state => state.user);
 
-    const [followed, setFollowed] = useState(loggedInUser?.followings?.includes(user?._id));
+    const isFollowed = loggedInUser?.followings?.includes(user?._id);
+    const [followed, setFollowed] = useState(isFollowed);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -31,17 +32,7 @@ const User = ({ user, createdAt, type }) => {
     return (
         <>
             <ListItem
-                secondaryAction={
-                    type === "user" &&
-                    (
-                        <CustomButton
-                            onClickFn={handleFollowUnfollow}
-                            size="small"
-                            text={followed ? "UnFollow" : "Follow"}
-                        />
-                    )
-                }
-                disablePadding
+               
                 sx={{
                     cursor: "pointer",
                     width: type === "user" ? "100%" : "max-content",

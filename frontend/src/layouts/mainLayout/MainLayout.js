@@ -39,7 +39,7 @@ export default function MainLayout() {
                     mt: "60px",
                     flexDirection: "row",
                     justifyContent: "space-between",
-                    px: { lg: 20, md: 0, sm: 6, xs: 0 },
+                    px: { lg: 12, md: 0, sm: 6, xs: 0 },
                 }}
             >
                 <Navigation />

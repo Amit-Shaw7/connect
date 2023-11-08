@@ -41,6 +41,7 @@ const AddPost = ({ user }) => {
     const [postMedia, setPostMedia] = useState();
     const [postMediaUrl, setPostMediaUrl] = useState();
     const [emojis, setEmojis] = useState([]);
+    const [disabled, setDisabled] = useState(true);
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -56,6 +57,11 @@ const AddPost = ({ user }) => {
 
     const handlePostText = (e) => {
         setPostText(e.target.value);
+        if (e.target.value > 0) {
+            setDisabled(false);
+        } else {
+            setDisabled(true);
+        }
     }
     const handlePostMedia = async (e) => {
         setUpLoading(true);
@@ -75,7 +81,7 @@ const AddPost = ({ user }) => {
             media: postMediaUrl,
             postText,
         }
-        if(!postText){
+        if (!postText) {
             return;
         }
         await dispatch(addPostFn(data, user));
@@ -115,6 +121,7 @@ const AddPost = ({ user }) => {
                         <CustomAvatar user={user} />
 
                         <TextField
+                            disabled={disabled}
                             multiline
                             sx={{
                                 border: "none !important",
@@ -132,7 +139,15 @@ const AddPost = ({ user }) => {
                         />
                     </Stack>
 
-                    {postMedia && <Image height="150px" width="150px" fit="contain" src={postMedia} />}
+                    {postMedia
+                        &&
+                        <Image
+                            height="150px"
+                            width="150px"
+                            fit="contain"
+                            src={postMedia}
+                        />
+                    }
 
                     <Stack
                         flexDirection="row"
@@ -144,15 +159,32 @@ const AddPost = ({ user }) => {
                             alignItems="center"
                         >
                             <IconButton sx={{ display: "flex", alignItem: "center", justifyContent: "center" }}>
-                                <label htmlFor="upload-post">
+                                <label
+                                    htmlFor="upload-post"
+                                    style={{ display: "flex" }}
+                                >
                                     <CollectionsOutlined color="primary" />
                                 </label>
                             </IconButton>
-                            <TextField id="upload-post" name="upload-post-field" onChange={handlePostMedia} type="file" sx={{ display: "none" }} />
+                            <TextField
+                                id="upload-post"
+                                name="upload-post-field"
+                                onChange={handlePostMedia}
+                                type="file"
+                                sx={{ display: "none" }}
+                            />
                             <IconButton onClick={handleOpenEmoji}>
                                 <SentimentSatisfiedAlt color="primary" />
                             </IconButton>
-                            <EmojiPopover setEmojis={setEmojis} emojis={emojis} posText={postText} setPostText={setPostText} anchorEl={anchorEl} open={open} handleClose={handleCloseEmoji} />
+                            <EmojiPopover
+                                setEmojis={setEmojis}
+                                emojis={emojis}
+                                posText={postText}
+                                setPostText={setPostText}
+                                anchorEl={anchorEl}
+                                open={open}
+                                handleClose={handleCloseEmoji}
+                            />
                         </Stack>
 
                         <CustomButton text="Post" onClickFn={handleAddPost} />

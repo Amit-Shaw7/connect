@@ -25,7 +25,7 @@ const Content = ({ children }) => {
     <Box
       id="scrollableDiv"
       sx={{
-        width: { xs: "100%", sm: "100%", md: "50%" },
+        width: { xs: "100%", sm: "100%", md: "50%" , lg:"40%" },
         height: "90vh",
         overflowY: "scroll",
         px: { xs: 0, sm: 8, md: 0 },
