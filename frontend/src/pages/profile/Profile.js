@@ -30,7 +30,8 @@ const Profile = () => {
   const [user, setUser] = useState();
   const [currentTab, setCurrentTab] = useState("posts");
 
-  const [isFollowing, setIsFollowing] = useState(loggedInUser?.followings?.includes(user?._id));
+  const following = loggedInUser?.followings?.includes(user?._id);
+  const [isFollowing, setIsFollowing] = useState(following);
 
   const handleFollowUnfollow = () => {
     setIsFollowing((prev) => !prev);

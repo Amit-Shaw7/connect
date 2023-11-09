@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import Stack from "@mui/material/Stack";
 import IconButton from "@mui/material/IconButton";
@@ -47,7 +47,7 @@ const LoginForm = () => {
     };
 
     const loginAsGuest = () => {
-        dispatch(loginAsGuestFn(setErrorMsg , navigate));
+        dispatch(loginAsGuestFn(setErrorMsg, navigate));
     }
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
