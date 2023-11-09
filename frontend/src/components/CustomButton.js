@@ -1,7 +1,8 @@
 import { Button, CircularProgress } from '@mui/material'
 import React from 'react'
 
-const CustomButton = ({ loading, text, sx, size, onClickFn }) => {
+const CustomButton = ({ loading, text, sx, size, onClickFn , disabled}) => {
+    console.log(disabled);
     return (
         <Button
             color='primary'
@@ -12,6 +13,7 @@ const CustomButton = ({ loading, text, sx, size, onClickFn }) => {
                 ...sx
             }}
             onClick={onClickFn}
+            disabled={disabled}
         >
             {
                 loading

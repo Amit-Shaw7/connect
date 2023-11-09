@@ -57,10 +57,10 @@ const AddPost = ({ user }) => {
 
     const handlePostText = (e) => {
         setPostText(e.target.value);
-        if (e.target.value > 0) {
-            setDisabled(false);
-        } else {
+        if (e.target.value?.length === 0) {
             setDisabled(true);
+        } else {
+            setDisabled(false);
         }
     }
     const handlePostMedia = async (e) => {
@@ -121,7 +121,6 @@ const AddPost = ({ user }) => {
                         <CustomAvatar user={user} />
 
                         <TextField
-                            disabled={disabled}
                             multiline
                             sx={{
                                 border: "none !important",
@@ -187,7 +186,11 @@ const AddPost = ({ user }) => {
                             />
                         </Stack>
 
-                        <CustomButton text="Post" onClickFn={handleAddPost} />
+                        <CustomButton
+                            disabled={disabled}
+                            text="Post"
+                            onClickFn={handleAddPost}
+                        />
                     </Stack>
                 </>}
             <UploadinModal open={uploading} handleClose={handleCloseModal} />
