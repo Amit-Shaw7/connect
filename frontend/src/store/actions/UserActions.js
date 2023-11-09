@@ -104,7 +104,6 @@ export const fetchSearchedUsersFn = (query, setUsers) => async (dispatch) => {
         if (response?.status === 200) {
             dispatch({ type: "FETCH_SEARCHED_USERS_SUCCESS", payload: response.data?.users });
             setUsers(response.data?.users);
-            return response.data?.followers;
         }
     }
 }
