@@ -24,8 +24,8 @@ const Comments = ({ postId }) => {
 
     return (
         <>
-            <Stack height="100%" spacing={3} mx={1} >
-                <Divider sx={{ mb: 1 }} />
+            <Stack height="100%" spacing={3} >
+                <Divider  />
 
                 {
                     comments && comments.length === 0
@@ -35,10 +35,11 @@ const Comments = ({ postId }) => {
                         <Typography variant="h6">Comments</Typography>
                 }
 
+                <AddComment postId={postId} />
+
                 <List
                     sx={{
                         height: "max-content",
-                        overflowY: "scroll",
                         gap: 1,
                     }}
                 >
@@ -50,9 +51,6 @@ const Comments = ({ postId }) => {
                         ))
                     }
                 </List>
-            </Stack>
-            <Stack alignItems="center" justifyContent="center">
-                <AddComment postId={postId} />
             </Stack>
         </>
     )
