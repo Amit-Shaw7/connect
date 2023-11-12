@@ -45,7 +45,7 @@ const MyPostsFeed = ({ user, sortBy }) => {
         clearPosts();
         fetchPostsForFeed(1);
         // eslint-disable-next-line
-    }, []);
+    }, [sortBy]);
 
     return (
         <Stack p={1}>
