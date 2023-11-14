@@ -144,13 +144,14 @@ export const followUnfollowUserFn = (id) => async (dispatch) => {
     }
 }
 
-export const uploadImage = (image) => async (dispatch) => {
+export const uploadImage = (image , resetMedia) => async (dispatch) => {
     console.log(image);
     try {
         if (!image) {
             return true;
         } else if (image.size > 1050000) {
             toast.error("Image size must be less than 1 mb");
+            resetMedia();
             return;
         }
         const data = new FormData();

@@ -1,7 +1,5 @@
 import Post from "../../models/Post.js";
-import User from "../../models/User.js";
 import { asyncError } from "../../utils/errors/asyncError.js";
-import ErrorHandler from "../../utils/errors/errorHandler.js";
 
 const createPost = asyncError(async (req, res, next) => {
     const user = req.user;

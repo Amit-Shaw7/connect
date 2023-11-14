@@ -66,7 +66,7 @@ const AddPost = ({ user }) => {
     const handlePostMedia = async (e) => {
         setUpLoading(true);
         setPostMedia(URL.createObjectURL(e.target.files[0]));
-        const uploaded = await dispatch(uploadImage(e.target.files[0]));
+        const uploaded = await dispatch(uploadImage(e.target.files[0], resetMedia));
         console.log(uploaded);
         setPostMediaUrl(uploaded?.secure_url);
         setUpLoading(false);
@@ -85,9 +85,14 @@ const AddPost = ({ user }) => {
             return;
         }
         await dispatch(addPostFn(data, user));
+        resetMedia();
+    }
+
+    const resetMedia = () => {
         setPostMedia("");
         setPostMediaUrl("");
         setPostText("");
+        setLoading(false);
     }
 
     useEffect(() => {
