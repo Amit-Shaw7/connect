@@ -8,7 +8,6 @@ import { clearHomeFeed, setPostsForHomeFeedfn } from "../../store/actions/PostAc
 import { formatErrorMessage } from "../../utils/formatError";
 
 const Feed = ({ user, sortBy }) => {
-    // const [posts, setPosts] = useState([]);
     const { feed } = useSelector(state => state.post);
     const dispatch = useDispatch();
     const [hasMore, setHasMore] = useState(true);

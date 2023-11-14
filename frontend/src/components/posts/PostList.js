@@ -10,12 +10,6 @@ import Loader from "../Loader";
 
 const PostList = ({fetchMorePosts , hasMore , editable, user, posts }) => {
 
-    if (posts?.length <= 0) {
-        return <CustomContainer>
-            <Typography textAlign="center">No posts</Typography>
-        </CustomContainer>
-    }
-
     return (
         <InfiniteScroll
             dataLength={posts.length}
