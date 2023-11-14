@@ -45,17 +45,19 @@
 
 ## Preview
 
-![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1693977564/managetScreenRecordingFinal_qljspy.gif)
+![screenshot](https://res.cloudinary.com/amitkumarshaw/video/upload/v1699960690/connectFinalShowcase_h4cnjc.mp4)
 
 ## Screenshots
 
-![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1693944696/LoginPageScreenshot_zrsyzm.png)
+![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1699961959/Screenshot_290_nf2ocu.png)
 
-![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1693944698/AddingTaskScreenshot_ly48ps.png)
+![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1699961959/Screenshot_295_cvtzla.png)
 
-![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1693945359/HomepageScreenshot_aou1wn.jpg)
+![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1699961965/Screenshot_293_njagbk.png)
 
-![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1693945222/lightmodeScreenshot_a2fvdt.jpg)
+![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1699961961/Screenshot_292_ds50pw.png)
+
+![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1699961959/Screenshot_294_tln5k9.png)
 
 ## Key Features
 
