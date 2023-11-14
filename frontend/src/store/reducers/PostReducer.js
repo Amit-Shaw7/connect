@@ -100,11 +100,9 @@ const PostReducer = createReducer(initialState, {
 
 
     APPEND_POSTS_FOR_LIKED_POSTS_FEED: (state, action) => {
-        console.log(action.payload);
         state.likedPosts = [...state.likedPosts, ...action.payload];
     },
     CLEAR_LIKED_POSTS_FEED: (state, action) => {
-        console.log(action.payload);
         state.likedPosts = [];
     },
 });

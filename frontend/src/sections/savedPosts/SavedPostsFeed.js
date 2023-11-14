@@ -4,7 +4,7 @@ import instance from "../../utils/axiosInstance";
 import toast from "react-hot-toast";
 import { limit } from "../../utils/infiniteScrollOptions";
 import { useDispatch, useSelector } from "react-redux";
-import { clearLikedPostsFeed, setPostsForSavedPostsFeedfn } from "../../store/actions/PostActions";
+import { clearSavedPostsFeed, setPostsForSavedPostsFeedfn } from "../../store/actions/PostActions";
 import { Stack } from "@mui/material";
 import { formatErrorMessage } from "../../utils/formatError";
 
@@ -29,9 +29,7 @@ const SavedPostsFeed = ({ user, sortBy }) => {
                     setHasMore(false);
                 }
                 dispatch(setPostsForSavedPostsFeedfn(response.data?.posts?.docs));
-                // setPosts((prev) => [...prev, ...response.data?.posts?.docs]);
                 setPage((page) => page + 1);
-                // dispatch()
             }
         }
     };
@@ -39,7 +37,7 @@ const SavedPostsFeed = ({ user, sortBy }) => {
     const clearPosts = () => {
         setPage(1);
         setHasMore(true);
-        dispatch(clearLikedPostsFeed());
+        dispatch(clearSavedPostsFeed());
     }
 
     useEffect(() => {
