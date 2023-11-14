@@ -51,13 +51,23 @@
 
 ![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1699961959/Screenshot_290_nf2ocu.png)
 
+<hr/>
+
 ![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1699961959/Screenshot_295_cvtzla.png)
+
+<hr/>
 
 ![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1699961965/Screenshot_293_njagbk.png)
 
+<hr/>
+
 ![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1699961961/Screenshot_292_ds50pw.png)
 
+<hr/>
+
 ![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1699961959/Screenshot_294_tln5k9.png)
+
+<hr/>
 
 ## Key Features
 
