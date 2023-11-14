@@ -10,7 +10,7 @@ const getUserPosts = asyncError(async (req, res, next) => {
         page: parseInt(page, 10) || 1,
         limit: parseInt(limit, 10) || 5,
         populate: "user",
-        sort: { createdAt: 1 }
+        sort: { createdAt: -1 }
     };
 
     const posts = await Post.paginate({ user: userId } , options)

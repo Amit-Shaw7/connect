@@ -10,7 +10,7 @@ const getPostsForExplore = asyncError(async (req, res, next) => {
         limit: parseInt(limit, 10) || 5,
         populate: "user",
         sort:
-            query === "trending" && { likes: 1 } ||
+            query === "trending" && { likes: -1 } ||
             query === "latest" && { createdAt: -1 } ||
             query === "oldest" && { createdAt: 1 }
     };
