@@ -45,9 +45,11 @@
 
 ## Preview
 
-![screenshot](https://res.cloudinary.com/amitkumarshaw/video/upload/v1699960690/connectFinalShowcase_h4cnjc.mp4)
+https://github.com/Amit-Shaw7/connect/assets/98527560/c1a512d3-bef2-4ebc-8bba-ba960972efac
 
+<hr/>
 ## Screenshots
+
 
 ![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1699961959/Screenshot_290_nf2ocu.png)
 
